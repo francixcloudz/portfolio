@@ -1,0 +1,45 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "The place where you can check out my work and discover that we can create something exciting together!",
+  "author": "Francisco Arrigoni <franarrigoni@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "emailjs-com": "^2.6.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3"
+  },
+  "devDependencies": {
+    "@mediamonks/eslint-config-react": "^1.0.2",
+    "@types/react": "^17.0.36",
+    "@types/react-dom": "^17.0.11",
+    "prettier": "^2.5.0",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.5.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
