@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
           <img src={whatsapp} alt="whatsapp" />
         </a>
         <a
-          href="https://www.instagram.com/franarrigoni"
+          href="https://www.instagram.com/franciscoarrigonni"
           target="_blank"
           rel="noreferrer"
         >
