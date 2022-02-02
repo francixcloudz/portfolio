@@ -113,4 +113,12 @@ export const ANIMATIONS = {
       transform: translateY(-50%, 0%);
     }
   }`,
+  FADE_OUT: `@keyframes FADE_OUT {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }`,
 };

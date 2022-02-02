@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { COLORS, BREAKPOINTS } from "assets/styles/constants";
 
 export const Container = styled.div`
+  background: ${COLORS.PRIMARY};
   padding: 10vh 2.5% 20vh;
   h3 {
     margin-bottom: 20px;

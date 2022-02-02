@@ -3,7 +3,6 @@ import { Container, Resume } from "./styled";
 
 // Assets
 import hello from "assets/media/emojis/Hello.png";
-import resume from "assets/docs/Francisco Arrigoni - Resume.pdf";
 
 const About: React.FC = () => {
   return (
@@ -25,7 +24,11 @@ const About: React.FC = () => {
             <div className="box">
               <h3>¡Breaking News!</h3>
               <p>Currently seeking job opportunities in IT</p>
-              <a href={resume} target="_blank" rel="noreferrer">
+              <a
+                href="https://arrigoni.s3.sa-east-1.amazonaws.com/Francisco+Arrigoni+-+Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Resume / CV
               </a>
             </div>

@@ -1,11 +1,9 @@
 # Order of imports:
 
-// Rules
-
 // Dependencies
 // Styled
 // Children
 // Components
 // Assets
 
-// Constants
+ // Constants

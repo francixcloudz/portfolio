@@ -96,24 +96,24 @@ const Contact: React.FC = () => {
       </FormWrapper>
       <SocialIcons>
         <a
-          href="https://www.linkedin.com/in/franarrigoni"
+          href="https://arrigoni.in/Linkedin/"
           target="_blank"
           rel="noreferrer"
         >
           <img src={linkedin} alt="linkedin" />
         </a>
+        <a href="https://arrigoni.in/Github/" target="_blank" rel="noreferrer">
+          <img src={github} alt="github" />
+        </a>
         <a
-          href="https://github.com/franarrigoni"
+          href="https://arrigoni.in/Whatsapp/"
           target="_blank"
           rel="noreferrer"
         >
-          <img src={github} alt="github" />
-        </a>
-        <a href="https://wa.me/5492995769384" target="_blank" rel="noreferrer">
           <img src={whatsapp} alt="whatsapp" />
         </a>
         <a
-          href="https://www.instagram.com/franciscoarrigonni"
+          href="https://arrigoni.in/Instagram/"
           target="_blank"
           rel="noreferrer"
         >
