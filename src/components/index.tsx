@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   const handleRedirections = (currentPath: string) => {
     const redirection = redirections.find(({ path }) => path === currentPath);
-    if (redirection) window.location.replace(redirection.redirect);
+    if (redirection) window.open(redirection.redirect, "_blank");
   };
 
   useEffect(() => {
