@@ -40,7 +40,9 @@ const App: React.FC = () => {
   return (
     <div id="App">
       <Home />
-      <LoadingScreen loading={loading} />
+      {process.env.NODE_ENV === "production" && (
+        <LoadingScreen loading={loading} />
+      )}
     </div>
   );
 };

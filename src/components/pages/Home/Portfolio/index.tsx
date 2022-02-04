@@ -25,27 +25,27 @@ const Portfolio: React.FC = () => {
           <div>
             <div className="box">
               <h2>
-                Demos <img src={myWork} width="30" alt="my-work" />
+                Portfolio <img src={myWork} width="30" alt="my-work" />
               </h2>
-              <p>Here are a few demos I've worked on to test my tech skills</p>
+              <p>Here are a some demos I've worked on to test my tech skills</p>
             </div>
             <Projects type="demos" />
           </div>
 
-          {/* <div>
+          <div>
             <div className="box">
               <h2>
-                Portfolio <img src={myWork} width="30" alt="my-work" />
+                Projects <img src={myWork} width="30" alt="my-work" />
               </h2>
-              <p>Here are a few projects I've worked on as a freelance</p>
+              <p>Here are a few projects I've worked on</p>
             </div>
-            <Projects type="portfolio" />
-          </div> */}
+            <Projects type="projects" />
+          </div>
 
           <div>
             <div className="box">
               <h2>
-                Projects <img src={moonShot} width="30" alt="moonshot" />
+                Ventures <img src={moonShot} width="30" alt="moonshot" />
               </h2>
               <p>
                 One of the things I enjoy most in life is the creative process

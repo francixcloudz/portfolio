@@ -53,38 +53,25 @@ export const Project = styled.div`
     }
   }
 
-  [alt="Button Maker"] {
+  [alt="Sliding Puzzle"],
+  [alt="Button Maker"],
+  [alt="Kanban App"],
+  [alt="Schrödinger's Cat"] {
     transition: linear 0s;
     cursor: default;
-  }
-  [alt="Button Maker"]:hover {
-    margin-top: 0px;
-    transform: translateY(0%);
-  }
-
-  [alt="Sliding Puzzle"] {
-    transition: linear 0s;
-    cursor: default;
-  }
-  [alt="Sliding Puzzle"]:hover {
-    margin-top: 0px;
-    transform: translateY(0%);
-  }
-
-  [alt="Kanban App"] {
-    transition: linear 0s;
-    cursor: default;
-  }
-  [alt="Kanban App"]:hover {
-    margin-top: 0px;
-    transform: translateY(0%);
+    :hover {
+      margin-top: 0px;
+      transform: translateY(0%);
+    }
   }
 
   [alt="Sistema SON"] {
     transition: linear 8s;
   }
 
-  [alt="InstaSorteos"] {
+  [alt="InstaSorteos"],
+  [alt="Pharmacy App"],
+  [alt="Marca Propia"] {
     transition: linear 4.5s;
   }
 

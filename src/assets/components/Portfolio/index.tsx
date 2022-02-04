@@ -2,6 +2,9 @@
 import buttonmaker from "./demos/buttonmaker.png";
 import slidingpuzzle from "./demos/slidingpuzzle.png";
 import kanbanapp from "./demos/kanbanapp.png";
+import pharmacyapp from "./projects/pharmacyapp.png";
+import marcapropia from "./projects/marcapropia.png";
+import globalgamejam from "./projects/globalgamejam.png";
 import sistemason from "./ventures/sistemason/home.png";
 import instasorteos from "./ventures/instasorteos/home.png";
 import somoswebi from "./ventures/somoswebi/home.png";
@@ -15,12 +18,18 @@ import {
   REDUX,
   NODEJS,
   EXPRESS,
-  NEXTJS,
+  NEXT,
   MONGODB,
+  FAUNDADB,
+  GOOGLE,
+  STYLED_COMPONENTS,
+  CSHARP,
+  UNITY,
+  GSAP,
 } from "./icons";
 
 // Constants
-export type ProjectType = "demos" | "portfolio" | "ventures";
+export type ProjectType = "demos" | "projects" | "ventures";
 export type Project = {
   type: ProjectType;
   config: "github" | "working" | "design";
@@ -63,44 +72,51 @@ export const projects: Array<Project> = [
     github: "https://github.com/franarrigoni/kanban-app",
     stack: [
       HTML,
-      CSS_MODULES,
+      STYLED_COMPONENTS,
       TS,
       REACT,
       REDUX,
       NODEJS,
       EXPRESS,
-      NEXTJS,
       MONGODB,
     ],
   },
-  // {
-  //   type: "portfolio",
-  //   config: "github",
-  //   title: "Vademecum",
-  //   description:
-  //     "Enhance workflow between pharmacists and doctors from Argentina",
-  //   img: sistemason,
-  //   website: "https://farmaceuticos-asociados.web.app",
-  //   github: "https://github.com/franarrigoni/farmaceuticosasociados",
-  // },
-  // {
-  //   type: "portfolio",
-  //   config: "github",
-  //   title: "Marca Propia",
-  //   description: "bla",
-  //   img: sistemason,
-  //   website: "https://marcapropia.org/farmaceuticosasociados",
-  //   github: "https://github.com/franarrigoni/marcapropia",
-  // },
-  // {
-  //   type: "portfolio",
-  //   config: "github",
-  //   title: "bla",
-  //   description: "bla",
-  //   img: sistemason,
-  //   website: "https://button-maker.vercel.app",
-  //   github: "https://github.com/franarrigoni/kanban-app",
-  // },
+
+  {
+    type: "projects",
+    config: "github",
+    title: "Pharmacy App",
+    description:
+      "Enhance workflow between pharmacists and doctors from Argentina",
+    img: pharmacyapp,
+    website: "https://farmaceuticos-asociados.web.app",
+    github: "https://github.com/franarrigoni/farmaceuticosasociados",
+    stack: [HTML, CSS_MODULES, TS, REACT, REDUX, GOOGLE],
+  },
+  {
+    type: "projects",
+    config: "github",
+    title: "Marca Propia",
+    description:
+      "Unifies the product communication strategy of multiple pharmacies around Argentina",
+    img: marcapropia,
+    website: "https://marcapropia.org/farmaceuticosasociados",
+    github: "https://github.com/franarrigoni/marcapropia",
+    stack: [HTML, CSS_MODULES, GSAP, TS, NEXT, REACT, REDUX, GOOGLE, FAUNDADB],
+  },
+  {
+    type: "projects",
+    config: "github",
+    title: "Schrödinger's Cat",
+    description:
+      "A game we launched to participate in the biggest gaming hackathon in the world, the GlobalGameJam!",
+    img: globalgamejam,
+    website:
+      "https://globalgamejam.org/2022/games/bardo-decide-fate-schr%C3%B6dingers-cat-6",
+    github: "https://github.com/franarrigoni/ggj2022",
+    stack: [UNITY, CSHARP],
+  },
+
   {
     type: "ventures",
     config: "design",
