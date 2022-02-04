@@ -1,5 +1,9 @@
 {
-  "extends": "@mediamonks/eslint-config-react",
+  "extends": [
+    "eslint:recommended",
+    "@mediamonks/eslint-config-react",
+    "prettier"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },

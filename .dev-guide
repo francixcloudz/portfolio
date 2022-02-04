@@ -2,8 +2,8 @@
 
 // Dependencies
 // Styled
-// Children
+// Inner
 // Components
 // Assets
 
- // Constants
+// Constants eslint-disable-line @typescript-eslint/naming-convention
