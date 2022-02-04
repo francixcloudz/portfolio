@@ -32,7 +32,7 @@ const Portfolio: React.FC = () => {
             <Projects type="demos" />
           </div>
 
-          <div>
+          {/* <div>
             <div className="box">
               <h2>
                 Portfolio <img src={myWork} width="30" alt="my-work" />
@@ -40,7 +40,7 @@ const Portfolio: React.FC = () => {
               <p>Here are a few projects I've worked on as a freelance</p>
             </div>
             <Projects type="portfolio" />
-          </div>
+          </div> */}
 
           <div>
             <div className="box">
