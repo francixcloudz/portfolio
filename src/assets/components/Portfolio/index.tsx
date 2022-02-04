@@ -1,10 +1,10 @@
 // Assets
-import buttonmaker from "./buttonmaker.png";
-import slidingpuzzle from "./slidingpuzzle.png";
-import kanbanapp from "./kanbanapp.png";
-import sistemason from "./projects/sistemason/home.png";
-import instasorteos from "./projects/instasorteos/home.png";
-import somoswebi from "./projects/somoswebi/home.png";
+import buttonmaker from "./demos/buttonmaker.png";
+import slidingpuzzle from "./demos/slidingpuzzle.png";
+import kanbanapp from "./demos/kanbanapp.png";
+import sistemason from "./ventures/sistemason/home.png";
+import instasorteos from "./ventures/instasorteos/home.png";
+import somoswebi from "./ventures/somoswebi/home.png";
 import {
   HTML,
   CSS,
@@ -20,14 +20,9 @@ import {
 } from "./icons";
 
 // Constants
-export type ProjectsName = "Sistema SON" | "InstaSorteos" | "WEBI" | string;
+export type ProjectType = "demos" | "portfolio" | "ventures";
 export type Project = {
-  config: "github" | "working" | "design";
-  title: ProjectsName;
-  description: string;
-  img: string;
-};
-export type Portfolio = Project & {
+  type: ProjectType;
   config: "github" | "working" | "design";
   title: string;
   description: string;
@@ -37,8 +32,9 @@ export type Portfolio = Project & {
   stack?: Array<(key: string) => JSX.Element>;
 };
 
-export const portfolio: Array<Portfolio> = [
+export const projects: Array<Project> = [
   {
+    type: "demos",
     config: "github",
     title: "Sliding Puzzle",
     description: "Test your brain skills with the 4x4 sliding puzzle game",
@@ -48,6 +44,7 @@ export const portfolio: Array<Portfolio> = [
     stack: [HTML, CSS, TS],
   },
   {
+    type: "demos",
     config: "github",
     title: "Button Maker",
     description: "Design attractive buttons by generating their CSS code",
@@ -57,6 +54,7 @@ export const portfolio: Array<Portfolio> = [
     stack: [HTML, CSS_MODULES, SASS, TS, REACT, REDUX],
   },
   {
+    type: "demos",
     config: "working",
     title: "Kanban App",
     description:
@@ -75,10 +73,36 @@ export const portfolio: Array<Portfolio> = [
       MONGODB,
     ],
   },
-];
-
-export const projects: Array<Project> = [
   {
+    type: "portfolio",
+    config: "github",
+    title: "Vademecum",
+    description:
+      "Enhance workflow between pharmacists and doctors from Argentina",
+    img: sistemason,
+    website: "https://farmaceuticos-asociados.web.app",
+    github: "https://github.com/franarrigoni/farmaceuticosasociados",
+  },
+  {
+    type: "portfolio",
+    config: "github",
+    title: "Marca Propia",
+    description: "bla",
+    img: sistemason,
+    website: "https://marcapropia.org/farmaceuticosasociados",
+    github: "https://github.com/franarrigoni/marcapropia",
+  },
+  {
+    type: "portfolio",
+    config: "github",
+    title: "bla",
+    description: "bla",
+    img: sistemason,
+    website: "https://button-maker.vercel.app",
+    github: "https://github.com/franarrigoni/kanban-app",
+  },
+  {
+    type: "ventures",
     config: "design",
     title: "Sistema SON",
     description:
@@ -86,6 +110,7 @@ export const projects: Array<Project> = [
     img: sistemason,
   },
   {
+    type: "ventures",
     config: "design",
     title: "InstaSorteos",
     description:
@@ -93,6 +118,7 @@ export const projects: Array<Project> = [
     img: instasorteos,
   },
   {
+    type: "ventures",
     config: "design",
     title: "WEBI",
     description:

@@ -5,25 +5,27 @@ import { Container, Project } from "./styled";
 import Overlay from "./Overlay";
 
 // Assets
-import { portfolio, projects, ProjectsName } from "assets/components/Portfolio";
+import { projects, ProjectType } from "assets/components/Portfolio";
 
 const Projects: React.FC<{
-  type: string;
+  type: ProjectType;
   setOpenDesignModal?: React.Dispatch<React.SetStateAction<boolean>>;
-  setDesignModalProject?: React.Dispatch<React.SetStateAction<ProjectsName>>;
+  setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
 }> = ({ type, setOpenDesignModal, setDesignModalProject }) => {
   return (
     <Container id="Projects">
-      {(type === "portfolio" ? portfolio : projects).map((project) => (
-        <Project key={project.title} id={project.title}>
-          <img src={project.img} alt={project.title} />
-          <Overlay
-            project={project}
-            setOpenDesignModal={setOpenDesignModal}
-            setDesignModalProject={setDesignModalProject}
-          />
-        </Project>
-      ))}
+      {projects
+        .filter(({ type: projectType }) => projectType === type)
+        .map((project) => (
+          <Project key={project.title} id={project.title}>
+            <img src={project.img} alt={project.title} />
+            <Overlay
+              project={project}
+              setOpenDesignModal={setOpenDesignModal}
+              setDesignModalProject={setDesignModalProject}
+            />
+          </Project>
+        ))}
     </Container>
   );
 };

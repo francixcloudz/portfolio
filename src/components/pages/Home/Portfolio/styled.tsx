@@ -20,10 +20,10 @@ export const Container = styled.div`
       margin: auto;
       max-width: 95%;
       width: 600px;
+    }
 
-      &.projects {
-        margin-top: 10vh;
-      }
+    > *:not(:last-child) {
+      margin-bottom: 10vh;
     }
   }
 `;

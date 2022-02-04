@@ -1,3 +1,6 @@
+// Dependencies
+import { useState } from "react";
+
 // Styled
 import { Container, Character } from "./styled";
 
@@ -6,16 +9,11 @@ import Nav from "components/layouts/Nav";
 import Notification from "components/general/Notification";
 
 // Assets
-import character from "assets/media/character.png";
-import characterHover from "assets/media/character_hover.png";
+import image from "assets/media/character.png";
+import smileImage from "assets/media/character_hover.png";
 
 const Landing: React.FC = () => {
-  const handleHey = (event, type?: string) => {
-    // eslint-disable-next-line no-param-reassign
-    if (type === "hover") event.currentTarget.src = characterHover;
-    // eslint-disable-next-line no-param-reassign
-    else event.currentTarget.src = character;
-  };
+  const [isSmileImage, setIsSmileImage] = useState(false);
 
   return (
     <Container id="Landing">
@@ -26,12 +24,12 @@ const Landing: React.FC = () => {
           <h2>Sr. Frontend Developer</h2>
           <Character>
             <img
-              src={character}
+              src={isSmileImage ? smileImage : image}
               alt="character"
-              onMouseOver={(event) => handleHey(event, "hover")}
-              onMouseOut={(event) => handleHey(event)}
+              onMouseOver={() => setIsSmileImage(true)}
+              onMouseOut={() => setIsSmileImage(false)}
             />
-            <Notification />
+            <Notification onClick={setIsSmileImage} />
           </Character>
         </div>
       </div>

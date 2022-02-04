@@ -4,12 +4,15 @@ import { useRef } from "react";
 // Styled
 import { Button, Message, Bell } from "./styled";
 
-const Notification: React.FC = () => {
+const Notification: React.FC<{
+  onClick: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ onClick }) => {
   const notification = useRef<HTMLDivElement>(null);
 
   const handleNotification = (event: React.BaseSyntheticEvent) => {
     event.currentTarget.parentNode.removeChild(event.currentTarget);
     notification.current!.style.display = "block";
+    onClick(true);
   };
 
   return (

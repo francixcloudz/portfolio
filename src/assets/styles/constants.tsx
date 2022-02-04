@@ -119,6 +119,7 @@ export const ANIMATIONS = {
     }
     100% {
       opacity: 0;
+      z-index: -1;
     }
   }`,
 };

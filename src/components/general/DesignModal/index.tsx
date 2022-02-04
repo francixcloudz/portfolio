@@ -5,17 +5,16 @@ import ReactDOM from "react-dom";
 import { Container, Close, PageList } from "./styled";
 
 // Assets
-import { data as sistemason } from "assets/components/Portfolio/projects/sistemason";
-import { data as instasorteos } from "assets/components/Portfolio/projects/instasorteos";
-import { data as somoswebi } from "assets/components/Portfolio/projects/somoswebi";
-import type { ProjectsName } from "assets/components/Portfolio";
+import { data as sistemason } from "assets/components/Portfolio/ventures/sistemason";
+import { data as instasorteos } from "assets/components/Portfolio/ventures/instasorteos";
+import { data as somoswebi } from "assets/components/Portfolio/ventures/somoswebi";
 
 const DesignModal: React.FC<{
   openDesignModal: boolean;
   setOpenDesignModal: React.Dispatch<React.SetStateAction<boolean>>;
-  designModalProject: ProjectsName;
+  designModalProject: string;
 }> = ({ openDesignModal, setOpenDesignModal, designModalProject }) => {
-  const handleData = (project: ProjectsName) => {
+  const handleData = (project) => {
     switch (project) {
       case "Sistema SON":
         return sistemason;

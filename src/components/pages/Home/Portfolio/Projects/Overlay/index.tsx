@@ -12,12 +12,12 @@ import githubIcon from "assets/media/icons/github.png";
 import tabIcon from "assets/media/icons/tab.png";
 import workingIcon from "assets/media/icons/working.png";
 import designIcon from "assets/media/icons/design.png";
-import type { Portfolio, ProjectsName } from "assets/components/Portfolio";
+import type { Project } from "assets/components/Portfolio";
 
 const Overlay: React.FC<{
-  project: Portfolio;
+  project: Project;
   setOpenDesignModal?: React.Dispatch<React.SetStateAction<boolean>>;
-  setDesignModalProject?: React.Dispatch<React.SetStateAction<ProjectsName>>;
+  setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
 }> = ({ project, setOpenDesignModal, setDesignModalProject }) => {
   const { config, title, description, website, github, stack } = project;
   const overlay = useRef<HTMLDivElement>(null);

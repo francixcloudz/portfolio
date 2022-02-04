@@ -22,24 +22,25 @@ const redirections = [
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const loadingTime = 3500;
 
   const handleRedirections = (currentPath: string) => {
     const redirection = redirections.find(({ path }) => path === currentPath);
-    if (redirection) window.location.replace(redirection.redirect);
+    if (redirection) window.location.href = redirection.redirect;
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      handleRedirections(window.location.pathname.toLowerCase().slice(1));
-      setLoading(false);
-    }, loadingTime);
+    window.addEventListener("load", () => {
+      handleRedirections(
+        window.location.pathname.toLowerCase().replaceAll("/", "")
+      );
+      setTimeout(() => setLoading(false), 3000);
+    });
   }, []);
 
   return (
     <div id="App">
       <Home />
-      {loading && <LoadingScreen time={loadingTime} />}
+      <LoadingScreen loading={loading} />
     </div>
   );
 };
