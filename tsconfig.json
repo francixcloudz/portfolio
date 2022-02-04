@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
@@ -15,7 +15,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    // Custom
     "baseUrl": "src",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
