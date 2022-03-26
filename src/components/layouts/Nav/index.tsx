@@ -19,7 +19,7 @@ const Nav: React.FC = () => {
 
   return (
     <Container id="Nav">
-      <Logo href="http://franarrigoni.vercel.app">
+      <Logo href="http://arrigoni.in">
         <img className="lenses" alt="lenses" src={lenses} />
         <img className="smile" alt="smile" src={smile} />
       </Logo>

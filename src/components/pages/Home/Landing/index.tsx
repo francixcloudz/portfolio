@@ -21,7 +21,7 @@ const Landing: React.FC = () => {
       <div className="content">
         <div className="box">
           <h1>Francisco Arrigoni</h1>
-          <h2>Sr. Frontend Developer</h2>
+          <h2>Sr. Frontend Engineer</h2>
           <Character>
             <img
               src={isSmileImage ? smileImage : image}

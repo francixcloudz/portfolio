@@ -8,7 +8,7 @@ import smile from "assets/components/Signature/smile.png";
 const Logo: React.FC = () => {
   return (
     <Container id="Signature">
-      <a href="http://franarrigoni.vercel.app" target="_blank" rel="noreferrer">
+      <a href="http://arrigoni.in" target="_blank" rel="noreferrer">
         <p>made by</p>
         <img className="lenses" alt="lenses" src={lenses} />
         <img className="smile" alt="smile" src={smile} />

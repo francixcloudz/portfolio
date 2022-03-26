@@ -11,13 +11,13 @@ import "assets/styles/reset.css";
 import "assets/styles/general.css";
 
 const redirections = [
-  { path: "linkedin", redirect: "https://linkedin.com/in/franciscoarrigoni/" },
-  { path: "github", redirect: "https://github.com/franarrigoni/" },
-  { path: "twitter", redirect: "https://twitter.com/franciscloudss/" },
-  { path: "instagram", redirect: "https://twitter.com/franciscoarrigonni/" },
-  { path: "facebook", redirect: "https://facebook.com/franarrigonii/" },
   { path: "whatsapp", redirect: "https://wa.me/5492995769384/" },
   { path: "portfolio", redirect: "https://arrigoni.in/" },
+  { path: "linkedin", redirect: "https://linkedin.com/in/franciscloudss/" },
+  { path: "github", redirect: "https://github.com/franciscloudss/" },
+  { path: "instagram", redirect: "https://twitter.com/franciscloudss/" },
+  { path: "twitter", redirect: "https://twitter.com/franciscloudss/" },
+  { path: "facebook", redirect: "https://facebook.com/franciscloudss/" },
 ];
 
 const App: React.FC = () => {
