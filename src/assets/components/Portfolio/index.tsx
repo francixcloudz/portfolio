@@ -90,7 +90,7 @@ export const projects: Array<Project> = [
       "Enhance workflow between pharmacists and doctors from Argentina",
     img: pharmacyapp,
     website: "https://farmaceuticos-asociados.web.app",
-    github: "https://github.com/franciscloudss/farmaceuticosasociados",
+    github: "https://github.com/franciscloudss/pharmacy-app",
     stack: [HTML, CSS_MODULES, TS, REACT, REDUX, GOOGLE],
   },
   {
