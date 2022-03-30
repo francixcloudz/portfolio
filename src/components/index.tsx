@@ -11,6 +11,11 @@ import "assets/styles/reset.css";
 import "assets/styles/general.css";
 
 const redirections = [
+  {
+    path: "resume",
+    redirect:
+      "https://arrigoni.s3.sa-east-1.amazonaws.com/Francisco+Arrigoni+-+Resume.pdf",
+  },
   { path: "whatsapp", redirect: "https://wa.me/5492995769384/" },
   { path: "portfolio", redirect: "https://arrigoni.in/" },
   { path: "linkedin", redirect: "https://linkedin.com/in/franciscloudss/" },
