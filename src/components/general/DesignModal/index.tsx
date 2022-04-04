@@ -5,9 +5,9 @@ import ReactDOM from "react-dom";
 import { Container, Close, PageList } from "./styled";
 
 // Assets
-import { data as sistemason } from "assets/components/Portfolio/ventures/sistemason";
-import { data as instasorteos } from "assets/components/Portfolio/ventures/instasorteos";
-import { data as somoswebi } from "assets/components/Portfolio/ventures/somoswebi";
+import { data as sistemason } from "assets/portfolio/ventures/sistemason";
+import { data as instasorteos } from "assets/portfolio/ventures/instasorteos";
+import { data as somoswebi } from "assets/portfolio/ventures/somoswebi";
 
 const DesignModal: React.FC<{
   openDesignModal: boolean;
@@ -29,7 +29,7 @@ const DesignModal: React.FC<{
 
   if (!openDesignModal) return null;
   return ReactDOM.createPortal(
-    <Container id="DesignModal" data-state={openDesignModal}>
+    <Container data-state={openDesignModal}>
       <div className="overlay" onClick={() => setOpenDesignModal(false)}></div>
       <div className="modal">
         <Close onClick={() => setOpenDesignModal(false)}>x</Close>

@@ -16,7 +16,7 @@ const Landing: React.FC = () => {
   const [isSmileImage, setIsSmileImage] = useState(false);
 
   return (
-    <Container id="Landing">
+    <Container>
       <Nav />
       <div className="content">
         <div className="box">

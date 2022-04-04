@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <Container id="Contact">
+    <Container>
       <h2>
         Contact <img src={contactMe} width="30" alt="contact-me" />
       </h2>

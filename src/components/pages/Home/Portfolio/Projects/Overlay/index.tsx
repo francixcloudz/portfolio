@@ -12,7 +12,7 @@ import githubIcon from "assets/media/icons/github.png";
 import tabIcon from "assets/media/icons/tab.png";
 import workingIcon from "assets/media/icons/working.png";
 import designIcon from "assets/media/icons/design.png";
-import type { Project } from "assets/components/Portfolio";
+import type { Project } from "assets/portfolio";
 
 const Overlay: React.FC<{
   project: Project;
@@ -36,7 +36,7 @@ const Overlay: React.FC<{
   };
 
   return (
-    <Container id="Overlay" ref={overlay}>
+    <Container ref={overlay}>
       <MainButton ref={button} onClick={handleOverlay}>
         ?
       </MainButton>

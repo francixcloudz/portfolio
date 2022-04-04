@@ -2,12 +2,12 @@
 import { Container } from "./styled";
 
 // Assets
-import lenses from "assets/components/Signature/lenses.png";
-import smile from "assets/components/Signature/smile.png";
+import lenses from "assets/media/lenses.png";
+import smile from "assets/media/smile.png";
 
 const Logo: React.FC = () => {
   return (
-    <Container id="Signature">
+    <Container>
       <a href="http://arrigoni.in" target="_blank" rel="noreferrer">
         <p>made by</p>
         <img className="lenses" alt="lenses" src={lenses} />

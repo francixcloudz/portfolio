@@ -17,7 +17,7 @@ const Notification: React.FC<{
 
   return (
     <>
-      <Button id="Notification_Button" onClick={handleNotification}>
+      <Button onClick={handleNotification}>
         <span className="count">1</span>
         <Bell>
           <span className="top"></span>
@@ -26,7 +26,7 @@ const Notification: React.FC<{
           <span className="radius"></span>
         </Bell>
       </Button>
-      <Message id="Notification_Message" ref={notification}>
+      <Message ref={notification}>
         <p>
           I design & code beautifully simple things and I love what I do!{" "}
           <a href="#Contact" className="scroll">

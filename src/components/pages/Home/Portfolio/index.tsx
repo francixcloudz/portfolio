@@ -20,7 +20,7 @@ const Portfolio: React.FC = () => {
 
   return (
     <>
-      <Container id="Portfolio">
+      <Container>
         <div className="content">
           <div>
             <div className="box">

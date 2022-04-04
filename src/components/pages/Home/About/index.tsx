@@ -6,7 +6,7 @@ import hello from "assets/media/emojis/Hello.png";
 
 const About: React.FC = () => {
   return (
-    <Container id="About">
+    <Container>
       <div className="content">
         <div className="box">
           <h2>

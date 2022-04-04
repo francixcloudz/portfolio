@@ -5,7 +5,7 @@ import { Container, Project } from "./styled";
 import Overlay from "./Overlay";
 
 // Assets
-import { projects, ProjectType } from "assets/components/Portfolio";
+import { projects, ProjectType } from "assets/portfolio";
 
 const Projects: React.FC<{
   type: ProjectType;
@@ -13,11 +13,11 @@ const Projects: React.FC<{
   setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
 }> = ({ type, setOpenDesignModal, setDesignModalProject }) => {
   return (
-    <Container id="Projects">
+    <Container>
       {projects
         .filter(({ type: projectType }) => projectType === type)
         .map((project) => (
-          <Project key={project.title} id={project.title}>
+          <Project key={project.title}>
             <img src={project.img} alt={project.title} />
             <Overlay
               project={project}

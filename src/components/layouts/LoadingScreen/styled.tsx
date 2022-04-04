@@ -17,13 +17,6 @@ export const Container = styled.div<{ fadeOut: boolean }>`
   align-items: center;
   overflow: hidden;
 
-  img {
-    width: 50vw;
-    height: 50vw;
-    max-width: 400px;
-    max-height: 400px;
-  }
-
   *::-webkit-scrollbar {
     width: 0;
   }
@@ -33,4 +26,26 @@ export const Container = styled.div<{ fadeOut: boolean }>`
       ? `animation: FADE_OUT 0.4s ease forwards;
     ${ANIMATIONS.FADE_OUT}`
       : ``}
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 50vw;
+  height: 50vw;
+  max-width: 400px;
+  max-height: 400px;
+
+  .loading {
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+  }
+
+  .lenses {
+    position: absolute;
+    width: 11%;
+    top: 25.5%;
+    left: 43%;
+  }
 `;

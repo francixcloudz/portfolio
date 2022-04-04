@@ -7,7 +7,7 @@ import Signature from "components/general/Signature";
 
 const Home: React.FC = () => {
   return (
-    <div id="Home">
+    <div>
       <Landing />
       <About />
       <Portfolio />
