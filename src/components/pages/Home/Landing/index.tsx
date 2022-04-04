@@ -10,7 +10,7 @@ import Notification from "components/general/Notification";
 
 // Assets
 import image from "assets/media/character.png";
-import smileImage from "assets/media/character_hover.png";
+import smileImage from "assets/media/character_smile.png";
 
 const Landing: React.FC = () => {
   const [isSmileImage, setIsSmileImage] = useState(false);

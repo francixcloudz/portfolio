@@ -2,8 +2,8 @@
 import { Container } from "./styled";
 
 // Assets
-import lenses from "assets/media/lenses.png";
-import smile from "assets/media/smile.png";
+import lenses from "assets/media/lenses_white.png";
+import smile from "assets/media/smile_white.png";
 
 const Logo: React.FC = () => {
   return (

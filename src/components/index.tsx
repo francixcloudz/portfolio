@@ -33,14 +33,14 @@ const App: React.FC = () => {
     if (redirection) window.location.href = redirection.redirect;
   };
 
-  useEffect(() => {
-    window.addEventListener("load", () => {
-      handleRedirections(
-        window.location.pathname.toLowerCase().replaceAll("/", "")
-      );
-      setTimeout(() => setLoading(false), 3000);
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("load", () => {
+  //     handleRedirections(
+  //       window.location.pathname.toLowerCase().replaceAll("/", "")
+  //     );
+  //     setTimeout(() => setLoading(false), 3000);
+  //   });
+  // }, []);
 
   return (
     <div id="App">
