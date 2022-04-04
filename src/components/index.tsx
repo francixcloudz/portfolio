@@ -18,11 +18,11 @@ const redirections = [
   },
   { path: "whatsapp", redirect: "https://wa.me/5492995769384/" },
   { path: "portfolio", redirect: "https://arrigoni.in/" },
-  { path: "linkedin", redirect: "https://linkedin.com/in/franciscloudss/" },
-  { path: "github", redirect: "https://github.com/franciscloudss/" },
-  { path: "instagram", redirect: "https://twitter.com/franciscloudss/" },
-  { path: "twitter", redirect: "https://twitter.com/franciscloudss/" },
-  { path: "facebook", redirect: "https://facebook.com/franciscloudss/" },
+  { path: "linkedin", redirect: "https://linkedin.com/in/francixclouds/" },
+  { path: "github", redirect: "https://github.com/francixclouds/" },
+  { path: "instagram", redirect: "https://twitter.com/francixclouds/" },
+  { path: "twitter", redirect: "https://twitter.com/francixclouds/" },
+  { path: "facebook", redirect: "https://facebook.com/francixclouds/" },
 ];
 
 const App: React.FC = () => {

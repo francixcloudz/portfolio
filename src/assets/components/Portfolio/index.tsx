@@ -49,7 +49,7 @@ export const projects: Array<Project> = [
     description: "Test your brain skills with the 4x4 sliding puzzle game",
     img: slidingpuzzle,
     website: "https://slidingpuzzle.vercel.app",
-    github: "https://github.com/franciscloudss/sliding-puzzle",
+    github: "https://github.com/francixclouds/sliding-puzzle",
     stack: [HTML, CSS, TS],
   },
   {
@@ -59,7 +59,7 @@ export const projects: Array<Project> = [
     description: "Design attractive buttons by generating their CSS code",
     img: buttonmaker,
     website: "https://button-maker.vercel.app",
-    github: "https://github.com/franciscloudss/button-maker",
+    github: "https://github.com/francixclouds/button-maker",
     stack: [HTML, CSS_MODULES, SASS, TS, REACT, REDUX],
   },
   {
@@ -69,7 +69,7 @@ export const projects: Array<Project> = [
     description:
       "Boost productivity by organizing your workflow in a practical and visual way",
     img: kanbanapp,
-    github: "https://github.com/franciscloudss/kanban-app",
+    github: "https://github.com/francixclouds/kanban-app",
     stack: [
       HTML,
       STYLED_COMPONENTS,
@@ -90,7 +90,7 @@ export const projects: Array<Project> = [
       "Enhance workflow between pharmacists and doctors from Argentina",
     img: pharmacyapp,
     website: "https://farmaceuticos-asociados.web.app",
-    github: "https://github.com/franciscloudss/pharmacy-app",
+    github: "https://github.com/francixclouds/pharmacy-app",
     stack: [HTML, CSS_MODULES, TS, REACT, REDUX, GOOGLE],
   },
   {
@@ -101,7 +101,7 @@ export const projects: Array<Project> = [
       "Unifies the product communication strategy of multiple pharmacies around Argentina",
     img: marcapropia,
     website: "https://marcapropia.org/farmaceuticosasociados",
-    github: "https://github.com/franciscloudss/marcapropia",
+    github: "https://github.com/francixclouds/marcapropia",
     stack: [HTML, CSS_MODULES, GSAP, TS, NEXT, REACT, REDUX, GOOGLE, FAUNDADB],
   },
   {
@@ -113,7 +113,7 @@ export const projects: Array<Project> = [
     img: globalgamejam,
     website:
       "https://globalgamejam.org/2022/games/bardo-decide-fate-schr%C3%B6dingers-cat-6",
-    github: "https://github.com/franciscloudss/ggj2022",
+    github: "https://github.com/francixclouds/ggj2022",
     stack: [UNITY, CSHARP],
   },
 

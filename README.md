@@ -1,6 +1,6 @@
 # Portfolio
 
-![Portfolio](https://github.com/franciscloudss/portfolio/blob/master/src/assets/media/portfolio.png?raw=true)
+![Portfolio](https://github.com/francixclouds/portfolio/blob/master/src/assets/media/portfolio.png?raw=true)
 
 ### The place where you can check out my work and discover that we can create something exciting together!
 
