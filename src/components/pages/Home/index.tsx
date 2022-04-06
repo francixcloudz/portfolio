@@ -1,20 +1,57 @@
-// Children
-import Landing from "components/pages/Home/Landing";
-import About from "components/pages/Home/About";
-import Portfolio from "components/pages/Home/Portfolio";
-import Contact from "components/pages/Home/Contact";
-import Signature from "components/general/Signature";
+// Dependencies
+import { useState } from "react";
 
-const Home: React.FC = () => {
+// Styled
+import { Container, Character } from "./styled";
+
+// Inner
+import About from "./components/About";
+import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
+
+// Components
+import Signature from "components/atoms/Signature";
+import Nav from "components/organisms/Nav";
+import Notification from "components/molecules/Notification";
+
+// Assets
+import image from "assets/media/character.png";
+import smileImage from "assets/media/character_smile.png";
+
+type Props = {
+  portraitRef: React.RefObject<HTMLImageElement>;
+};
+
+const Component: React.FC<Props> = ({ portraitRef }) => {
+  const [isSmileImage, setIsSmileImage] = useState(true);
+
   return (
-    <div>
-      <Landing />
+    <>
+      <Container>
+        <Nav />
+        <div className="content">
+          <div className="box">
+            <h1>Francisco Arrigoni</h1>
+            <h2>Sr. Frontend Engineer</h2>
+            <Character>
+              <img
+                ref={portraitRef}
+                src={isSmileImage ? smileImage : image}
+                alt="character"
+                onMouseOver={() => setIsSmileImage(true)}
+                onMouseOut={() => setIsSmileImage(false)}
+              />
+              <Notification onClick={setIsSmileImage} />
+            </Character>
+          </div>
+        </div>
+      </Container>
       <About />
       <Portfolio />
       <Contact />
       <Signature />
-    </div>
+    </>
   );
 };
 
-export default Home;
+export default Component;

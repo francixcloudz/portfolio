@@ -1,8 +1,8 @@
 // Dependencies
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Children
-import LoadingScreen from "components/layouts/LoadingScreen";
+import LoadingScreen from "components/pages/LoadingScreen";
 import Home from "components/pages/Home";
 
 // Assets
@@ -26,29 +26,35 @@ const redirections = [
 ];
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean | null>(null);
+
+  const portraitRef = useRef<HTMLImageElement>(null);
 
   const handleRedirections = (currentPath: string) => {
     const redirection = redirections.find(({ path }) => path === currentPath);
     if (redirection) window.location.href = redirection.redirect;
   };
 
-  // useEffect(() => {
-  //   window.addEventListener("load", () => {
-  //     handleRedirections(
-  //       window.location.pathname.toLowerCase().replaceAll("/", "")
-  //     );
-  //     setTimeout(() => setLoading(false), 3000);
-  //   });
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      setLoading(true);
+      handleRedirections(
+        window.location.pathname.toLowerCase().replaceAll("/", "")
+      );
+      setTimeout(() => setLoading(false), 600);
+    });
+  }, []);
 
   return (
-    <div id="App">
-      <LoadingScreen loading={loading} />
-      <Home />
-      {process.env.NODE_ENV === "production" && (
-        <LoadingScreen loading={loading} />
-      )}
+    <div
+      style={
+        loading
+          ? { overflow: "hidden", height: "100vh" }
+          : { overflow: "auto", height: "auto" }
+      }
+    >
+      <Home portraitRef={portraitRef} />
+      <LoadingScreen loading={loading} landingPortraitRef={portraitRef} />
     </div>
   );
 };

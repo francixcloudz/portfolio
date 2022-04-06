@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 // Components
-import Tooltip from "components/general/Tooltip";
+import Tooltip from "components/molecules/Tooltip";
 
 // Assets
 import cssModules from "assets/media/icons/css_modules.png";
