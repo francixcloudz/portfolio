@@ -1,7 +1,10 @@
 // Dependencies
 import { useState, useEffect, useRef } from "react";
 
-// Children
+// Styled
+import { Container, App } from "./styled";
+
+// Components
 import LoadingScreen from "components/pages/LoadingScreen";
 import Home from "components/pages/Home";
 
@@ -25,7 +28,7 @@ const redirections = [
   { path: "facebook", redirect: "https://facebook.com/francixclouds/" },
 ];
 
-const App: React.FC = () => {
+const Component: React.FC = () => {
   const [loading, setLoading] = useState<boolean | null>(null);
 
   const portraitRef = useRef<HTMLImageElement>(null);
@@ -46,17 +49,13 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div
-      style={
-        loading
-          ? { overflow: "hidden", height: "100vh" }
-          : { overflow: "auto", height: "auto" }
-      }
-    >
-      <Home portraitRef={portraitRef} />
+    <Container loading={loading}>
+      <App>
+        <Home portraitRef={portraitRef} />
+      </App>
       <LoadingScreen loading={loading} landingPortraitRef={portraitRef} />
-    </div>
+    </Container>
   );
 };
 
-export default App;
+export default Component;
