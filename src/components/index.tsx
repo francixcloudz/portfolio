@@ -41,7 +41,7 @@ const App: React.FC = () => {
       handleRedirections(
         window.location.pathname.toLowerCase().replaceAll("/", "")
       );
-      setTimeout(() => setLoading(false), 600);
+      setTimeout(() => setLoading(false), 6000);
     });
   }, []);
 
