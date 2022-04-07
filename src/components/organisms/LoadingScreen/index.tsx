@@ -26,7 +26,7 @@ import camera from "assets/media/icons/camera.png";
 
 type Props = {
   loading: boolean;
-  landingPortraitRef: React.RefObject<HTMLImageElement>;
+  landingPortraitRef: React.RefObject<HTMLDivElement>;
 };
 
 const LoadingScreen: React.FC<Props> = ({ loading, landingPortraitRef }) => {

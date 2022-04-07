@@ -7,13 +7,36 @@ import Document, {
   DocumentContext,
   DocumentInitialProps,
 } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
 class MyDocument extends Document {
   public static async getInitialProps(
     context: DocumentContext
   ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(context);
-    return { ...initialProps };
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = context.renderPage;
+
+    try {
+      context.renderPage = () =>
+        originalRenderPage({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(context);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   public render = () => {

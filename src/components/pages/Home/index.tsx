@@ -21,7 +21,7 @@ import image from "assets/media/character.png";
 import smileImage from "assets/media/character_smile.png";
 
 type Props = {
-  portraitRef: React.RefObject<HTMLImageElement>;
+  portraitRef: React.RefObject<HTMLDivElement>;
   loading: boolean;
 };
 
