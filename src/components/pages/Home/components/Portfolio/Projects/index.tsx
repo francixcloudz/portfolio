@@ -5,7 +5,7 @@ import { Container, Project, Image } from "./styled";
 import Overlay from "./Overlay";
 
 // Assets
-import { projects, ProjectType } from "assets/portfolio";
+import { projects, ProjectType } from "assets/constants/portfolio";
 
 type Props = {
   type: ProjectType;

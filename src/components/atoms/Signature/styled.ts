@@ -10,8 +10,11 @@ import { COLORS } from "assets/styles/constants";
 export const Image = styled(ImageComponent)``;
 
 export const Container = styled.div`
-  a {
+  * {
     cursor: pointer;
+  }
+
+  a {
     display: block;
     position: absolute;
     bottom: 0;
@@ -22,7 +25,6 @@ export const Container = styled.div`
   }
 
   p {
-    cursor: pointer;
     font-family: "Nunito", sans-serif;
     color: ${COLORS.WHITE};
     font-weight: 700;
@@ -31,14 +33,12 @@ export const Container = styled.div`
   }
 
   .lenses {
-    cursor: pointer;
     display: block;
     width: 100%;
     transition: transform 0.5s;
   }
 
   .smile {
-    cursor: pointer;
     width: 15%;
     margin: 0 auto;
     display: block;

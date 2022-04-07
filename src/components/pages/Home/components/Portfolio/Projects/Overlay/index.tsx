@@ -12,7 +12,7 @@ import githubIcon from "assets/media/icons/github.png";
 import tabIcon from "assets/media/icons/tab.png";
 import workingIcon from "assets/media/icons/working.png";
 import designIcon from "assets/media/icons/design.png";
-import type { Project } from "assets/portfolio";
+import type { Project } from "assets/constants/portfolio";
 
 type Props = {
   project: Project;

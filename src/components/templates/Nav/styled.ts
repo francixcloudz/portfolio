@@ -31,15 +31,17 @@ export const Logo = styled.a`
     width: 80px;
   }
 
-  ${Image}.lenses {
+  * {
     cursor: pointer;
+  }
+
+  ${Image}.lenses {
     display: block;
     width: 100%;
     transition: transform 0.5s;
   }
 
   ${Image}.smile {
-    cursor: pointer;
     width: 15%;
     margin: 0 auto;
     display: block;

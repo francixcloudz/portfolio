@@ -5,9 +5,9 @@ import ReactDOM from "react-dom";
 import { Container, Close, PageList, Image } from "./styled";
 
 // Assets
-import { data as sistemason } from "assets/portfolio/ventures/sistemason";
-import { data as instasorteos } from "assets/portfolio/ventures/instasorteos";
-import { data as somoswebi } from "assets/portfolio/ventures/somoswebi";
+import { data as sistemason } from "assets/constants/portfolio/ventures/sistemason";
+import { data as instasorteos } from "assets/constants/portfolio/ventures/instasorteos";
+import { data as somoswebi } from "assets/constants/portfolio/ventures/somoswebi";
 
 type Props = {
   openDesignModal: boolean;
