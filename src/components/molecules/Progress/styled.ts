@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Progress = styled.path<{
+export const ProgressPath = styled.path<{
   duration: number;
   delay: number;
   percentage: number;

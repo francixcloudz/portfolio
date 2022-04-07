@@ -1,7 +1,7 @@
 // Styled
 import { Container } from "./styled";
 
-const Component: React.FC = () => {
+const Loader: React.FC = () => {
   return (
     <Container>
       {new Array(4).fill(null).map((key) => (
@@ -13,4 +13,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export default Loader;

@@ -2,13 +2,13 @@
 import { useRef } from "react";
 
 // Styled
-import { Container, Logo, Burger, Links } from "./styled";
+import { Container, Logo, Burger, Links, Image } from "./styled";
 
 // Assets
 import lenses from "assets/media/lenses.png";
 import smile from "assets/media/smile.png";
 
-const Component: React.FC = () => {
+const Nav: React.FC = () => {
   const links = useRef<HTMLDivElement>(null);
   const handleMenu = (event: React.BaseSyntheticEvent) => {
     if (links.current !== null) {
@@ -20,8 +20,8 @@ const Component: React.FC = () => {
   return (
     <Container>
       <Logo href="http://arrigoni.in">
-        <img className="lenses" alt="lenses" src={lenses} />
-        <img className="smile" alt="smile" src={smile} />
+        <Image className="lenses" alt="lenses" src={lenses} />
+        <Image className="smile" alt="smile" src={smile} />
       </Logo>
       <div>
         <Burger onClick={handleMenu}>
@@ -43,4 +43,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export default Nav;

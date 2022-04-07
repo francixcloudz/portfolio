@@ -1,5 +1,5 @@
 // Styled
-import { Container, Project } from "./styled";
+import { Container, Project, Image } from "./styled";
 
 // Children
 import Overlay from "./Overlay";
@@ -13,7 +13,7 @@ type Props = {
   setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Component: React.FC<Props> = ({
+const Projects: React.FC<Props> = ({
   type,
   setOpenDesignModal,
   setDesignModalProject,
@@ -24,7 +24,7 @@ const Component: React.FC<Props> = ({
         .filter(({ type: projectType }) => projectType === type)
         .map((project) => (
           <Project key={project.title}>
-            <img src={project.img} alt={project.title} />
+            <Image src={project.img} alt={project.title} />
             <Overlay
               project={project}
               setOpenDesignModal={setOpenDesignModal}
@@ -36,4 +36,4 @@ const Component: React.FC<Props> = ({
   );
 };
 
-export default Component;
+export default Projects;

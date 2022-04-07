@@ -2,16 +2,11 @@
 import { useState, useEffect, useRef } from "react";
 
 // Styled
-import { Container, App } from "./styled";
+import { Container, AppWrapper } from "./styled";
 
 // Components
-import LoadingScreen from "components/pages/LoadingScreen";
+import LoadingScreen from "components/organisms/LoadingScreen";
 import Home from "components/pages/Home";
-
-// Assets
-import "assets/scripts/smooth-scrolling";
-import "assets/styles/reset.css";
-import "assets/styles/general.css";
 
 const redirections = [
   {
@@ -28,8 +23,8 @@ const redirections = [
   { path: "facebook", redirect: "https://facebook.com/francixclouds/" },
 ];
 
-const Component: React.FC = () => {
-  const [loading, setLoading] = useState<boolean | null>(null);
+const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
 
   const portraitRef = useRef<HTMLImageElement>(null);
 
@@ -40,7 +35,6 @@ const Component: React.FC = () => {
 
   useEffect(() => {
     window.addEventListener("load", () => {
-      setLoading(true);
       handleRedirections(
         window.location.pathname.toLowerCase().replaceAll("/", "")
       );
@@ -49,13 +43,13 @@ const Component: React.FC = () => {
   }, []);
 
   return (
-    <Container loading={loading}>
-      <App>
-        <Home portraitRef={portraitRef} />
-      </App>
+    <Container loading={loading ? 1 : 0}>
+      <AppWrapper loading={loading ? 1 : 0}>
+        <Home loading={loading} portraitRef={portraitRef} />
+      </AppWrapper>
       <LoadingScreen loading={loading} landingPortraitRef={portraitRef} />
     </Container>
   );
 };
 
-export default Component;
+export default App;

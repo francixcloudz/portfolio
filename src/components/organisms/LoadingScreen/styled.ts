@@ -1,6 +1,9 @@
 // Dependencies
 import styled, { css } from "styled-components";
 
+// Components
+import Image from "components/templates/Image";
+
 // Assets
 import { COLORS, ANIMATIONS } from "assets/styles/constants";
 
@@ -45,7 +48,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Loading = styled.img`
+export const Loading = styled(Image)`
   position: absolute;
   top: 0;
   left: 0;
@@ -65,7 +68,7 @@ const portraitStyle = css`
   border-radius: 50%;
 `;
 
-export const Portrait = styled.img`
+export const Portrait = styled(Image)`
   ${portraitStyle}
 `;
 
@@ -78,7 +81,7 @@ export const ScreenshotWrapper = styled.div`
   background: ${COLORS.WHITE};
 `;
 
-export const CameraIcon = styled.img`
+export const CameraIcon = styled(Image)`
   opacity: 0;
   position: absolute;
   top: -4%;

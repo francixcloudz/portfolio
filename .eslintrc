@@ -1,6 +1,7 @@
 {
   "extends": [
     "eslint:recommended",
+    "eslint-config-next",
     "@mediamonks/eslint-config-react",
     "prettier"
   ],
@@ -9,6 +10,7 @@
   },
   "rules": {
     "no-console": ["warn"],
+    "dot-notation": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react/button-has-type": "off",
     "react/no-unescaped-entities": "off",

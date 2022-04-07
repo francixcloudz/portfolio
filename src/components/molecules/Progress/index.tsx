@@ -1,5 +1,5 @@
 // Styled
-import { Container, Progress } from "./styled";
+import { Container, ProgressPath } from "./styled";
 
 type Props = {
   duration: number;
@@ -9,7 +9,7 @@ type Props = {
   delay?: number;
 };
 
-const Component: React.FC<Props> = ({
+const Progress: React.FC<Props> = ({
   children,
   className,
   percentage,
@@ -26,14 +26,14 @@ const Component: React.FC<Props> = ({
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
           />
-          <Progress
+          <ProgressPath
             strokeDasharray="0, 100"
             d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
-            percentage={percentage}
             duration={duration}
-            delay={delay}
+            percentage={percentage || 100}
+            delay={delay || 0}
           />
         </g>
       </svg>
@@ -42,9 +42,4 @@ const Component: React.FC<Props> = ({
   );
 };
 
-Component.defaultProps = {
-  percentage: 100,
-  delay: 0,
-};
-
-export default Component;
+export default Progress;

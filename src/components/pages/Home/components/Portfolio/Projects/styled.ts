@@ -1,6 +1,9 @@
 // Dependencies
 import styled from "styled-components";
 
+// Components
+import ImageComponent from "components/templates/Image";
+
 // Assets
 import { COLORS, BREAKPOINTS } from "assets/styles/constants";
 
@@ -39,24 +42,28 @@ export const Project = styled.div`
   @media only screen and (min-width: ${BREAKPOINTS.TABLET + 1}px) {
     margin: 20px;
   }
+`;
 
-  > img {
+export const Image = styled(ImageComponent)`
+  cursor: n-resize;
+  background: white;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+
+  * {
     cursor: n-resize;
-    background: white;
-    max-width: 100%;
-    position: relative;
-    z-index: 1;
-
-    &:hover {
-      margin-top: 225px;
-      transform: translateY(-100%);
-    }
   }
 
-  [alt="Sliding Puzzle"],
-  [alt="Button Maker"],
-  [alt="Kanban App"],
-  [alt="Schrödinger's Cat"] {
+  & img:hover {
+    margin-top: 225px;
+    transform: translateY(-100%);
+  }
+
+  & [alt="Sliding Puzzle"],
+  & [alt="Button Maker"],
+  & [alt="Kanban App"],
+  & [alt="Schrödinger's Cat"] {
     transition: linear 0s;
     cursor: default;
     :hover {
@@ -65,17 +72,17 @@ export const Project = styled.div`
     }
   }
 
-  [alt="Sistema SON"] {
+  & [alt="Sistema SON"] {
     transition: linear 8s;
   }
 
-  [alt="InstaSorteos"],
-  [alt="Pharmacy App"],
-  [alt="Marca Propia"] {
+  & [alt="InstaSorteos"],
+  & [alt="Pharmacy App"],
+  & [alt="Marca Propia"] {
     transition: linear 4.5s;
   }
 
-  [alt="WEBI"] {
+  & [alt="WEBI"] {
     transition: linear 9.6s;
   }
 `;

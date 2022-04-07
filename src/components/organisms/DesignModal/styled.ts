@@ -1,8 +1,13 @@
 // Dependencies
 import styled from "styled-components";
 
+// Components
+import ImageComponent from "components/templates/Image";
+
 // Assets
 import { COLORS, FONT_FAMILY, ANIMATIONS } from "assets/styles/constants";
+
+export const Image = styled(ImageComponent)``;
 
 export const Container = styled.div`
   z-index: 9;
@@ -119,7 +124,7 @@ export const PageList = styled.div`
     box-shadow: inset 0 0 0.5rem 0 rgb(${COLORS.PRIMARY_RGB}, 0.2);
   }
 
-  img {
+  ${Image} {
     background: white;
     max-width: 100%;
   }

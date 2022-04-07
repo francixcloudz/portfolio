@@ -1,3 +1,6 @@
+// Dependencies
+import type { StaticImageData } from "next/image";
+
 // Assets
 import buttonmaker from "./demos/buttonmaker.png";
 import slidingpuzzle from "./demos/slidingpuzzle.png";
@@ -35,7 +38,7 @@ export type Project = {
   config: "github" | "working" | "design";
   title: string;
   description: string;
-  img: string;
+  img: StaticImageData;
   website?: string;
   github?: string;
   stack?: Array<(key: string) => JSX.Element>;

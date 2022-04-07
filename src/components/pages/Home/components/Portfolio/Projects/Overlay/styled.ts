@@ -1,8 +1,13 @@
 // Dependencies
 import styled from "styled-components";
 
+// Components
+import ImageComponent from "components/templates/Image";
+
 // Assets
 import { COLORS, FONT_FAMILY, ANIMATIONS } from "assets/styles/constants";
+
+export const Image = styled(ImageComponent)``;
 
 export const Container = styled.div`
   display: block;
@@ -72,7 +77,7 @@ export const Container = styled.div`
     font-size: 12px;
     font-weight: 700;
 
-    img {
+    ${Image} {
       cursor: default;
       display: block;
       margin: 10px auto;
@@ -92,7 +97,7 @@ export const Stack = styled.div`
   padding: 0.3rem 0 0.3rem;
 
   svg,
-  img {
+  ${Image} {
     width: 1.3rem;
     margin: 0 0.15rem;
   }

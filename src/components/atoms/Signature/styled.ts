@@ -1,8 +1,13 @@
 // Dependencies
 import styled from "styled-components";
 
+// Components
+import ImageComponent from "components/templates/Image";
+
 // Assets
 import { COLORS } from "assets/styles/constants";
+
+export const Image = styled(ImageComponent)``;
 
 export const Container = styled.div`
   a {

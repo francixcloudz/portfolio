@@ -1,20 +1,20 @@
 // Styled
-import { Container } from "./styled";
+import { Container, Image } from "./styled";
 
 // Assets
 import lenses from "assets/media/lenses_white.png";
 import smile from "assets/media/smile_white.png";
 
-const Component: React.FC = () => {
+const Signature: React.FC = () => {
   return (
     <Container>
       <a href="http://arrigoni.in" target="_blank" rel="noreferrer">
         <p>made by</p>
-        <img className="lenses" alt="lenses" src={lenses} />
-        <img className="smile" alt="smile" src={smile} />
+        <Image className="lenses" alt="lenses" src={lenses} />
+        <Image className="smile" alt="smile" src={smile} />
       </a>
     </Container>
   );
 };
 
-export default Component;
+export default Signature;

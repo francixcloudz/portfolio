@@ -1,21 +1,24 @@
 // Styled
 import { Container, Resume } from "./styled";
 
-// Assets
-import hello from "assets/media/emojis/Hello.png";
+// Components
+import Title from "components/atoms/Title";
 
-const Component: React.FC = () => {
+// Assets
+import emoji from "assets/media/emojis/Hello.png";
+
+const About: React.FC = () => {
   return (
     <Container>
       <div className="content">
         <div className="box">
-          <h2>
-            Hey there! I'm Francisco <img src={hello} width="30" alt="hello" />
-          </h2>
-          <p>
-            Proactive, meticulous, and resourceful professional, eager to keep
-            growing and learning
-          </p>
+          <Title
+            title="Hey there! I'm Francisco"
+            subtitle="Proactive, meticulous, and resourceful professional, eager to keep
+            growing and learning"
+            emoji={emoji}
+            variant="white"
+          />
           <p>
             This is the place where you can check out my work and discover that
             we can create something exciting together!
@@ -39,4 +42,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export default About;

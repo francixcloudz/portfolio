@@ -2,7 +2,7 @@
 import ReactDOM from "react-dom";
 
 // Styled
-import { Container, Close, PageList } from "./styled";
+import { Container, Close, PageList, Image } from "./styled";
 
 // Assets
 import { data as sistemason } from "assets/portfolio/ventures/sistemason";
@@ -15,7 +15,7 @@ type Props = {
   designModalProject: string;
 };
 
-const Component: React.FC<Props> = ({
+const DesignModal: React.FC<Props> = ({
   openDesignModal,
   setOpenDesignModal,
   designModalProject,
@@ -48,7 +48,7 @@ const Component: React.FC<Props> = ({
                   <span>i</span>
                   {project.title}
                 </p>
-                <img src={project.img} alt={project.title} />
+                <Image src={project.img} alt={project.title} />
               </div>
             </div>
           ))}
@@ -59,4 +59,4 @@ const Component: React.FC<Props> = ({
   );
 };
 
-export default Component;
+export default DesignModal;

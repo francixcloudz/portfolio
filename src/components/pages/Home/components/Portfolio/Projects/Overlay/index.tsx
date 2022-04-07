@@ -2,7 +2,7 @@
 import { useRef } from "react";
 
 // Styled
-import { Container, MainButton, Stack } from "./styled";
+import { Container, MainButton, Stack, Image } from "./styled";
 
 // Components
 import Tooltip from "components/molecules/Tooltip";
@@ -20,7 +20,7 @@ type Props = {
   setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Component: React.FC<Props> = ({
+const Overlay: React.FC<Props> = ({
   project,
   setOpenDesignModal,
   setDesignModalProject,
@@ -60,25 +60,25 @@ const Component: React.FC<Props> = ({
               <>
                 <Tooltip text="Visit the live version!">
                   <a href={website} target="_blank" rel="noreferrer">
-                    <img src={tabIcon} alt="website" className="button" />
+                    <Image src={tabIcon} alt="website" className="button" />
                   </a>
                 </Tooltip>
                 <Tooltip text="Explore the repo!">
                   <a href={github} target="_blank" rel="noreferrer">
-                    <img src={githubIcon} alt="github" className="button" />
+                    <Image src={githubIcon} alt="github" className="button" />
                   </a>
                 </Tooltip>
               </>
             )}
             {config === "working" && (
-              <p className="working">
-                <img src={workingIcon} alt="working" />
-                Actually working on it
-              </p>
+              <div className="working">
+                <Image src={workingIcon} alt="working" />
+                <p>Actually working on it</p>
+              </div>
             )}
             {config === "design" && (
               <Tooltip text="Take a look at the designs!">
-                <img
+                <Image
                   src={designIcon}
                   alt="design"
                   className="button"
@@ -98,4 +98,4 @@ const Component: React.FC<Props> = ({
   );
 };
 
-export default Component;
+export default Overlay;

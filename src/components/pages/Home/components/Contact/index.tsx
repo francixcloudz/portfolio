@@ -14,15 +14,17 @@ import {
 
 // Components
 import Loader from "components/atoms/Loader";
+import Title from "components/atoms/Title";
+import { SocialIcon } from "components/templates/Styled";
 
 // Assets
-import contactMe from "assets/media/emojis/Contact-me.png";
+import emoji from "assets/media/emojis/Contact-me.png";
 import linkedin from "assets/media/icons/linkedin.png";
 import github from "assets/media/icons/github_yellow.png";
 import instagram from "assets/media/icons/instagram.png";
 import whatsapp from "assets/media/icons/whatsapp.png";
 
-const Component: React.FC = () => {
+const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [content, setContent] = useState("");
@@ -61,11 +63,13 @@ const Component: React.FC = () => {
   };
 
   return (
-    <Container>
-      <h2>
-        Contact <img src={contactMe} width="30" alt="contact-me" />
-      </h2>
-      <p>Let's start a friendship</p>
+    <Container id="Contact">
+      <Title
+        title="Contact"
+        subtitle="Let's start a friendship"
+        emoji={emoji}
+        variant="white"
+      />
       <FormWrapper>
         <Form
           onSubmit={(event: React.BaseSyntheticEvent) => handleSubmit(event)}
@@ -100,28 +104,28 @@ const Component: React.FC = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <img src={linkedin} alt="linkedin" />
+          <SocialIcon src={linkedin} alt="linkedin" />
         </a>
         <a href="https://arrigoni.in/Github/" target="_blank" rel="noreferrer">
-          <img src={github} alt="github" />
+          <SocialIcon src={github} alt="github" />
         </a>
         <a
           href="https://arrigoni.in/Whatsapp/"
           target="_blank"
           rel="noreferrer"
         >
-          <img src={whatsapp} alt="whatsapp" />
+          <SocialIcon src={whatsapp} alt="whatsapp" />
         </a>
         <a
           href="https://arrigoni.in/Instagram/"
           target="_blank"
           rel="noreferrer"
         >
-          <img src={instagram} alt="instagram" />
+          <SocialIcon src={instagram} alt="instagram" />
         </a>
       </SocialIcons>
     </Container>
   );
 };
 
-export default Component;
+export default Contact;

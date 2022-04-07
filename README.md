@@ -9,11 +9,11 @@
 ###
 
 These are the technologies I used to create the project: \
-✔ HTML \
-✔ CSS \
+✔ ReactJS - Next - Redux \
+✔ Typescript - Javascript \
+✔ GSAP - Framer Motion \
 ✔ Styled Components \
-✔ TypeScript \
-✔ ReactJS
+✔ CSS - HTML \
 
 ## 📫 Get in touch
 

@@ -7,14 +7,6 @@ import { COLORS, BREAKPOINTS } from "assets/styles/constants";
 export const Container = styled.div`
   background: ${COLORS.PRIMARY};
   padding: 10vh 2.5% 20vh;
-  h3 {
-    margin-bottom: 20px;
-  }
-
-  h2,
-  p {
-    color: ${COLORS.WHITE};
-  }
 `;
 
 export const FormWrapper = styled.div`
@@ -121,15 +113,4 @@ export const SocialIcons = styled.div`
   width: fit-content;
   margin: 20px auto 0 auto;
   display: flex;
-
-  img {
-    cursor: pointer;
-    color: ${COLORS.YELLOW};
-    width: 25px;
-    margin: 0 10px;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 `;

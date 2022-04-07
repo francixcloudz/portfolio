@@ -9,7 +9,7 @@ type Props = {
   text: string;
 };
 
-const Component: React.FC<Props> = ({ children, text }) => {
+const Tooltip: React.FC<Props> = ({ children, text }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -27,4 +27,4 @@ const Component: React.FC<Props> = ({ children, text }) => {
   );
 };
 
-export default Component;
+export default Tooltip;

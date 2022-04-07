@@ -1,8 +1,13 @@
 // Dependencies
 import styled from "styled-components";
 
+// Components
+import ImageComponent from "components/templates/Image";
+
 // Assets
 import { ANIMATIONS, BREAKPOINTS, COLORS } from "assets/styles/constants";
+
+export const Image = styled(ImageComponent)``;
 
 export const Container = styled.div`
   position: absolute;
@@ -26,14 +31,14 @@ export const Logo = styled.a`
     width: 80px;
   }
 
-  .lenses {
+  ${Image}.lenses {
     cursor: pointer;
     display: block;
     width: 100%;
     transition: transform 0.5s;
   }
 
-  .smile {
+  ${Image}.smile {
     cursor: pointer;
     width: 15%;
     margin: 0 auto;

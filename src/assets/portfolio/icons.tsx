@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 // Components
+import Image from "components/templates/Image";
 import Tooltip from "components/molecules/Tooltip";
 
 // Assets
@@ -30,7 +31,7 @@ export const CSS = (key: string) => (
 
 export const CSS_MODULES = (key: string) => (
   <Tooltip key={key} text="CSS Modules">
-    <img src={cssModules} alt="icon" />
+    <Image src={cssModules} alt="icon" />
   </Tooltip>
 );
 

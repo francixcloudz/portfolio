@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-// import { ReactComponent as Camera } from "./svg/camera.svg";
+import Close from "./svg/close.svg";
 
-export const Icon = {
-  //   Camera,
+const Icons = {
+  Close,
 };
 
-export type IconType = keyof typeof Icon;
+export type IconType = keyof typeof Icons;
+
+export default Icons;
