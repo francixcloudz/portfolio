@@ -12,81 +12,59 @@ import {
   CameraIcon,
 } from "./styled";
 
-// Inner
-import { getTimeline } from "./utils";
+// Files
+import type { Props } from "./types";
+import { handleAnimations } from "./utils";
 
 // Components
 import Progress from "components/molecules/Progress";
 
 // Assets
+import type { DomRect } from "assets/types";
 import useLayoutEffect from "assets/hooks/useLayoutEffect";
+import useRefSet from "assets/hooks/useRefSet";
 import gif from "assets/media/loading.gif";
 import portrait from "assets/media/character_smile.png";
 import camera from "assets/media/icons/camera.png";
 
-type Props = {
-  loading: boolean;
-  landingPortraitRef: React.RefObject<HTMLDivElement>;
-};
-
 const LoadingScreen: React.FC<Props> = ({ loading, landingPortraitRef }) => {
   const [loaded, setLoaded] = useState(false);
-  const [portraitDomRect, setPortraitDomRect] = useState({});
+  const [portraitDomRect, setPortraitDomRect] = useState<DomRect>({});
 
   const allRefs = useRef<{ [node: string]: gsap.TweenTarget }>({});
-  const createRefs = (refName, node) => {
-    allRefs.current[refName] = node;
-  };
+  const ref = useRefSet(allRefs);
 
-  useLayoutEffect(() => {
-    const loaderPortraitRefDomRect = (
-      allRefs?.current["Portrait"] as HTMLDivElement
-    ).getBoundingClientRect() as DOMRect;
-    const { x: left, y: top, width, height } = loaderPortraitRefDomRect;
-    setPortraitDomRect({ left, top, width, height });
-
-    const landingPortraitRefDomRect =
-      landingPortraitRef.current?.getBoundingClientRect() as DOMRect;
-
-    const timeline = getTimeline({
-      allRefs: allRefs?.current,
-      callBack: () => setLoaded(true),
-      landingPortraitRefDomRect,
-    });
-
-    timeline.play();
-
-    return () => {
-      timeline.kill();
-    };
-  }, [loading, landingPortraitRef, allRefs]);
+  useLayoutEffect(
+    () =>
+      handleAnimations({
+        allRefs: allRefs.current,
+        setLoaded,
+        setPortraitDomRect,
+        landingPortraitRef,
+      }),
+    [loading, landingPortraitRef, allRefs]
+  );
 
   return (
     <Container fadeOut={!loading}>
       <Wrapper>
-        <Loading
-          ref={(node) => createRefs("Loading", node)}
-          src={gif}
-          priority
-        />
+        <Loading ref={(node) => ref("Loading", node)} src={gif} priority />
         <CameraIcon
-          ref={(node) => createRefs("CameraIcon", node)}
+          ref={(node) => ref("CameraIcon", node)}
           src={camera}
           alt="camera"
         />
-        <div ref={(node) => createRefs("Progress", node)}>
+        <div ref={(node) => ref("Progress", node)}>
           {loaded && <Progress className="progress" duration={1} />}
         </div>
         <Portrait
-          ref={(node) => createRefs("Portrait", node)}
+          ref={(node) => ref("Portrait", node)}
           src={portrait}
           alt="portrait"
         />
-        <ScreenshotWrapper
-          ref={(node) => createRefs("ScreenshotWrapper", node)}
-        />
+        <ScreenshotWrapper ref={(node) => ref("ScreenshotWrapper", node)} />
         <PortraitFixed
-          ref={(node) => createRefs("PortraitFixed", node)}
+          ref={(node) => ref("PortraitFixed", node)}
           style={portraitDomRect}
           src={portrait}
           alt="portrait"

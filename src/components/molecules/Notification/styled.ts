@@ -118,7 +118,6 @@ export const Bell = styled.div`
 `;
 
 export const Message = styled.blockquote`
-  display: none;
   max-width: 450px;
   filter: drop-shadow(-1px -1px 2px rgba(${COLORS.BLACK_RGB}, 0.1))
     drop-shadow(1px 2px 2px rgba(${COLORS.BLACK_RGB}, 0.15));

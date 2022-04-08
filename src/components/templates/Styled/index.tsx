@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Components
-import ImageComponent from "components/templates/Image";
+import ImageTemplate from "components/templates/Image";
 
 // Assets
 import { COLORS } from "assets/styles/constants";
@@ -36,11 +36,11 @@ export const StyledBackground = ``;
 // background-size: 65px 65px, 65px 65px, 32.5px 32.5px, 32.5px 32.5px;
 // `;
 
-export const Emoji = styled(ImageComponent)`
+export const Emoji = styled(ImageTemplate)`
   width: 30px;
 `;
 
-export const SocialIcon = styled(ImageComponent)`
+export const SocialIcon = styled(ImageTemplate)`
   cursor: pointer;
   color: ${COLORS.YELLOW};
   width: 25px;

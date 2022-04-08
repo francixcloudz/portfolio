@@ -4,8 +4,8 @@ import { useState, useRef } from "react";
 // Styled
 import { Container, AppWrapper } from "./styled";
 
-// Inner
-import { handleComponentDidMount } from "./utils";
+// Files
+import { handleLoader } from "./utils";
 
 // Components
 import LoadingScreen from "components/organisms/LoadingScreen";
@@ -17,7 +17,8 @@ import useLayoutEffect from "assets/hooks/useLayoutEffect";
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const portraitRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => handleComponentDidMount(setLoading), []);
+
+  useLayoutEffect(() => handleLoader(setLoading), []);
 
   return (
     <Container loading={loading ? 1 : 0}>

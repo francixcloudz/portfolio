@@ -2,12 +2,12 @@
 import styled from "styled-components";
 
 // Components
-import ImageComponent from "components/templates/Image";
+import ImageTemplate from "components/templates/Image";
 
 // Assets
 import { ANIMATIONS, BREAKPOINTS, COLORS } from "assets/styles/constants";
 
-export const Image = styled(ImageComponent)``;
+export const Image = styled(ImageTemplate)``;
 
 export const Container = styled.div`
   position: absolute;

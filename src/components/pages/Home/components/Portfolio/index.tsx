@@ -29,7 +29,7 @@ const Portfolio: React.FC = () => {
                 title="Portfolio"
                 subtitle="Here are a some demos I've worked on to test my tech skills"
                 emoji={myWork}
-                variant="dark"
+                variant="black"
               />
             </div>
             <Projects type="demos" />
@@ -41,7 +41,7 @@ const Portfolio: React.FC = () => {
                 title="Projects"
                 subtitle="Here are a few projects I've worked on"
                 emoji={myWork}
-                variant="dark"
+                variant="black"
               />
             </div>
             <Projects type="projects" />
@@ -54,7 +54,7 @@ const Portfolio: React.FC = () => {
                 subtitle="One of the things I enjoy most in life is the creative process
                 of creating solutions to problems I identify with"
                 emoji={moonShot}
-                variant="dark"
+                variant="black"
               />
             </div>
             <Projects

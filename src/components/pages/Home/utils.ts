@@ -1,18 +1,75 @@
+// Files
+import type { GetTimeline, HandleAnimations } from "./types";
+
 // Assets
 import { gsap } from "assets/utils/gsap";
 
-type Props = {
-  allRefs: { [element: string]: gsap.TweenTarget };
-  callBack: React.Dispatch<React.SetStateAction<boolean>>;
+const duration = 0.3;
+
+const fadeIn = {
+  initial: {
+    opacity: 0,
+    y: "15px",
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    duration,
+  },
 };
 
-export const getTimeline: (props: Props) => gsap.core.Timeline = ({
+const getTimeline: GetTimeline = ({ allRefs, callback }) => {
+  gsap.defaults({
+    ease: "none",
+    duration: duration / 2,
+  });
+  const tl = gsap.timeline();
+
+  const ref = (refName: string) => allRefs[refName];
+  const refChild = (refName: string, index) =>
+    (ref(refName) as HTMLElement).children[index];
+
+  tl.set(ref("Content"), {
+    "background-size": "1px 1px",
+    "border-radius": "0 0 0 0",
+    "min-height": "100vh",
+  });
+  tl.set(refChild("Title", 0), fadeIn.initial);
+  tl.set(refChild("Title", 1), fadeIn.initial);
+  tl.set(refChild("Nav", 0), fadeIn.initial);
+  tl.set(refChild("Nav", 1).children[0], fadeIn.initial);
+  tl.set(refChild("Nav", 1).children[1], fadeIn.initial);
+  tl.set(ref("Notification"), fadeIn.initial);
+
+  tl.to(ref("Container"), { opacity: 1 }, "+=0.5");
+  tl.to(refChild("Title", 0), fadeIn.animate);
+  tl.to(ref("Content"), { "background-size": "22px 22px", duration });
+  tl.to(refChild("Title", 1), fadeIn.animate);
+  tl.to(refChild("Nav", 0), fadeIn.animate);
+  tl.to(refChild("Nav", 1).children[0], fadeIn.animate);
+  tl.to(refChild("Nav", 1).children[1], fadeIn.animate);
+  tl.to(refChild("Nav", 1).children[1], fadeIn.animate);
+  tl.to(ref("Content"), { "border-radius": "0 0 20vw 20vw", duration });
+  tl.to(ref("Content"), { "min-height": "90vh" });
+
+  tl.to(ref("Notification"), fadeIn.animate, "+=0.5");
+  tl.add(callback, ">");
+
+  return tl;
+};
+
+export const handleAnimations: HandleAnimations = ({
   allRefs,
-  callBack,
+  loading,
+  setIsSmileImage,
 }) => {
-  const timeline = gsap.timeline({ delay: 0.5 });
-  timeline.call(callBack);
-  // eslint-disable-next-line no-console
-  console.log(allRefs);
-  return timeline;
+  const tl = getTimeline({
+    allRefs,
+    callback: () => setIsSmileImage(false),
+  });
+  if (!loading) tl.play();
+
+  return () => {
+    tl.kill();
+  };
 };

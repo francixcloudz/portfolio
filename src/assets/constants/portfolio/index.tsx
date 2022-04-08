@@ -31,7 +31,6 @@ import {
   GSAP,
 } from "./icons";
 
-// Constants
 export type ProjectType = "demos" | "projects" | "ventures";
 export type Project = {
   type: ProjectType;

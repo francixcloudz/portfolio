@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Components
-import ImageComponent from "components/templates/Image";
+import ImageTemplate from "components/templates/Image";
 
 // Assets
 import { COLORS, BREAKPOINTS } from "assets/styles/constants";
@@ -44,7 +44,7 @@ export const Project = styled.div`
   }
 `;
 
-export const Image = styled(ImageComponent)`
+export const Image = styled(ImageTemplate)`
   cursor: n-resize;
   background: white;
   max-width: 100%;

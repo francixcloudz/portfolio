@@ -2,57 +2,56 @@
 import { useRef, useState } from "react";
 
 // Styled
-import { Container, CharacterWrapper, Character, Content, Box } from "./styled";
+import {
+  Container,
+  Section,
+  CharacterWrapper,
+  Character,
+  Content,
+  Box,
+} from "./styled";
 
-// Inner
-import { getTimeline } from "./utils";
+// Files
+import type { Props } from "./types";
+import { handleAnimations } from "./utils";
 import About from "./components/About";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 
 // Components
+import Nav from "components/organisms/Nav";
 import Signature from "components/atoms/Signature";
 import Notification from "components/molecules/Notification";
-import Nav from "components/templates/Nav";
 
 // Assets
 import useLayoutEffect from "assets/hooks/useLayoutEffect";
+import useRefSet from "assets/hooks/useRefSet";
 import image from "assets/media/character.png";
 import smileImage from "assets/media/character_smile.png";
-
-type Props = {
-  portraitRef: React.RefObject<HTMLDivElement>;
-  loading: boolean;
-};
+import Title from "components/atoms/Title";
 
 const Home: React.FC<Props> = ({ portraitRef, loading }) => {
   const [isSmileImage, setIsSmileImage] = useState(true);
-
   const allRefs = useRef<{ [node: string]: gsap.TweenTarget }>({});
-  const createRefs = (refName, node) => {
-    allRefs.current[refName] = node;
-  };
+  const ref = useRefSet(allRefs);
 
   useLayoutEffect(() => {
-    const timeline = getTimeline({
-      allRefs: allRefs.current,
-      callBack: () => setIsSmileImage(false),
-    });
-    if (!loading) timeline.play();
-
-    return () => {
-      timeline.kill();
-    };
+    handleAnimations({ allRefs: allRefs.current, loading, setIsSmileImage });
   }, [loading]);
 
   return (
-    <>
-      <Container>
-        <Nav />
-        <Content>
+    <Container ref={(node) => ref("Container", node)}>
+      <Section>
+        <Nav ref={(node) => ref("Nav", node)} />
+        <Content ref={(node) => ref("Content", node)}>
           <Box>
-            <h1>Francisco Arrigoni</h1>
-            <h2>Sr. Frontend Engineer</h2>
+            <Title
+              title="Francisco Arrigoni"
+              subtitle="Sr. Frontend Engineer"
+              variant="principal"
+              ref={(node) => ref("Title", node)}
+              principal
+            />
             <CharacterWrapper>
               <Character
                 ref={portraitRef}
@@ -61,19 +60,16 @@ const Home: React.FC<Props> = ({ portraitRef, loading }) => {
                 onMouseOver={() => setIsSmileImage(true)}
                 onMouseOut={() => setIsSmileImage(false)}
               />
-              <Notification
-                onClick={setIsSmileImage}
-                ref={(node) => createRefs("Notification", node)}
-              />
+              <Notification ref={(node) => ref("Notification", node)} />
             </CharacterWrapper>
           </Box>
         </Content>
-      </Container>
+      </Section>
       <About />
       <Portfolio />
       <Contact />
       <Signature />
-    </>
+    </Container>
   );
 };
 

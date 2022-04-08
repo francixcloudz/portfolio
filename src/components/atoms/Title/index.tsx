@@ -1,29 +1,30 @@
 // Dependencies
-import type { StaticImageData } from "next/image";
+import { forwardRef } from "react";
 
 // Styled
 import { Container, TitleWrapper } from "./styled";
 
+// Files
+import type { Props } from "./types";
+
 // Components
 import { Emoji } from "components/templates/Styled";
 
-type Props = {
-  title: string;
-  subtitle: string;
-  emoji: StaticImageData;
-  variant: "white" | "dark";
-};
+const Title: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwardRef(
+  ({ title, subtitle, emoji, variant, principal }, ref) => {
+    const BaseTitle = principal ? "h1" : "h2";
+    const BaseSubtitle = principal ? "h2" : "p";
 
-const Title: React.FC<Props> = ({ title, subtitle, emoji, variant }) => {
-  return (
-    <Container variant={variant}>
-      <TitleWrapper>
-        <h2>{title}</h2>
-        <Emoji src={emoji} alt={title} />
-      </TitleWrapper>
-      <p>{subtitle}</p>
-    </Container>
-  );
-};
+    return (
+      <Container variant={variant} ref={ref}>
+        <TitleWrapper>
+          <BaseTitle className="title">{title}</BaseTitle>
+          {emoji && <Emoji className="emoji" src={emoji} alt={title} />}
+        </TitleWrapper>
+        <BaseSubtitle className="subtitle">{subtitle}</BaseSubtitle>
+      </Container>
+    );
+  }
+);
 
 export default Title;

@@ -1,18 +1,12 @@
 // Assets
-import { redirections } from "assets/constants";
+import useCurrentPath from "assets/hooks/useCurrentPath";
+import useRedirection from "assets/hooks/useRedirection";
 
-export const handleRedirections = (currentPath: string) => {
-  const redirection = redirections.find(({ path }) => path === currentPath);
-  if (redirection) window.location.href = redirection.redirect;
-};
-
-export const handleComponentDidMount = (
+export const handleLoader = (
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   window.addEventListener("load", () => {
-    handleRedirections(
-      window.location.pathname.toLowerCase().replaceAll("/", "")
-    );
+    useRedirection(useCurrentPath());
     setTimeout(() => setLoading(false), 6000);
   });
 };

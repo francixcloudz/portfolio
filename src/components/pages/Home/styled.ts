@@ -2,12 +2,16 @@
 import styled from "styled-components";
 
 // Components
-import ImageComponent from "components/templates/Image";
+import ImageTemplate from "components/templates/Image";
 
 // Assets
 import { BREAKPOINTS, COLORS } from "assets/styles/constants";
 
 export const Container = styled.div`
+  opacity: 0;
+`;
+
+export const Section = styled.div`
   background: ${COLORS.PRIMARY};
 
   h1,
@@ -40,7 +44,7 @@ export const CharacterWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const Character = styled(ImageComponent)`
+export const Character = styled(ImageTemplate)`
   display: block;
   width: 200px;
   height: 200px;
