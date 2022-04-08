@@ -9,16 +9,44 @@ import { COLORS, FONT_FAMILY, ANIMATIONS } from "assets/styles/constants";
 
 export const Image = styled(ImageTemplate)``;
 
-export const Container = styled.div`
+export const Content = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background: linear-gradient(90deg, ${COLORS.PRIMARY} 21px, transparent 1%)
+      center,
+    linear-gradient(${COLORS.PRIMARY} 21px, transparent 1%) center,
+    ${COLORS.WHITE};
+  background-size: 22px 22px;
+  z-index: 4;
+
+  > .box {
+    max-width: 350px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+  }
+`;
+
+export const Container = styled.div<{ isActive: boolean }>`
   display: block;
   z-index: 3;
 
-  &.active {
-    > .content {
-      opacity: 1;
-      display: flex;
-    }
-  }
+  ${({ isActive }) =>
+    isActive
+      ? `
+      ${Content} {
+        opacity: 1;
+        display: flex;
+      }`
+      : ""}
 
   h3,
   p {
@@ -45,32 +73,6 @@ export const Container = styled.div`
     color: ${COLORS.YELLOW};
     width: 35px;
     margin: 10px 10px 0;
-  }
-
-  > .content {
-    display: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: 0.5s ease;
-    background: linear-gradient(90deg, ${COLORS.PRIMARY} 21px, transparent 1%)
-        center,
-      linear-gradient(${COLORS.PRIMARY} 21px, transparent 1%) center,
-      ${COLORS.WHITE};
-    background-size: 22px 22px;
-    z-index: 4;
-
-    > .box {
-      max-width: 350px;
-      margin: auto;
-      padding: 10px;
-      text-align: center;
-    }
   }
 
   .working {
@@ -103,7 +105,7 @@ export const Stack = styled.div`
   }
 `;
 
-export const MainButton = styled.span`
+export const MainButton = styled.span<{ isActive: boolean }>`
   cursor: pointer;
   position: absolute;
   top: 5px;
@@ -126,7 +128,6 @@ export const MainButton = styled.span`
     box-shadow: 0 0 10px 0 rgb(${COLORS.PRIMARY_RGB}, 0.7);
   }
 
-  &.active {
-    box-shadow: 0 0 15px 0 rgb(${COLORS.WHITE_RGB}, 0.75);
-  }
+  ${({ isActive }) =>
+    isActive ? `box-shadow: 0 0 15px 0 rgb(${COLORS.WHITE_RGB}, 0.75)` : ""}
 `;

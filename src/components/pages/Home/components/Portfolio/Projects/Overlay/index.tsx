@@ -1,8 +1,11 @@
 // Dependencies
-import { useRef } from "react";
+import { useState } from "react";
 
 // Styled
-import { Container, MainButton, Stack, Image } from "./styled";
+import { Container, Content, MainButton, Stack, Image } from "./styled";
+
+// Files
+import type { Props } from "./types";
 
 // Components
 import Tooltip from "components/molecules/Tooltip";
@@ -12,41 +15,21 @@ import githubIcon from "assets/media/icons/github.png";
 import tabIcon from "assets/media/icons/tab.png";
 import workingIcon from "assets/media/icons/working.png";
 import designIcon from "assets/media/icons/design.png";
-import type { Project } from "assets/constants/portfolio";
-
-type Props = {
-  project: Project;
-  setOpenDesignModal?: React.Dispatch<React.SetStateAction<boolean>>;
-  setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
-};
 
 const Overlay: React.FC<Props> = ({
   project,
   setOpenDesignModal,
   setDesignModalProject,
 }) => {
+  const [isActive, setIsActive] = useState(false);
   const { config, title, description, website, github, stack } = project;
-  const overlay = useRef<HTMLDivElement>(null);
-  const button = useRef<HTMLDivElement>(null);
-
-  const handleOverlay = () => {
-    if (overlay.current !== null && button.current !== null) {
-      button.current.classList.toggle("active");
-      overlay.current.classList.toggle("active");
-      if (overlay.current.classList.contains("active")) {
-        button.current.innerHTML = "x";
-      } else {
-        button.current.innerHTML = "?";
-      }
-    }
-  };
 
   return (
-    <Container ref={overlay}>
-      <MainButton ref={button} onClick={handleOverlay}>
-        ?
+    <Container isActive={isActive}>
+      <MainButton onClick={() => setIsActive(!isActive)} isActive={isActive}>
+        {isActive ? "x" : "?"}
       </MainButton>
-      <div className="content">
+      <Content>
         <div className="box">
           <h3>{title}</h3>
           <div>
@@ -93,7 +76,7 @@ const Overlay: React.FC<Props> = ({
             )}
           </div>
         </div>
-      </div>
+      </Content>
     </Container>
   );
 };

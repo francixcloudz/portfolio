@@ -4,14 +4,11 @@ import { Container, Project, Image } from "./styled";
 // Children
 import Overlay from "./Overlay";
 
-// Assets
-import { projects, ProjectType } from "assets/constants/portfolio";
+// Files
+import type { Props } from "./types";
 
-type Props = {
-  type: ProjectType;
-  setOpenDesignModal?: React.Dispatch<React.SetStateAction<boolean>>;
-  setDesignModalProject?: React.Dispatch<React.SetStateAction<string>>;
-};
+// Assets
+import { projects } from "assets/constants/portfolio";
 
 const Projects: React.FC<Props> = ({
   type,

@@ -1,17 +1,13 @@
 // Dependencies
 import type { AppProps } from "next/app";
-import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 
 // Assets
 import favicon from "assets/media/brand/favicon.ico";
 import logo192 from "assets/media/brand/logo192.png";
 import logo512 from "assets/media/brand/logo512.png";
-
-// import "assets/scripts/smooth-scrolling";
 import "assets/styles/reset.css";
 import "assets/styles/general.css";
-import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -85,7 +81,6 @@ function MyApp({
           content="Francisco Arrigoni ⚡ Sr. Frontend Engineer"
         />
       </Head>
-      <ToastContainer />
       <Component {...pageProps} />
     </>
   );

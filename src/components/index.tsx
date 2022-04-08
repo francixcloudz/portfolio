@@ -13,11 +13,14 @@ import Home from "components/pages/Home";
 
 // Assets
 import useLayoutEffect from "assets/hooks/useLayoutEffect";
+import useSmoothScrolling from "assets/hooks/useSmoothScrolling";
+import { isProduction } from "assets/constants";
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isProduction);
   const portraitRef = useRef<HTMLDivElement>(null);
 
+  useSmoothScrolling();
   useLayoutEffect(() => handleLoader(setLoading), []);
 
   return (

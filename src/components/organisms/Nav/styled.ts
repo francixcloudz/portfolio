@@ -63,7 +63,7 @@ export const Logo = styled.a`
   }
 `;
 
-export const Links = styled.div`
+export const Links = styled.div<{ isOpen: boolean }>`
   @media only screen and (min-width: ${BREAKPOINTS.MOBILE + 1}px) {
     display: block;
   }
@@ -144,9 +144,7 @@ export const Links = styled.div`
     animation: FADE_IN ease 1000ms;
     ${ANIMATIONS.FADE_IN}
 
-    &.active {
-      display: block;
-    }
+    ${({ isOpen }) => (isOpen ? `display: block` : "")};
 
     a {
       display: block;
@@ -158,7 +156,7 @@ export const Links = styled.div`
   }
 `;
 
-export const Burger = styled.div`
+export const Burger = styled.div<{ isOpen: boolean }>`
   @media only screen and (min-width: ${BREAKPOINTS.MOBILE + 1}px) {
     display: none;
   }
@@ -209,7 +207,9 @@ export const Burger = styled.div`
     }
   }
 
-  &.open {
+  ${({ isOpen }) =>
+    isOpen
+      ? `
     span:nth-child(1) {
       top: 18px;
       width: 0%;
@@ -234,6 +234,6 @@ export const Burger = styled.div`
       top: 18px;
       width: 0%;
       left: 50%;
-    }
-  }
+    }`
+      : ""}
 `;

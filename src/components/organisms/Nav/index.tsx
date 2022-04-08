@@ -1,5 +1,5 @@
 // Dependencies
-import { useRef, forwardRef } from "react";
+import { useState, forwardRef } from "react";
 
 // Styled
 import { Container, Logo, Burger, Links, Image } from "./styled";
@@ -14,13 +14,7 @@ type Props = {
 
 const Nav: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwardRef(
   ({ className }, ref) => {
-    const links = useRef<HTMLDivElement>(null);
-    const handleMenu = (event: React.BaseSyntheticEvent) => {
-      if (links.current !== null) {
-        event.currentTarget.classList.toggle("open");
-        links.current.classList.toggle("active");
-      }
-    };
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
       <Container ref={ref} className={className}>
@@ -29,13 +23,13 @@ const Nav: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwardRef(
           <Image className="smile" alt="smile" src={smile} />
         </Logo>
         <div>
-          <Burger onClick={handleMenu}>
+          <Burger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
           </Burger>
-          <Links ref={links}>
+          <Links isOpen={isOpen}>
             <a className="portfolio scroll" href="#Portfolio">
               Portfolio
             </a>

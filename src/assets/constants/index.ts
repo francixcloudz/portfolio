@@ -1,19 +1,17 @@
 export const awsS3Url = "https://arrigoni.s3.sa-east-1.amazonaws.com";
 
-export const testEmail = "error_case@test.com";
+export const isBrowser = typeof window !== "undefined";
 
-export const headDescription = `Marca Propia: Desarrollado, elaborado, y supervisado por farmaceuticos a con ciencia, conocimiento, y compromiso`;
+export const isProduction = process.env.NODE_ENV === "production";
 
-export const baseUrl =
-  process.env.NODE_ENV !== "production"
-    ? "http://localhost:3000"
-    : "https://arrigoni.in";
+export const baseUrl = isProduction
+  ? "https://arrigoni.in"
+  : "http://localhost:3000";
 
 export const redirections = [
   {
     path: "resume",
-    redirect:
-      "https://arrigoni.s3.sa-east-1.amazonaws.com/Francisco+Arrigoni+-+Resume.pdf",
+    redirect: `${awsS3Url}/Francisco+Arrigoni+-+Resume.pdf`,
   },
   { path: "whatsapp", redirect: "https://wa.me/5492995769384/" },
   { path: "portfolio", redirect: "https://arrigoni.in/" },
