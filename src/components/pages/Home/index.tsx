@@ -1,7 +1,7 @@
 // Dependencies
 import { useRef, useState } from "react";
 
-// Styled
+// Files
 import {
   Container,
   Section,
@@ -10,8 +10,6 @@ import {
   Content,
   Box,
 } from "./styled";
-
-// Files
 import type { Props } from "./types";
 import { handleAnimations } from "./utils";
 import About from "./components/About";
@@ -19,9 +17,9 @@ import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 
 // Components
-import Nav from "components/organisms/Nav";
-import Signature from "components/atoms/Signature";
+import Logo from "components/atoms/Logo";
 import Notification from "components/molecules/Notification";
+import Nav from "components/organisms/Nav";
 
 // Assets
 import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
@@ -76,7 +74,7 @@ const Home: React.FC<Props> = ({ portraitRef, isVisible }) => {
           <About />
           <Portfolio />
           <Contact />
-          <Signature />
+          <Logo isWhite />
         </>
       )}
     </Container>

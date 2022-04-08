@@ -1,10 +1,6 @@
-// Styled
-import { Container, Project, Image } from "./styled";
-
-// Children
-import Overlay from "./Overlay";
-
 // Files
+import { Container, Project, Image } from "./styled";
+import Overlay from "./Overlay";
 import type { Props } from "./types";
 
 // Assets

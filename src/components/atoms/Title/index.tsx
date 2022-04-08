@@ -1,10 +1,8 @@
 // Dependencies
 import { forwardRef } from "react";
 
-// Styled
-import { Container, TitleWrapper } from "./styled";
-
 // Files
+import { Container, TitleWrapper } from "./styled";
 import type { Props } from "./types";
 
 // Components

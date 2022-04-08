@@ -1,4 +1,4 @@
-// Styled
+// Files
 import { Container, Overlay, Box, Content, Close } from "./styled";
 
 // Components

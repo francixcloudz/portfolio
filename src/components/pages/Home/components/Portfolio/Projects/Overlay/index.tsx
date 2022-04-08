@@ -1,10 +1,8 @@
 // Dependencies
 import { useState } from "react";
 
-// Styled
-import { Container, Content, MainButton, Stack, Image } from "./styled";
-
 // Files
+import { Container, Content, MainButton, Stack, Image } from "./styled";
 import type { Props } from "./types";
 
 // Components

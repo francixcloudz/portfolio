@@ -49,7 +49,6 @@ const getTimeline: GetTimeline = ({ allRefs, callback }) => {
   tl.to(refChild("Nav", 0), fadeIn.animate, ">");
   tl.to(refChild("Nav", 1).children[0], fadeIn.animate, ">");
   tl.to(refChild("Nav", 1).children[1], fadeIn.animate, ">");
-  tl.to(refChild("Nav", 1).children[1], fadeIn.animate, ">");
   tl.to(ref("Content"), { borderRadius: "0 0 20vw 20vw", duration }, "+=0.1");
   tl.to(ref("Content"), { minHeight: "90vh" }, ">");
 

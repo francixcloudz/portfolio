@@ -1,10 +1,8 @@
 // Dependencies
 import { useState } from "react";
 
-// Styled
+// Files
 import { Container } from "./styled";
-
-// Children
 import Projects from "./Projects";
 
 // Components

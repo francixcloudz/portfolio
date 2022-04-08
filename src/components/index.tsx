@@ -1,10 +1,8 @@
 // Dependencies
 import { useState, useRef } from "react";
 
-// Styled
-import { Container, AppWrapper } from "./styled";
-
 // Files
+import { Container, AppWrapper } from "./styled";
 import { handleLoader } from "./utils";
 
 // Components
@@ -17,7 +15,7 @@ import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
 import { isProduction } from "assets/constants";
 
 const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(isProduction);
   const portraitRef = useRef<HTMLDivElement>(null);
 
   useSmoothScroll();

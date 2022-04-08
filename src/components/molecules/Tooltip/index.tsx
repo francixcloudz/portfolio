@@ -1,7 +1,7 @@
 // Dependencies
 import { useState } from "react";
 
-// Styled
+// Files
 import { Container, Box } from "./styled";
 
 type Props = {

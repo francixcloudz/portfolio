@@ -9,6 +9,8 @@ import { BREAKPOINTS, COLORS } from "assets/styles/constants";
 
 export const Container = styled.div`
   opacity: 0;
+  background: ${COLORS.PRIMARY};
+  min-height: 100vh;
 `;
 
 export const Section = styled.div`

@@ -1,4 +1,4 @@
-// Styled
+// Files
 import { Container } from "./styled";
 
 const Loader: React.FC = () => {

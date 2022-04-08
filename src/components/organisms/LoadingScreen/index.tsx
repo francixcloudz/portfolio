@@ -1,7 +1,7 @@
 // Dependencies
 import React, { useState, useRef } from "react";
 
-// Styled
+// Files
 import {
   Container,
   Wrapper,
@@ -11,8 +11,6 @@ import {
   ScreenshotWrapper,
   CameraIcon,
 } from "./styled";
-
-// Files
 import type { Props } from "./types";
 import { handleAnimations } from "./utils";
 

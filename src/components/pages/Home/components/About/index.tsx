@@ -1,4 +1,4 @@
-// Styled
+// Files
 import { Container, Resume } from "./styled";
 
 // Components

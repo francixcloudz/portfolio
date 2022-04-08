@@ -1,7 +1,7 @@
 // Dependencies
 import ReactDOM from "react-dom";
 
-// Styled
+// Files
 import { Container, Close, PageList, Image } from "./styled";
 
 // Assets

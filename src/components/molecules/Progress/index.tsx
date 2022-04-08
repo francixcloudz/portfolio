@@ -1,4 +1,4 @@
-// Styled
+// Files
 import { Container, ProgressPath } from "./styled";
 
 type Props = {

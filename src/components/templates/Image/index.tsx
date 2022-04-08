@@ -2,7 +2,7 @@
 import { forwardRef } from "react";
 import NextImage, { ImageProps } from "next/image";
 
-// Styled
+// Files
 import { Container } from "./styled";
 
 const Image: React.FC<ImageProps & React.RefAttributes<HTMLDivElement>> =

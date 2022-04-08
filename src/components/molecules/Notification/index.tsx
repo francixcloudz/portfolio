@@ -1,7 +1,7 @@
 // Dependencies
 import { useState, forwardRef } from "react";
 
-// Styled
+// Files
 import { Button, Message, Bell } from "./styled";
 
 const Notification: React.FC<React.RefAttributes<HTMLDivElement>> = forwardRef(
@@ -24,9 +24,7 @@ const Notification: React.FC<React.RefAttributes<HTMLDivElement>> = forwardRef(
         <Message style={{ display: showMessage ? "block" : "none" }}>
           <p>
             I design & code beautifully simple things and I love what I do!{" "}
-            <a href="#Contact" className="scroll">
-              Let's talk
-            </a>
+            <a href="#Contact">Let's talk</a>
           </p>
         </Message>
       </>

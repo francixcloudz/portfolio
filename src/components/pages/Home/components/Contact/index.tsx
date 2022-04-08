@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { sendForm } from "emailjs-com";
 
-// Styled
+// Files
 import {
   Container,
   FormWrapper,

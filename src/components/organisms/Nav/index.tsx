@@ -1,43 +1,41 @@
 // Dependencies
 import { useState, forwardRef } from "react";
 
-// Styled
-import { Container, Logo, Burger, Links, Image } from "./styled";
+// Files
+import { Container, Burger, Links } from "./styled";
+import type { Props } from "./types";
+
+// Components
+import Logo from "components/atoms/Logo";
 
 // Assets
-import lenses from "assets/media/lenses.png";
-import smile from "assets/media/smile.png";
-
-type Props = {
-  className?: string;
-};
+import useResponsive from "assets/hooks/useResponsive";
+import { BREAKPOINTS } from "assets/styles/constants";
 
 const Nav: React.FC<Props & React.RefAttributes<HTMLDivElement>> = forwardRef(
   ({ className }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const isMobile = useResponsive(BREAKPOINTS.MOBILE);
 
     return (
       <Container ref={ref} className={className}>
-        <Logo href="http://arrigoni.in">
-          <Image className="lenses" alt="lenses" src={lenses} />
-          <Image className="smile" alt="smile" src={smile} />
-        </Logo>
-        <div>
+        <Logo />
+        {isMobile && (
           <Burger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
           </Burger>
-          <Links isOpen={isOpen}>
-            <a className="portfolio scroll" href="#Portfolio">
-              Portfolio
-            </a>
-            <a className="contact scroll" href="#Contact">
-              Say Hello!
-            </a>
-          </Links>
-        </div>
+        )}
+        <Links isOpen={isOpen}>
+          <a className="portfolio" href="#Portfolio">
+            Portfolio
+          </a>
+          <a className="contact" href="#Contact">
+            Say Hello!
+          </a>
+        </Links>
       </Container>
     );
   }
