@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Assets
-import useLayoutEffect from "assets/hooks/useLayoutEffect";
+import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
 
 const useResponsive: (breakpoint: number, type?: "min" | "max") => boolean = (
   breakpoint,
@@ -11,7 +11,7 @@ const useResponsive: (breakpoint: number, type?: "min" | "max") => boolean = (
   const [isDevice, setIsDevice] = useState(false);
 
   // resize
-  useLayoutEffect(() => {
+  useIsoLayoutEffect(() => {
     const handleResize = () => {
       setIsDevice(
         window.matchMedia(`screen and (max-width: ${breakpoint - 1}px)`).matches
@@ -24,7 +24,7 @@ const useResponsive: (breakpoint: number, type?: "min" | "max") => boolean = (
     };
   }, [isDevice, breakpoint]);
 
-  useLayoutEffect(() => {
+  useIsoLayoutEffect(() => {
     setIsDevice(
       () =>
         window &&

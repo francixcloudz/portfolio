@@ -29,10 +29,11 @@ const getTimeline: GetTimeline = ({ allRefs, callback }) => {
   const refChild = (refName: string, index) =>
     (ref(refName) as HTMLElement).children[index];
 
+  tl.set(ref("Container"), { opacity: 0 });
   tl.set(ref("Content"), {
-    "background-size": "1px 1px",
-    "border-radius": "0 0 0 0",
-    "min-height": "100vh",
+    backgroundSize: "1px 1px",
+    borderRadius: "0 0 0 0",
+    minHeight: "100vh",
   });
   tl.set(refChild("Title", 0), fadeIn.initial);
   tl.set(refChild("Title", 1), fadeIn.initial);
@@ -42,15 +43,15 @@ const getTimeline: GetTimeline = ({ allRefs, callback }) => {
   tl.set(ref("Notification"), fadeIn.initial);
 
   tl.to(ref("Container"), { opacity: 1 }, "+=0.5");
-  tl.to(refChild("Title", 0), fadeIn.animate);
-  tl.to(ref("Content"), { "background-size": "22px 22px", duration });
-  tl.to(refChild("Title", 1), fadeIn.animate);
-  tl.to(refChild("Nav", 0), fadeIn.animate);
-  tl.to(refChild("Nav", 1).children[0], fadeIn.animate);
-  tl.to(refChild("Nav", 1).children[1], fadeIn.animate);
-  tl.to(refChild("Nav", 1).children[1], fadeIn.animate);
-  tl.to(ref("Content"), { "border-radius": "0 0 20vw 20vw", duration });
-  tl.to(ref("Content"), { "min-height": "90vh" });
+  tl.to(refChild("Title", 0), fadeIn.animate, ">");
+  tl.to(ref("Content"), { backgroundSize: "22px 22px", duration }, ">");
+  tl.to(refChild("Title", 1), fadeIn.animate, ">");
+  tl.to(refChild("Nav", 0), fadeIn.animate, ">");
+  tl.to(refChild("Nav", 1).children[0], fadeIn.animate, ">");
+  tl.to(refChild("Nav", 1).children[1], fadeIn.animate, ">");
+  tl.to(refChild("Nav", 1).children[1], fadeIn.animate, ">");
+  tl.to(ref("Content"), { borderRadius: "0 0 20vw 20vw", duration }, "+=0.1");
+  tl.to(ref("Content"), { minHeight: "90vh" }, ">");
 
   tl.to(ref("Notification"), fadeIn.animate, "+=0.5");
   tl.add(callback, ">");
@@ -60,14 +61,18 @@ const getTimeline: GetTimeline = ({ allRefs, callback }) => {
 
 export const handleAnimations: HandleAnimations = ({
   allRefs,
-  loading,
+  isVisible,
   setIsSmileImage,
+  setIsLoading,
 }) => {
   const tl = getTimeline({
     allRefs,
-    callback: () => setIsSmileImage(false),
+    callback: () => {
+      setIsSmileImage(false);
+      setIsLoading(false);
+    },
   });
-  if (!loading) tl.play();
+  if (!isVisible) tl.play();
 
   return () => {
     tl.kill();

@@ -1,13 +1,15 @@
 // Dependencies
 import styled from "styled-components";
 
-export const Container = styled.div<{ loading: number }>`
-  ${({ loading }) =>
-    !!loading
-      ? `overflow: hidden; height: 100vh`
-      : `overflow: auto; height: auto`};
+// Assets
+import { COLORS } from "assets/styles/constants";
+
+export const Container = styled.div<{ isLoading: boolean }>`
+  min-height: 100vh;
+  background: ${COLORS.WHITE};
+  ${({ isLoading }) => `overflow: ${isLoading ? "hidden" : "auto"}`};
 `;
 
-export const AppWrapper = styled.div<{ loading: number }>`
-  ${({ loading }) => (!!loading ? `opacity: 0` : `opacity: 1`)};
+export const AppWrapper = styled.div<{ isLoading: boolean }>`
+  ${({ isLoading }) => (isLoading ? `opacity: 0` : `opacity: 1`)};
 `;

@@ -1,6 +1,6 @@
 export type Props = {
   portraitRef: React.RefObject<HTMLDivElement>;
-  loading: boolean;
+  isVisible: boolean;
 };
 
 export type GetTimeline = (props: {
@@ -10,6 +10,7 @@ export type GetTimeline = (props: {
 
 export type HandleAnimations = (props: {
   allRefs: { [element: string]: gsap.TweenTarget };
-  loading: boolean;
+  isVisible: boolean;
   setIsSmileImage: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => void;

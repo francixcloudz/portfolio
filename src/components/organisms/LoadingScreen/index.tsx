@@ -21,20 +21,20 @@ import Progress from "components/molecules/Progress";
 
 // Assets
 import type { DomRect } from "assets/types";
-import useLayoutEffect from "assets/hooks/useLayoutEffect";
+import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
 import useRefSet from "assets/hooks/useRefSet";
 import gif from "assets/media/loading.gif";
 import portrait from "assets/media/character_smile.png";
 import camera from "assets/media/icons/camera.png";
 
-const LoadingScreen: React.FC<Props> = ({ loading, landingPortraitRef }) => {
+const LoadingScreen: React.FC<Props> = ({ isLoading, landingPortraitRef }) => {
   const [loaded, setLoaded] = useState(false);
   const [portraitDomRect, setPortraitDomRect] = useState<DomRect>({});
 
   const allRefs = useRef<{ [node: string]: gsap.TweenTarget }>({});
   const ref = useRefSet(allRefs);
 
-  useLayoutEffect(
+  useIsoLayoutEffect(
     () =>
       handleAnimations({
         allRefs: allRefs.current,
@@ -42,11 +42,11 @@ const LoadingScreen: React.FC<Props> = ({ loading, landingPortraitRef }) => {
         setPortraitDomRect,
         landingPortraitRef,
       }),
-    [loading, landingPortraitRef, allRefs]
+    [isLoading, landingPortraitRef, allRefs]
   );
 
   return (
-    <Container fadeOut={!loading}>
+    <Container fadeOut={!isLoading}>
       <Wrapper>
         <Loading ref={(node) => ref("Loading", node)} src={gif} priority />
         <CameraIcon

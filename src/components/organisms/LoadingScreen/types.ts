@@ -2,7 +2,7 @@
 import type { DomRect } from "assets/types";
 
 export type Props = {
-  loading: boolean;
+  isLoading: boolean;
   landingPortraitRef: React.RefObject<HTMLDivElement>;
 };
 

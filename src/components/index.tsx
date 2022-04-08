@@ -12,23 +12,25 @@ import LoadingScreen from "components/organisms/LoadingScreen";
 import Home from "components/pages/Home";
 
 // Assets
-import useLayoutEffect from "assets/hooks/useLayoutEffect";
-import useSmoothScrolling from "assets/hooks/useSmoothScrolling";
+import useSmoothScroll from "assets/hooks/useSmoothScroll";
+import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
 import { isProduction } from "assets/constants";
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(isProduction);
+  const [isLoading, setIsLoading] = useState(true);
   const portraitRef = useRef<HTMLDivElement>(null);
 
-  useSmoothScrolling();
-  useLayoutEffect(() => handleLoader(setLoading), []);
+  useSmoothScroll();
+  useIsoLayoutEffect(() => {
+    handleLoader(setIsLoading);
+  }, []);
 
   return (
-    <Container loading={loading ? 1 : 0}>
-      <AppWrapper loading={loading ? 1 : 0}>
-        <Home loading={loading} portraitRef={portraitRef} />
+    <Container isLoading={isLoading}>
+      <AppWrapper isLoading={isLoading}>
+        <Home isVisible={!isLoading} portraitRef={portraitRef} />
       </AppWrapper>
-      <LoadingScreen loading={loading} landingPortraitRef={portraitRef} />
+      <LoadingScreen isLoading={isLoading} landingPortraitRef={portraitRef} />
     </Container>
   );
 };

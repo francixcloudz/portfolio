@@ -24,20 +24,26 @@ import Signature from "components/atoms/Signature";
 import Notification from "components/molecules/Notification";
 
 // Assets
-import useLayoutEffect from "assets/hooks/useLayoutEffect";
+import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
 import useRefSet from "assets/hooks/useRefSet";
 import image from "assets/media/character.png";
 import smileImage from "assets/media/character_smile.png";
 import Title from "components/atoms/Title";
 
-const Home: React.FC<Props> = ({ portraitRef, loading }) => {
+const Home: React.FC<Props> = ({ portraitRef, isVisible }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isSmileImage, setIsSmileImage] = useState(true);
   const allRefs = useRef<{ [node: string]: gsap.TweenTarget }>({});
   const ref = useRefSet(allRefs);
 
-  useLayoutEffect(() => {
-    handleAnimations({ allRefs: allRefs.current, loading, setIsSmileImage });
-  }, [loading]);
+  useIsoLayoutEffect(() => {
+    handleAnimations({
+      allRefs: allRefs.current,
+      isVisible,
+      setIsSmileImage,
+      setIsLoading,
+    });
+  }, [isVisible]);
 
   return (
     <Container ref={(node) => ref("Container", node)}>
@@ -65,10 +71,14 @@ const Home: React.FC<Props> = ({ portraitRef, loading }) => {
           </Box>
         </Content>
       </Section>
-      <About />
-      <Portfolio />
-      <Contact />
-      <Signature />
+      {!isLoading && (
+        <>
+          <About />
+          <Portfolio />
+          <Contact />
+          <Signature />
+        </>
+      )}
     </Container>
   );
 };

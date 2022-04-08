@@ -21,14 +21,14 @@ export const Section = styled.div`
 `;
 
 export const Content = styled.div`
-  min-height: 90vh;
   background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%)
       center,
     linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center,
     ${COLORS.PRIMARY};
-  background-size: 22px 22px;
-  border-radius: 0 0 20vw 20vw;
   padding-top: 20vh;
+  background-size: 1px 1px;
+  border-radius: 0 0 0 0;
+  min-height: 100vh;
 `;
 
 export const Box = styled.div`

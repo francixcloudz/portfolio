@@ -1,7 +1,7 @@
 // Assets
 import { isBrowser } from "assets/constants";
 
-const useSmoothScrolling = () => {
+const useSmoothScroll = () => {
   if (isBrowser) {
     window.addEventListener("load", () => {
       const easeInCubic: (t: number) => number = (t: number) => t * t * t;
@@ -70,4 +70,4 @@ const useSmoothScrolling = () => {
   }
 };
 
-export default useSmoothScrolling;
+export default useSmoothScroll;
