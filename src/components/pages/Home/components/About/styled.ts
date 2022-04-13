@@ -21,8 +21,8 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   background: ${COLORS.PRIMARY};
-  padding: 20vh 0;
-  border-radius: 0 0 15vw 15vw;
+  padding: 20vh 0 20vh 0;
+  border-radius: 0 0 20vw 20vw;
   margin: 0;
 `;
 

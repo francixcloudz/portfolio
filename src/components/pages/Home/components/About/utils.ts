@@ -26,17 +26,45 @@ const getTimeline: GetTimeline = ({ refs }) => {
 
   const tl = gsap.timeline();
 
-  // tl.set(refs.get("Content"), { borderRadius: "0 0 0 0" });
-  // tl.set(refs.child("Title", 0).children[0], fadeIn.initial);
-  // tl.set(refs.child("Title", 0).children[1], fadeIn.initial);
-  // tl.set(refs.child("Title", 1), fadeIn.initial);
-  // tl.set(refs.get("Paragraph"), fadeIn.initial);
+  tl.set(refs.get("Content"), {
+    borderRadius: "0 0 0 0",
+    padding: "20vh 0 40vh 0",
+  });
+  tl.set(refs.child("Title", 0).children[0], fadeIn.initial);
+  tl.set(refs.child("Title", 0).children[1], fadeIn.initial);
+  tl.set(refs.child("Title", 1), fadeIn.initial);
+  tl.set(refs.get("Paragraph"), fadeIn.initial);
+  tl.set(refs.get("Resume"), fadeIn.initial);
 
-  // tl.to(refs.child("Title", 0).children[0], fadeIn.animate);
-  // tl.to(refs.child("Title", 0).children[1], fadeIn.animate);
-  // tl.to(refs.child("Title", 1), fadeIn.animate);
-  // tl.to(refs.get("Paragraph"), fadeIn.animate);
-  // tl.to(refs.get("Content"), { borderRadius: "0 0 15vw 15vw", duration });
+  tl.add(() => {
+    tl.pause();
+  }, ">");
+
+  tl.to(refs.child("Title", 0).children[0], fadeIn.animate);
+  tl.to(refs.child("Title", 0).children[1], fadeIn.animate);
+  tl.to(refs.child("Title", 1), fadeIn.animate);
+  tl.to(refs.get("Paragraph"), fadeIn.animate);
+  tl.to(refs.get("Resume"), fadeIn.animate);
+
+  tl.add(() => {
+    tl.pause();
+  }, ">");
+
+  tl.to(
+    refs.get("Content"),
+    {
+      borderRadius: "0 0 20vw 20vw",
+      duration,
+    },
+    "+=0.1"
+  );
+  tl.to(
+    refs.get("Content"),
+    {
+      padding: "20vh 0 20vh 0",
+    },
+    ">"
+  );
 
   return tl;
 };
@@ -44,14 +72,19 @@ const getTimeline: GetTimeline = ({ refs }) => {
 export const handleAnimations: HandleAnimations = ({ refs }) => {
   const tl = getTimeline({ refs });
   tl.play();
-  tl.pause();
-
   ScrollTrigger.create({
     trigger: refs.get("Content") as gsap.DOMTarget,
     start: "0 center",
-    onEnter: () => tl.play(),
+    end: "60% center",
+    onEnter: () => {
+      tl.resume();
+    },
+    onLeave: () => {
+      tl.resume();
+    },
     markers: true,
   });
+
   return () => {
     tl.kill();
     clear(ScrollTrigger);
