@@ -18,24 +18,24 @@ import { handleAnimations } from "./utils";
 import Progress from "components/molecules/Progress";
 
 // Assets
-import type { DomRect } from "assets/types";
 import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
-import useRefSet from "assets/hooks/useRefSet";
+import useRefSet, { RefSet } from "assets/hooks/useRefSet";
 import gif from "assets/media/loading.gif";
 import portrait from "assets/media/character_smile.png";
 import camera from "assets/media/icons/camera.png";
+import type { AllRefsGsap, DomRect } from "assets/types";
 
 const LoadingScreen: React.FC<Props> = ({ isLoading, landingPortraitRef }) => {
   const [loaded, setLoaded] = useState(false);
   const [portraitDomRect, setPortraitDomRect] = useState<DomRect>({});
 
-  const allRefs = useRef<{ [node: string]: gsap.TweenTarget }>({});
+  const allRefs = useRef<AllRefsGsap>({});
   const ref = useRefSet(allRefs);
 
   useIsoLayoutEffect(
     () =>
       handleAnimations({
-        allRefs: allRefs.current,
+        refs: new RefSet(allRefs.current),
         setLoaded,
         setPortraitDomRect,
         landingPortraitRef,

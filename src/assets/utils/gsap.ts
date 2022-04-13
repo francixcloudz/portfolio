@@ -1,6 +1,10 @@
+// Dependencies
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+
+// Assets
+import type { AllRefsGsap } from "assets/types";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 

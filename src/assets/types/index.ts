@@ -1,8 +1,8 @@
-export type User = {
+export interface User {
   id: number;
-};
+}
 
-export type DomRect = {
+export interface DomRect {
   x?: number;
   y?: number;
   width?: number;
@@ -11,4 +11,6 @@ export type DomRect = {
   right?: number;
   bottom?: number;
   left?: number;
-};
+}
+
+export type AllRefsGsap = { [element: string]: gsap.TweenTarget };

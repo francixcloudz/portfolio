@@ -17,19 +17,19 @@ export const Container = styled.div`
   p {
     color: ${COLORS.WHITE};
   }
+`;
 
-  > .content {
-    background: ${COLORS.PRIMARY};
-    padding: 20vh 0;
-    border-radius: 0 0 15vw 15vw;
-    margin: 0;
+export const Content = styled.div`
+  background: ${COLORS.PRIMARY};
+  padding: 20vh 0;
+  border-radius: 0 0 15vw 15vw;
+  margin: 0;
+`;
 
-    > .box {
-      margin: auto;
-      max-width: 95%;
-      width: 510px;
-    }
-  }
+export const Box = styled.div`
+  margin: auto;
+  max-width: 95%;
+  width: 510px;
 `;
 
 export const Resume = styled.div`
