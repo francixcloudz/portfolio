@@ -1,29 +1,35 @@
 // Dependencies
 import styled from "styled-components";
 
+// Components
+import TitleTemplate from "components/atoms/Title";
+
 // Assets
 import { COLORS } from "assets/styles/constants";
 
 export const Container = styled.div`
   background: ${COLORS.PRIMARY};
+`;
 
-  > .content {
-    background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%)
-        center,
-      linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center,
-      ${COLORS.PRIMARY};
-    background-size: 22px 22px;
-    border-radius: 0 0 10vw 10vw;
-    padding: 20vh 0;
+export const Box = styled.div`
+  margin: auto;
+`;
 
-    > .box {
-      margin: auto;
-      max-width: 95%;
-      width: 600px;
-    }
+export const Content = styled.div`
+  background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%)
+      center,
+    linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center,
+    ${COLORS.PRIMARY};
+  background-size: 22px 22px;
+  border-radius: 0 0 20vw 20vw;
+  padding: 20vh 0 20vh 0;
 
-    > *:not(:last-child) {
-      margin-bottom: 10vh;
-    }
+  > ${Box}:not(:last-child) {
+    margin-bottom: 10vh;
   }
+`;
+
+export const Title = styled(TitleTemplate)`
+  max-width: 95%;
+  width: 600px;
 `;

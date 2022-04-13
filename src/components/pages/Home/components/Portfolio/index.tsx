@@ -1,67 +1,45 @@
 // Dependencies
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // Files
-import { Container } from "./styled";
+import { Container, Content, Box, Title } from "./styled";
+import { handleAnimations } from "./utils";
+import { getPortfolio } from "./data";
 import Projects from "./Projects";
 
 // Components
-import Title from "components/atoms/Title";
 import DesignModal from "components/organisms/DesignModal";
 
 // Assets
-import myWork from "assets/media/emojis/My-work.png";
-import moonShot from "assets/media/emojis/Moonshot.png";
+import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
+import useRefSet, { RefSet } from "assets/hooks/useRefSet";
+import type { AllRefsGsap } from "assets/types";
 
 const Portfolio: React.FC = () => {
   const [openDesignModal, setOpenDesignModal] = useState(false);
   const [designModalProject, setDesignModalProject] = useState<string>("");
 
+  const allRefs = useRef<AllRefsGsap>({});
+  const ref = useRefSet(allRefs);
+
+  useIsoLayoutEffect(
+    () => handleAnimations({ refs: new RefSet(allRefs.current) }),
+    []
+  );
+
   return (
     <>
       <Container id="Portfolio">
-        <div className="content">
-          <div>
-            <div className="box">
-              <Title
-                title="Portfolio"
-                subtitle="Here are a some demos I've worked on to test my tech skills"
-                emoji={myWork}
-                variant="black"
-              />
-            </div>
-            <Projects type="demos" />
-          </div>
-
-          <div>
-            <div className="box">
-              <Title
-                title="Projects"
-                subtitle="Here are a few projects I've worked on"
-                emoji={myWork}
-                variant="black"
-              />
-            </div>
-            <Projects type="projects" />
-          </div>
-
-          <div>
-            <div className="box">
-              <Title
-                title="Ventures"
-                subtitle="One of the things I enjoy most in life is the creative process
-                of creating solutions to problems I identify with"
-                emoji={moonShot}
-                variant="black"
-              />
-            </div>
-            <Projects
-              type="ventures"
-              setOpenDesignModal={setOpenDesignModal}
-              setDesignModalProject={setDesignModalProject}
-            />
-          </div>
-        </div>
+        <Content ref={(node) => ref("Content", node)}>
+          {getPortfolio(setOpenDesignModal, setDesignModalProject).map(
+            (porfolio) => (
+              <Box key={porfolio.projects.type}>
+                <Title {...porfolio.title} />
+                <Projects {...porfolio.projects} />
+              </Box>
+            )
+          )}
+        </Content>
       </Container>
       <DesignModal
         openDesignModal={openDesignModal}

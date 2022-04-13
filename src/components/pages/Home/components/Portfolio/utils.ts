@@ -6,18 +6,6 @@ import { gsap, ScrollTrigger, clear } from "assets/utils/gsap";
 
 const duration = 0.3;
 
-const fadeIn = {
-  initial: {
-    opacity: 0,
-    y: "15px",
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    duration,
-  },
-};
-
 const getTimeline: GetTimeline = ({ refs }) => {
   gsap.defaults({
     ease: "none",
@@ -30,21 +18,6 @@ const getTimeline: GetTimeline = ({ refs }) => {
     borderRadius: "0 0 0 0",
     padding: "20vh 0 40vh 0",
   });
-  tl.set(refs.child("Title", 0).children[0], fadeIn.initial);
-  tl.set(refs.child("Title", 0).children[1], fadeIn.initial);
-  tl.set(refs.child("Title", 1), fadeIn.initial);
-  tl.set(refs.get("Paragraph"), fadeIn.initial);
-  tl.set(refs.get("Resume"), fadeIn.initial);
-
-  tl.add(() => {
-    tl.pause();
-  }, ">");
-
-  tl.to(refs.child("Title", 0).children[0], fadeIn.animate);
-  tl.to(refs.child("Title", 0).children[1], fadeIn.animate);
-  tl.to(refs.child("Title", 1), fadeIn.animate);
-  tl.to(refs.get("Paragraph"), fadeIn.animate);
-  tl.to(refs.get("Resume"), fadeIn.animate);
 
   tl.add(() => {
     tl.pause();
@@ -74,14 +47,11 @@ export const handleAnimations: HandleAnimations = ({ refs }) => {
   tl.play();
   ScrollTrigger.create({
     trigger: refs.get("Content") as gsap.DOMTarget,
-    start: "0 center",
-    end: "60% center",
+    start: "95% center+=25%",
     onEnter: () => {
       tl.resume();
     },
-    onLeave: () => {
-      tl.resume();
-    },
+    markers: true,
   });
 
   return () => {
