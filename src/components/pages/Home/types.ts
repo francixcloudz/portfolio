@@ -17,3 +17,5 @@ export type HandleAnimations = (props: {
   setIsSmileImage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => void;
+
+export type HandleScroll = (props: { refs: RefSet }) => () => void;

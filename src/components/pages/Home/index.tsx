@@ -11,7 +11,7 @@ import {
   Box,
 } from "./styled";
 import type { Props } from "./types";
-import { handleAnimations } from "./utils";
+import { handleAnimations, handleScroll } from "./utils";
 import About from "./components/About";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
@@ -43,6 +43,10 @@ const Home: React.FC<Props> = ({ portraitRef, isVisible }) => {
       setIsLoading,
     });
   }, [isVisible]);
+
+  useIsoLayoutEffect(() => {
+    if (!isLoading) handleScroll({ refs: new RefSet(allRefs.current) });
+  }, [isLoading]);
 
   return (
     <Container ref={(node) => ref("Container", node)}>

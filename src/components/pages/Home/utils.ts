@@ -1,8 +1,8 @@
 // Files
-import type { GetTimeline, HandleAnimations } from "./types";
+import type { GetTimeline, HandleAnimations, HandleScroll } from "./types";
 
 // Assets
-import { gsap } from "assets/utils/gsap";
+import { gsap, ScrollTrigger, clear } from "assets/utils/gsap";
 
 const duration = 0.3;
 
@@ -76,5 +76,27 @@ export const handleAnimations: HandleAnimations = ({
 
   return () => {
     tl.kill();
+  };
+};
+
+export const handleScroll: HandleScroll = ({ refs }) => {
+  const goToSection = (section) => {
+    gsap.to(window, {
+      scrollTo: { y: section, autoKill: false },
+      duration: 0,
+    });
+  };
+  const sections = Array.from((refs.get("Container") as HTMLElement).children);
+  sections.forEach((section, index) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "0% 20%",
+      end: "100% 80%",
+      onLeave: () => goToSection(sections[index + 1]),
+      onLeaveBack: () => goToSection(sections[index + -1]),
+    });
+  });
+  return () => {
+    clear(ScrollTrigger);
   };
 };

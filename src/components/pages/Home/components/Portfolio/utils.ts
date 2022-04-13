@@ -51,7 +51,6 @@ export const handleAnimations: HandleAnimations = ({ refs }) => {
     onEnter: () => {
       tl.resume();
     },
-    markers: true,
   });
 
   return () => {
