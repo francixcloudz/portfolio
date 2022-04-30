@@ -16,8 +16,8 @@ export const redirections = [
   { path: "whatsapp", redirect: "https://wa.me/5492995769384/" },
   { path: "portfolio", redirect: "https://arrigoni.in/" },
   { path: "linkedin", redirect: "https://linkedin.com/in/franciscloudz/" },
-  { path: "github", redirect: "https://github.com/franciscloudz/" },
-  { path: "instagram", redirect: "https://instagram.com/franciscloudz/" },
-  { path: "twitter", redirect: "https://twitter.com/franciscloudz/" },
-  { path: "facebook", redirect: "https://facebook.com/franciscloudz/" },
+  { path: "github", redirect: "https://github.com/francixcloudz/" },
+  { path: "instagram", redirect: "https://instagram.com/francixcloudz/" },
+  { path: "twitter", redirect: "https://twitter.com/francixcloudz/" },
+  { path: "facebook", redirect: "https://facebook.com/francixcloudz/" },
 ];
