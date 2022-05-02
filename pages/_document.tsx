@@ -1,4 +1,3 @@
-// Dependencies
 import Document, {
   Html,
   Head,

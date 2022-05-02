@@ -1,8 +1,5 @@
-// Dependencies
 import { ThemeProvider } from "styled-components";
 import type { AppProps } from "next/app";
-
-// Components
 import Head from "components/templates/Head";
 import ResetGlobalStyles from "components/templates/Styled/ResetGlobalStyle";
 import GeneralGlobalStyles from "components/templates/Styled/GeneralGlobalStyle";

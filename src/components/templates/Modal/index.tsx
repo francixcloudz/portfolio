@@ -1,8 +1,5 @@
-// Files
-import { Container, Overlay, Box, Content, Close } from "./styled";
-
-// Components
-import Icons from "components/atoms/Icon";
+import { Container, Overlay, Box, Content, Close } from './styled';
+import Icon from 'components/atoms/Icon';
 
 const Modal: React.FC<{
   children: React.ReactNode;
@@ -17,7 +14,7 @@ const Modal: React.FC<{
       <Overlay onClick={() => setOpen(false)} />
       <Box data-state={open} fitContent={fitContent} overflow={overflow}>
         <Close onClick={() => setOpen(false)}>
-          <Icons.Close />
+          <Icon.Close />
         </Close>
         <Content>{children}</Content>
       </Box>
