@@ -4,11 +4,7 @@ import { sendForm } from "emailjs-com";
 // Files
 import type { HandleSubmit } from "./types";
 
-export const handleSubmit: HandleSubmit = ({
-  event,
-  setMessage,
-  setLoading,
-}) => {
+export const handleSubmit: HandleSubmit = ({ event, setMessage, setLoading }) => {
   event.preventDefault();
 
   const handleMessage = (text) => {
@@ -29,17 +25,15 @@ export const handleSubmit: HandleSubmit = ({
     "gmail",
     `${process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE}`,
     event.target,
-    `${process.env.NEXT_PUBLIC_EMAILJS_USER}`
+    `${process.env.NEXT_PUBLIC_EMAILJS_USER}`,
   ).then(
     () => {
       handleMessage("Thank you for your time 💛 I'll get back to you shortly");
       setLoading(false);
     },
     () => {
-      handleMessage(
-        "Oops, an unexpected error occurred 😅 Please try again in a moment"
-      );
+      handleMessage("Oops, an unexpected error occurred 😅 Please try again in a moment");
       setLoading(false);
-    }
+    },
   );
 };

@@ -4,7 +4,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
 
     return config;
@@ -13,10 +13,6 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: [
-      "localhost",
-      "arrigoni.in",
-      "arrigoni.s3.sa-east-1.amazonaws.com",
-    ],
+    domains: ["localhost", "arrigoni.in", "arrigoni.s3.sa-east-1.amazonaws.com"],
   },
 };

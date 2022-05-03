@@ -1,12 +1,7 @@
 import { ReactElement } from "react";
 import type { RefSet } from "hooks/useRefSet";
 
-interface HomeProps {
-  portraitRef: React.RefObject<HTMLDivElement>;
-  isVisible: boolean;
-}
-
-export type HomeType = (props: HomeProps) => ReactElement | null;
+export type HomeType = () => ReactElement | null;
 
 export type GetTimeline = (props: {
   refs: RefSet;

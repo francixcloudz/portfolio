@@ -1,4 +1,3 @@
-const useCurrentPath = () =>
-  window.location.pathname.toLowerCase().replaceAll("/", "");
+const useCurrentPath = () => window.location.pathname.toLowerCase().replaceAll("/", "");
 
 export default useCurrentPath;

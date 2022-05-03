@@ -4,9 +4,7 @@ export const isBrowser = typeof window !== "undefined";
 
 export const isProduction = process.env.NODE_ENV === "production";
 
-export const baseUrl = isProduction
-  ? "https://arrigoni.in"
-  : "http://localhost:3000";
+export const baseUrl = isProduction ? "https://arrigoni.in" : "http://localhost:3000";
 
 export const redirections = [
   {

@@ -68,28 +68,17 @@ export const projects: Array<Project> = [
     type: "demos",
     config: "working",
     title: "Kanban App",
-    description:
-      "Boost productivity by organizing your workflow in a practical and visual way",
+    description: "Boost productivity by organizing your workflow in a practical and visual way",
     img: kanbanapp,
     github: "https://github.com/franciscloudz/portfolio",
-    stack: [
-      HTML,
-      STYLED_COMPONENTS,
-      TS,
-      REACT,
-      REDUX,
-      NODEJS,
-      EXPRESS,
-      MONGODB,
-    ],
+    stack: [HTML, STYLED_COMPONENTS, TS, REACT, REDUX, NODEJS, EXPRESS, MONGODB],
   },
 
   {
     type: "projects",
     config: "github",
     title: "Pharmacy App",
-    description:
-      "Enhance workflow between pharmacists and doctors from Argentina",
+    description: "Enhance workflow between pharmacists and doctors from Argentina",
     img: pharmacyapp,
     website: "https://farmaceuticos-asociados.web.app",
     github: "https://github.com/franciscloudz/portfolio",
@@ -113,8 +102,7 @@ export const projects: Array<Project> = [
     description:
       "A game we launched to participate in the biggest gaming hackathon in the world, the GlobalGameJam!",
     img: globalgamejam,
-    website:
-      "https://globalgamejam.org/2022/games/bardo-decide-fate-schr%C3%B6dingers-cat-6",
+    website: "https://globalgamejam.org/2022/games/bardo-decide-fate-schr%C3%B6dingers-cat-6",
     github: "https://github.com/franciscloudz/portfolio",
     stack: [UNITY, CSHARP],
   },

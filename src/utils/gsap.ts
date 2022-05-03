@@ -14,5 +14,4 @@ export * from "gsap";
 
 export { ScrollTrigger, ScrollToPlugin };
 
-export const clear = (elements) =>
-  elements.getAll().forEach((element) => element.kill(true));
+export const clear = (elements) => elements.getAll().forEach((element) => element.kill(true));
