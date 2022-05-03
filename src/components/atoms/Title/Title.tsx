@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Container, TitleWrapper } from "./Title.styled";
 import type { TitleType } from "./Title.types";
-import { Emoji } from "components/templates/Styled";
+import { Emoji } from "styles/Templates";
 
 export const Title: TitleType = forwardRef(
   ({ title, subtitle, emoji, variant, principal }, ref) => {

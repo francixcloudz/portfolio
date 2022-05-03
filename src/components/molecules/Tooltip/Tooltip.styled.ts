@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ANIMATIONS, COLORS } from "styles/constants";
+import { ANIMATIONS, COLORS } from "styles/theme";
 
 export const Container = styled.div`
   cursor: pointer;

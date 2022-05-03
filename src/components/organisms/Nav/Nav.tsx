@@ -3,7 +3,7 @@ import { Container, Burger, Links } from "./Nav.styled";
 import { NavType } from "./Nav.types";
 import Logo from "components/atoms/Logo";
 import useResponsive from "hooks/useResponsive";
-import { BREAKPOINTS } from "styles/constants";
+import { BREAKPOINTS } from "styles/theme";
 
 export const Nav: NavType = forwardRef(({ ...rest }, ref) => {
   const [isOpen, setIsOpen] = useState(false);

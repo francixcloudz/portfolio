@@ -1,21 +1,16 @@
-// Dependencies
 import { useState } from "react";
-
-// Assets
-import useIsoLayoutEffect from "assets/hooks/useIsoLayoutEffect";
+import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 
 const useResponsive: (breakpoint: number, type?: "min" | "max") => boolean = (
   breakpoint,
-  type = "max"
+  type = "max",
 ) => {
   const [isDevice, setIsDevice] = useState(false);
 
   // resize
   useIsoLayoutEffect(() => {
     const handleResize = () => {
-      setIsDevice(
-        window.matchMedia(`screen and (max-width: ${breakpoint - 1}px)`).matches
-      );
+      setIsDevice(window.matchMedia(`screen and (max-width: ${breakpoint - 1}px)`).matches);
     };
 
     window.addEventListener("resize", handleResize);
@@ -29,7 +24,7 @@ const useResponsive: (breakpoint: number, type?: "min" | "max") => boolean = (
       () =>
         window &&
         window.matchMedia &&
-        window.matchMedia(`screen and (max-width: ${breakpoint - 1}px)`).matches
+        window.matchMedia(`screen and (max-width: ${breakpoint - 1}px)`).matches,
     );
   }, [breakpoint]);
 

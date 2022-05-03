@@ -1,8 +1,7 @@
-/* eslint-disable max-lines */
-import Image from "components/templates/Image";
+import Image from "components/atoms/Image";
 import Tooltip from "components/molecules/Tooltip";
-import cssModules from "assets/media/icons/css_modules.png";
-import { COLORS } from "styles/constants";
+import cssModules from "assets/images/icons/css_modules.png";
+import { COLORS } from "styles/theme";
 
 export const HTML = (key: string) => (
   <Tooltip key={key} text="HTML">

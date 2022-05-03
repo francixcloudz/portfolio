@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "styles/constants";
+import { COLORS } from "styles/theme";
 
 export const Container = styled.div`
   will-change: transform;

@@ -6,7 +6,7 @@ interface HomeProps {
   isVisible: boolean;
 }
 
-export type HomeType = (props: HomeProps) => ReactElement;
+export type HomeType = (props: HomeProps) => ReactElement | null;
 
 export type GetTimeline = (props: {
   refs: RefSet;

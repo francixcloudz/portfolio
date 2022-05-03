@@ -1,3 +1,4 @@
+// Dependencies
 import Document, {
   Html,
   Head,
@@ -9,17 +10,16 @@ import Document, {
 import { ServerStyleSheet } from "styled-components";
 
 class MyDocument extends Document {
-  public static async getInitialProps(
-    context: DocumentContext
-  ): Promise<DocumentInitialProps> {
+  public static async getInitialProps(context: DocumentContext): Promise<DocumentInitialProps> {
+    const initialProps = await Document.getInitialProps(context);
     const sheet = new ServerStyleSheet();
     const originalRenderPage = context.renderPage;
 
     try {
       context.renderPage = () =>
         originalRenderPage({
-          // eslint-disable-next-line @typescript-eslint/naming-convention
           enhanceApp: (App) => (props) =>
+            // @ts-ignore
             sheet.collectStyles(<App {...props} />),
         });
 
@@ -36,6 +36,8 @@ class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+
+    return { ...initialProps };
   }
 
   public render = () => {

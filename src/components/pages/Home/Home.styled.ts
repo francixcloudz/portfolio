@@ -1,11 +1,6 @@
-// Dependencies
 import styled from "styled-components";
-
-// Components
-import ImageTemplate from "components/templates/Image";
-
-// Assets
-import { BREAKPOINTS, COLORS } from "assets/styles/constants";
+import ImageTemplate from "components/atoms/Image";
+import { BREAKPOINTS, COLORS } from "styles/theme";
 
 export const Container = styled.div`
   opacity: 0;
@@ -23,10 +18,8 @@ export const Section = styled.div`
 `;
 
 export const Content = styled.div`
-  background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%)
-      center,
-    linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center,
-    ${COLORS.PRIMARY};
+  background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%) center,
+    linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center, ${COLORS.PRIMARY};
   padding-top: 20vh;
   background-size: 1px 1px;
   border-radius: 0 0 0 0;

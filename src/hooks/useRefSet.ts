@@ -1,5 +1,4 @@
-// Assets
-import type { AllRefsGsap } from "assets/types";
+import type { AllRefsGsap } from "types";
 
 const useRefSet = (allRefs: React.MutableRefObject<AllRefsGsap>) => {
   return (refName: string, node: HTMLDivElement | null) => {

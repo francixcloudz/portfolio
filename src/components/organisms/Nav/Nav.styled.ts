@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ANIMATIONS, BREAKPOINTS, COLORS } from "styles/constants";
+import { ANIMATIONS, BREAKPOINTS, COLORS } from "styles/theme";
 
 export const Container = styled.div`
   position: absolute;

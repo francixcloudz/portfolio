@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ANIMATIONS, COLORS, FONT_FAMILY } from "styles/constants";
+import { ANIMATIONS, COLORS, FONT_FAMILY } from "styles/theme";
 
 export const Button = styled.div`
   cursor: pointer;

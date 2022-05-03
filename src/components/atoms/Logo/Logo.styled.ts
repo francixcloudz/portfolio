@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ImageTemplate from "components/templates/Image";
-import { BREAKPOINTS, COLORS } from "styles/constants";
+import ImageTemplate from "components/atoms/Image";
+import { BREAKPOINTS, COLORS } from "styles/theme";
 
 export const Image = styled(ImageTemplate)``;
 
