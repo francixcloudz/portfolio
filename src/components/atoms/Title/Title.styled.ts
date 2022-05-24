@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import type { Variants } from "./Title.types";
 import { COLORS } from "styles/theme";
+import { Variants } from "./utils/types";
 
 export const Container = styled.div<{ variant: Variants }>`
   .title,

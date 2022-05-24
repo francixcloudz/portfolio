@@ -37,12 +37,11 @@ const useSmoothScroll = () => {
           event.preventDefault();
           if (event.currentTarget) {
             [, scrollElementId] = (event.currentTarget as HTMLAnchorElement).href.split("#");
-            // eslint-disable-next-line unicorn/prefer-query-selector
             scrollEndElement = document.getElementById(scrollElementId);
           }
           requestAnimationFrame(() => {
             const stamp: number = new Date().getTime();
-            const duration: number = 1000;
+            const duration = 1000;
             const start: number = stamp;
             const startScrollOffset: number = window.pageYOffset;
             const scrollEndElementTop: number = scrollEndElement?.getBoundingClientRect().top ?? 0;

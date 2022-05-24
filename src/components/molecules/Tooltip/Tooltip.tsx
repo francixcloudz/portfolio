@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Container, Box } from "./Tooltip.styled";
-import { TooltipType } from "./Tooltip.types";
 
-export const Tooltip: TooltipType = ({ children, text }) => {
+interface TooltipProps {
+  children: ReactNode;
+  text: string;
+}
+
+const Tooltip = ({ children, text }: TooltipProps) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -16,3 +20,5 @@ export const Tooltip: TooltipType = ({ children, text }) => {
     </Container>
   );
 };
+
+export default Tooltip;

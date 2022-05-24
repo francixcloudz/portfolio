@@ -1,15 +1,20 @@
 import ReactDOM from "react-dom";
+import instasorteos from "data/portfolio/ventures/instasorteos";
+import sistemason from "data/portfolio/ventures/sistemason";
+import somoswebi from "data/portfolio/ventures/somoswebi";
 import { Container, Close, PageList, Image } from "./DesignModal.styled";
-import { data as sistemason } from "data/portfolio/ventures/sistemason";
-import { data as instasorteos } from "data/portfolio/ventures/instasorteos";
-import { data as somoswebi } from "data/portfolio/ventures/somoswebi";
-import { DesignModalType } from "./DesignModal.types";
 
-export const DesignModal: DesignModalType = ({
+interface DesignModalProps {
+  openDesignModal: boolean;
+  setOpenDesignModal: React.Dispatch<React.SetStateAction<boolean>>;
+  designModalProject: string;
+}
+
+const DesignModal = ({
   openDesignModal,
   setOpenDesignModal,
   designModalProject,
-}) => {
+}: DesignModalProps) => {
   const handleData = (project) => {
     switch (project) {
       case "Sistema SON":
@@ -26,7 +31,7 @@ export const DesignModal: DesignModalType = ({
   if (!openDesignModal) return null;
   return ReactDOM.createPortal(
     <Container data-state={openDesignModal}>
-      <div className="overlay" onClick={() => setOpenDesignModal(false)}></div>
+      <div className="overlay" onClick={() => setOpenDesignModal(false)} aria-hidden="true" />
       <div className="modal">
         <Close onClick={() => setOpenDesignModal(false)}>x</Close>
         <h2>{designModalProject}</h2>
@@ -48,3 +53,5 @@ export const DesignModal: DesignModalType = ({
     document.body,
   );
 };
+
+export default DesignModal;

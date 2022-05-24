@@ -1,11 +1,11 @@
+import guide from "./guide.png";
 import home from "./home.png";
 import landing from "./landing.png";
 import product_1 from "./product_1.png";
-import guide from "./guide.png";
 import product_2 from "./product_2.png";
 import scheduler from "./scheduler.png";
 
-export const data = [
+const data = [
   {
     title: "Homepage",
     img: home,
@@ -31,3 +31,5 @@ export const data = [
     img: scheduler,
   },
 ];
+
+export default data;

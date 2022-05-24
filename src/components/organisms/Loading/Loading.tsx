@@ -1,36 +1,44 @@
-import { useState, useRef, createContext } from "react";
-import { Container, AppWrapper } from "./Loading.styled";
-import { handleLoader } from "./Loading.utils";
-import LoadingItem from "components/molecules/LoadingItem";
-import useSmoothScroll from "hooks/useSmoothScroll";
-import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
+import { useState, useRef, createContext, useMemo } from "react";
+import LoadingItem from "components/molecules/LoadingItem/LoadingItem";
 import { isProduction } from "data";
-import { loadingContextInitialValues, LoadingContextValues, LoadingType } from "./Loading.types";
+import useCurrentPath from "hooks/useCurrentPath";
+import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
+import useRedirection from "hooks/useRedirection";
+import useSmoothScroll from "hooks/useSmoothScroll";
+import { Container, AppWrapper } from "./Loading.styled";
+import { loadingContextInitialValues, LoadingContextValues, LoadingProps } from "./utils/types";
 
 export const LoadingContext = createContext<LoadingContextValues>(loadingContextInitialValues);
 
-export const Loading: LoadingType = ({ children }) => {
+const Loading = ({ children }: LoadingProps) => {
   const [isLoading, setIsLoading] = useState(isProduction);
   const portraitRef = useRef<HTMLDivElement>(null);
 
   useSmoothScroll();
   useIsoLayoutEffect(() => {
-    handleLoader(setIsLoading);
+    window.scrollTo(0, 0);
+    window.addEventListener("load", () => {
+      useRedirection(useCurrentPath());
+      setTimeout(() => setIsLoading(false), 6000);
+    });
   }, []);
+
+  const contextValue = useMemo(
+    () => ({
+      isVisible: !isLoading,
+      portraitRef,
+    }),
+    [],
+  );
 
   return (
     <Container isLoading={isLoading}>
       <AppWrapper isLoading={isLoading}>
-        <LoadingContext.Provider
-          value={{
-            isVisible: !isLoading,
-            portraitRef,
-          }}
-        >
-          {children}
-        </LoadingContext.Provider>
+        <LoadingContext.Provider value={contextValue}>{children}</LoadingContext.Provider>
       </AppWrapper>
       <LoadingItem isLoading={isLoading} landingPortraitRef={portraitRef} />
     </Container>
   );
 };
+
+export default Loading;

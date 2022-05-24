@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import { AppProps } from "next/app";
-import Head from "components/atoms/Head";
+import Head from "components/atoms/Head/Head";
 import ResetGlobalStyles from "styles/ResetGlobal";
 import GeneralGlobalStyles from "styles/GeneralGlobal";
 import * as theme from "styles/theme";

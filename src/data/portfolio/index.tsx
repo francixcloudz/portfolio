@@ -1,16 +1,6 @@
-// Dependencies
-import type { StaticImageData } from "next/image";
-
-// Assets
-import buttonmaker from "./demos/buttonmaker.png";
-import slidingpuzzle from "./demos/slidingpuzzle.png";
-import kanbanapp from "./demos/kanbanapp.png";
-import pharmacyapp from "./projects/pharmacyapp.png";
-import marcapropia from "./projects/marcapropia.png";
-import globalgamejam from "./projects/globalgamejam.png";
-import sistemason from "./ventures/sistemason/home.png";
-import instasorteos from "./ventures/instasorteos/home.png";
-import somoswebi from "./ventures/somoswebi/home.png";
+import { StaticImageData } from "next/image";
+// TODO: Enhance DEV ICONS
+// eslint-disable-next-line import/order
 import {
   HTML,
   CSS,
@@ -30,6 +20,15 @@ import {
   UNITY,
   GSAP,
 } from "./icons";
+import buttonmaker from "./demos/buttonmaker.png";
+import kanbanapp from "./demos/kanbanapp.png";
+import slidingpuzzle from "./demos/slidingpuzzle.png";
+import globalgamejam from "./projects/globalgamejam.png";
+import marcapropia from "./projects/marcapropia.png";
+import pharmacyapp from "./projects/pharmacyapp.png";
+import instasorteos from "./ventures/instasorteos/home.png";
+import sistemason from "./ventures/sistemason/home.png";
+import somoswebi from "./ventures/somoswebi/home.png";
 
 export type ProjectType = "demos" | "projects" | "ventures";
 export type Project = {

@@ -1,7 +1,7 @@
 import home from "./home.png";
 import lead_form from "./lead_form.png";
 
-export const data = [
+const data = [
   {
     title: "Homepage",
     img: home,
@@ -11,3 +11,5 @@ export const data = [
     img: lead_form,
   },
 ];
+
+export default data;

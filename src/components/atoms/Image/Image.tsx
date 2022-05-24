@@ -1,10 +1,13 @@
-import { forwardRef } from "react";
-import NextImage from "next/image";
+import NextImage, { ImageProps } from "next/image";
+import { ForwardedRef, forwardRef } from "react";
 import { Container } from "./Image.styled";
-import { ImageType } from "./Image.types";
 
-export const Image: ImageType = forwardRef(({ src, className, style, ...rest }, ref) => (
-  <Container ref={ref} className={className} style={style}>
-    <NextImage src={src} layout="responsive" objectFit="contain" {...rest} />
-  </Container>
-));
+const Image = forwardRef(
+  ({ src, className, style, ...rest }: ImageProps, ref: ForwardedRef<HTMLDivElement>) => (
+    <Container ref={ref} className={className} style={style}>
+      <NextImage src={src} layout="responsive" objectFit="contain" {...rest} />
+    </Container>
+  ),
+);
+
+export default Image;

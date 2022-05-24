@@ -1,8 +1,7 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, ForwardedRef } from "react";
 import { Button, Message, Bell } from "./Notification.styled";
-import { NotificationType } from "./Notification.types";
 
-export const Notification: NotificationType = forwardRef((props, ref) => {
+const Notification = forwardRef((_props, ref: ForwardedRef<HTMLDivElement>) => {
   const [showMessage, setShowMessage] = useState(false);
 
   return (
@@ -11,10 +10,10 @@ export const Notification: NotificationType = forwardRef((props, ref) => {
         <Button onClick={() => setShowMessage(true)} ref={ref}>
           <span className="count">1</span>
           <Bell>
-            <span className="top"></span>
-            <span className="middle"></span>
-            <span className="bottom"></span>
-            <span className="radius"></span>
+            <span className="top" />
+            <span className="middle" />
+            <span className="bottom" />
+            <span className="radius" />
           </Bell>
         </Button>
       )}
@@ -27,3 +26,5 @@ export const Notification: NotificationType = forwardRef((props, ref) => {
     </>
   );
 });
+
+export default Notification;

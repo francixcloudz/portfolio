@@ -1,9 +1,10 @@
 import NextHead from "next/head";
+import { ReactElement } from "react";
 import favicon from "assets/images/brand/favicon.ico";
 import logo192 from "assets/images/brand/logo192.png";
 import logo512 from "assets/images/brand/logo512.png";
 
-export const Head = () => (
+const Head = (): ReactElement => (
   <NextHead>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -49,3 +50,5 @@ export const Head = () => (
     <meta name="twitter:image:alt" content="Francisco Arrigoni ⚡ Sr. Frontend Engineer" />
   </NextHead>
 );
+
+export default Head;

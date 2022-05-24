@@ -2,7 +2,7 @@ import home from "./home.png";
 import login from "./login.png";
 import main from "./main.png";
 
-export const data = [
+const data = [
   {
     title: "Homepage",
     img: home,
@@ -16,3 +16,5 @@ export const data = [
     img: main,
   },
 ];
+
+export default data;

@@ -1,4 +1,11 @@
 import React, { useState, useRef } from "react";
+import Progress from "components/molecules/Progress/Progress";
+import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
+import useRefSet, { RefSet } from "hooks/useRefSet";
+import { AllRefsGsap, DomRect } from "types";
+import portrait from "assets/images/character_smile.png";
+import camera from "assets/images/icons/camera.png";
+import gif from "assets/images/loading.gif";
 import {
   Container,
   Wrapper,
@@ -8,17 +15,10 @@ import {
   ScreenshotWrapper,
   CameraIcon,
 } from "./LoadingItem.styled";
-import { LoadingType } from "./LoadingItem.types";
-import { handleAnimations } from "./LoadingItem.utils";
-import Progress from "components/molecules/Progress";
-import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
-import useRefSet, { RefSet } from "hooks/useRefSet";
-import gif from "assets/images/loading.gif";
-import portrait from "assets/images/character_smile.png";
-import camera from "assets/images/icons/camera.png";
-import type { AllRefsGsap, DomRect } from "types";
+import handleAnimations from "./utils/animations";
+import { LoadingProps } from "./utils/types";
 
-export const LoadingItem: LoadingType = ({ isLoading, landingPortraitRef }) => {
+const LoadingItem = ({ isLoading, landingPortraitRef }: LoadingProps) => {
   const [loaded, setLoaded] = useState(false);
   const [portraitDomRect, setPortraitDomRect] = useState<DomRect>({});
 
@@ -56,3 +56,5 @@ export const LoadingItem: LoadingType = ({ isLoading, landingPortraitRef }) => {
     </Container>
   );
 };
+
+export default LoadingItem;

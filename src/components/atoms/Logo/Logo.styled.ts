@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ImageTemplate from "components/atoms/Image";
+import ImageTemplate from "components/atoms/Image/Image";
 import { BREAKPOINTS, COLORS } from "styles/theme";
 
 export const Image = styled(ImageTemplate)``;

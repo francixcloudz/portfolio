@@ -1,22 +1,22 @@
 import { useContext, useRef, useState } from "react";
-import { Container, Section, CharacterWrapper, Character, Content, Box } from "./Home.styled";
-import { HomeType } from "./Home.types";
-import { handleAnimations, handleScroll } from "./Home.utils";
-import About from "components/templates/HomeAbout";
-import Portfolio from "components/templates/HomePortfolio";
-import Contact from "components/templates/HomeContact";
-import Logo from "components/atoms/Logo";
-import Title from "components/atoms/Title";
-import Notification from "components/molecules/Notification";
-import Nav from "components/organisms/Nav";
+import Logo from "components/atoms/Logo/Logo";
+import Title from "components/atoms/Title/Title";
+import Notification from "components/molecules/Notification/Notification";
+import Loading, { LoadingContext } from "components/organisms/Loading/Loading";
+import Nav from "components/organisms/Nav/Nav";
+import About from "components/templates/About/About";
+import Contact from "components/templates/Contact/Contact";
+import Portfolio from "components/templates/Portfolio/Portfolio";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
+import { AllRefsGsap } from "types";
 import image from "assets/images/character.png";
 import smileImage from "assets/images/character_smile.png";
-import type { AllRefsGsap } from "types";
-import Loading, { LoadingContext } from "components/organisms/Loading";
+import { Container, Section, CharacterWrapper, Character, Content, Box } from "./Home.styled";
+import { handleAnimations, handleScroll } from "./utils/animations";
+import { HomeType } from "./utils/types";
 
-export const Home: HomeType = () => {
+const Home: HomeType = () => {
   const { portraitRef, isVisible } = useContext(LoadingContext);
   if (!portraitRef || !isVisible) return null;
 
@@ -78,3 +78,5 @@ export const Home: HomeType = () => {
     </Loading>
   );
 };
+
+export default Home;

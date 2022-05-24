@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Image from "components/atoms/Image";
+import Image from "components/atoms/Image/Image";
 import { COLORS, ANIMATIONS } from "styles/theme";
 
 export const Container = styled.div<{ fadeOut: boolean }>`
