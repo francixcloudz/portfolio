@@ -1,7 +1,4 @@
-import { ReactElement } from "react";
 import { RefSet } from "hooks/useRefSet";
-
-export type HomeType = () => ReactElement | null;
 
 export type GetTimeline = (props: {
   refs: RefSet;

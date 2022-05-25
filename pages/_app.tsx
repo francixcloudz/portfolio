@@ -1,15 +1,13 @@
-import { ThemeProvider } from "styled-components";
 import { AppProps } from "next/app";
+import { ThemeProvider } from "styled-components";
 import Head from "components/atoms/Head/Head";
-import ResetGlobalStyles from "styles/ResetGlobal";
+import useSmoothScroll from "hooks/useSmoothScroll";
 import GeneralGlobalStyles from "styles/GeneralGlobal";
+import ResetGlobalStyles from "styles/ResetGlobal";
 import * as theme from "styles/theme";
 
-function MyApp({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  Component,
-  pageProps,
-}: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
+  useSmoothScroll();
   return (
     <>
       <ResetGlobalStyles />

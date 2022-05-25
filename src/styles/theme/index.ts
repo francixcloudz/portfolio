@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+// TODO: Update to match global theme
 
 export const COLORS = {
   WHITE: "#ffffff",

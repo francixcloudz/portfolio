@@ -5,11 +5,11 @@ export interface LoadingProps {
 }
 
 export interface LoadingContextValues {
-  isVisible: boolean | null;
+  isVisible: boolean;
   portraitRef: RefObject<HTMLDivElement> | null;
 }
 
 export const loadingContextInitialValues: LoadingContextValues = {
-  isVisible: null,
+  isVisible: false,
   portraitRef: null,
 };

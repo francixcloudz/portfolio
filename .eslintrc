@@ -15,7 +15,6 @@
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
-  "ignorePatterns": ["/pages"],
   "rules": {
     "no-console": ["warn"],
     "dot-notation": "off",

@@ -1,20 +1,17 @@
 import { useState, useRef, createContext, useMemo } from "react";
-import LoadingItem from "components/molecules/LoadingItem/LoadingItem";
-import { isProduction } from "data";
+import LoadingItem from "components/pages/Home/Loading/LoadingItem/LoadingItem";
 import useCurrentPath from "hooks/useCurrentPath";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRedirection from "hooks/useRedirection";
-import useSmoothScroll from "hooks/useSmoothScroll";
 import { Container, AppWrapper } from "./Loading.styled";
 import { loadingContextInitialValues, LoadingContextValues, LoadingProps } from "./utils/types";
 
 export const LoadingContext = createContext<LoadingContextValues>(loadingContextInitialValues);
 
 const Loading = ({ children }: LoadingProps) => {
-  const [isLoading, setIsLoading] = useState(isProduction);
+  const [isLoading, setIsLoading] = useState(true);
   const portraitRef = useRef<HTMLDivElement>(null);
 
-  useSmoothScroll();
   useIsoLayoutEffect(() => {
     window.scrollTo(0, 0);
     window.addEventListener("load", () => {
@@ -30,6 +27,7 @@ const Loading = ({ children }: LoadingProps) => {
     }),
     [],
   );
+  console.log("loading");
 
   return (
     <Container isLoading={isLoading}>
