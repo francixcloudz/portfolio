@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Progress from "components/molecules/Progress/Progress";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
@@ -14,27 +14,29 @@ import {
   PortraitFixed,
   ScreenshotWrapper,
   CameraIcon,
-} from "./LoadingItem.styled";
-import handleAnimations from "./utils/animations";
-import { LoadingProps } from "./utils/types";
+} from "./Loading.styled";
+import handleAnimations from "./utils/handleAnimations";
 
-const LoadingItem = ({ isLoading, landingPortraitRef }: LoadingProps) => {
+export interface LoadingProps {
+  isLoading: boolean;
+  landingPortraitRef: React.RefObject<HTMLDivElement>;
+}
+
+const Loading = ({ isLoading, landingPortraitRef }: LoadingProps) => {
   const [loaded, setLoaded] = useState(false);
   const [portraitDomRect, setPortraitDomRect] = useState<DomRect>({});
 
   const allRefs = useRef<AllRefsGsap>({});
   const ref = useRefSet(allRefs);
 
-  useIsoLayoutEffect(
-    () =>
-      handleAnimations({
-        refs: new RefSet(allRefs.current),
-        setLoaded,
-        setPortraitDomRect,
-        landingPortraitRef,
-      }),
-    [isLoading, landingPortraitRef, allRefs],
-  );
+  useIsoLayoutEffect(() => {
+    handleAnimations({
+      refs: new RefSet(allRefs.current),
+      setLoaded,
+      setPortraitDomRect,
+      landingPortraitRef,
+    });
+  }, [isLoading, landingPortraitRef, allRefs]);
 
   return (
     <Container fadeOut={!isLoading}>
@@ -57,4 +59,4 @@ const LoadingItem = ({ isLoading, landingPortraitRef }: LoadingProps) => {
   );
 };
 
-export default LoadingItem;
+export default Loading;

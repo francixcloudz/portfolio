@@ -5,7 +5,7 @@ import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types";
 import emoji from "assets/images/emojis/Hello.png";
 import { Container, Content, Box, Resume } from "./About.styled";
-import handleAnimations from "./utils/animations";
+import handleAnimations from "./utils/handleAnimations";
 
 const About: React.FC = () => {
   const allRefs = useRef<AllRefsGsap>({});

@@ -11,30 +11,7 @@ const getTimeline: (props: { refs: RefSet }) => gsap.core.Timeline = ({ refs }) 
 
   const tl = gsap.timeline();
 
-  tl.set(refs.get("Content"), {
-    borderRadius: "0 0 0 0",
-    padding: "20vh 0 40vh 0",
-  });
-
-  tl.add(() => {
-    tl.pause();
-  }, ">");
-
-  tl.to(
-    refs.get("Content"),
-    {
-      borderRadius: "0 0 20vw 20vw",
-      duration,
-    },
-    "+=0.1",
-  );
-  tl.to(
-    refs.get("Content"),
-    {
-      padding: "20vh 0 20vh 0",
-    },
-    ">",
-  );
+  // TODO: Display projects escalonatelly
 
   return tl;
 };
@@ -44,7 +21,7 @@ const handleAnimations: (props: { refs: RefSet }) => void = ({ refs }) => {
   tl.play();
   ScrollTrigger.create({
     trigger: refs.get("Content") as gsap.DOMTarget,
-    start: "95% center+=25%",
+    start: "0 bottom",
     onEnter: () => {
       tl.resume();
     },

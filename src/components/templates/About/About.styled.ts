@@ -6,6 +6,7 @@ export const Container = styled.div`
     linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center, ${COLORS.PRIMARY};
   background-size: 22px 22px;
   margin: 0;
+  width: 100vw;
 
   h2,
   h3,
@@ -16,7 +17,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   background: ${COLORS.PRIMARY};
-  padding: 20vh 0 20vh 0;
+  padding: 5vh 0 15vh 0;
   border-radius: 0 0 20vw 20vw;
   margin: 0;
 `;

@@ -5,8 +5,8 @@ import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types";
 import { Container, Content, Box, Title } from "./Portfolio.styled";
-import handleAnimations from "./utils/animations";
 import getPortfolio from "./utils/getPortfolio";
+import handleAnimations from "./utils/handleAnimations";
 
 const Portfolio: React.FC = () => {
   const [openDesignModal, setOpenDesignModal] = useState(false);

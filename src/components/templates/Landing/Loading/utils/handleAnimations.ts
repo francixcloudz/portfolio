@@ -1,7 +1,12 @@
+import { RefSet } from "hooks/useRefSet";
+import { DomRect } from "types";
 import { gsap } from "utils/gsap";
-import { GetTimeline, HandleAnimations } from "./types";
 
-const getTimeline: GetTimeline = ({ refs, callBack, landingPortraitRefDomRect }) => {
+const getTimeline: (props: {
+  refs: RefSet;
+  callBack: React.Dispatch<React.SetStateAction<boolean>>;
+  landingPortraitRefDomRect: DomRect;
+}) => gsap.core.Timeline = ({ refs, callBack, landingPortraitRefDomRect }) => {
   const tl = gsap.timeline({ delay: 2 });
 
   tl.call(callBack);
@@ -25,12 +30,12 @@ const getTimeline: GetTimeline = ({ refs, callBack, landingPortraitRefDomRect })
   return tl;
 };
 
-const handleAnimations: HandleAnimations = ({
-  refs,
-  setPortraitDomRect,
-  setLoaded,
-  landingPortraitRef,
-}) => {
+const handleAnimations: (props: {
+  refs: RefSet;
+  setLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  setPortraitDomRect: React.Dispatch<React.SetStateAction<DomRect>>;
+  landingPortraitRef: React.RefObject<HTMLDivElement>;
+}) => void = ({ refs, setPortraitDomRect, setLoaded, landingPortraitRef }) => {
   const loaderPortraitRefDomRect = (
     refs.get("Portrait") as HTMLDivElement
   ).getBoundingClientRect() as DOMRect;
