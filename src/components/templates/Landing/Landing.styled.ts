@@ -7,10 +7,6 @@ export const Container = styled.div`
   background: ${COLORS.PRIMARY};
   width: 100vw;
   min-height: 100vh;
-`;
-
-export const Section = styled.div`
-  background: ${COLORS.PRIMARY};
 
   h1,
   h2 {

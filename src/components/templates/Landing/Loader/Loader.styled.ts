@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import Image from "components/atoms/Image/Image";
 import { COLORS, ANIMATIONS } from "styles/theme";
 
-export const Container = styled.div<{ fadeOut: boolean }>`
+export const Container = styled.div<{ isLoaded: boolean }>`
   z-index: 10;
   width: 100vw;
   height: 100vh;
@@ -19,10 +19,11 @@ export const Container = styled.div<{ fadeOut: boolean }>`
     width: 0;
   }
 
-  ${({ fadeOut }) =>
-    fadeOut
-      ? `animation: FADE_OUT 0.4s ease forwards;
-    ${ANIMATIONS.FADE_OUT}`
+  ${({ isLoaded }) =>
+    isLoaded
+      ? `
+      animation: FADE_OUT 0.4s ease forwards;
+      ${ANIMATIONS.FADE_OUT}`
       : ``}
 `;
 

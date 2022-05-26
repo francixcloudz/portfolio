@@ -2,7 +2,6 @@ import { RefSet } from "hooks/useRefSet";
 import { gsap, ScrollTrigger, clear } from "utils/gsap";
 
 const duration = 0.3;
-
 const fadeIn = {
   initial: {
     opacity: 0,
@@ -15,7 +14,11 @@ const fadeIn = {
   },
 };
 
-const getTimeline: (props: { refs: RefSet }) => gsap.core.Timeline = ({ refs }) => {
+interface HandleAnimationsProps {
+  refs: RefSet;
+}
+
+const handleAnimations = ({ refs }: HandleAnimationsProps) => {
   gsap.defaults({
     ease: "none",
     duration: duration / 2,
@@ -39,11 +42,6 @@ const getTimeline: (props: { refs: RefSet }) => gsap.core.Timeline = ({ refs }) 
   tl.to(refs.get("Paragraph"), fadeIn.animate);
   tl.to(refs.get("Resume"), fadeIn.animate);
 
-  return tl;
-};
-
-const handleAnimations: (props: { refs: RefSet }) => void = ({ refs }) => {
-  const tl = getTimeline({ refs });
   tl.play();
   ScrollTrigger.create({
     trigger: refs.get("Content") as gsap.DOMTarget,
