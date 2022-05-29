@@ -1,29 +1,30 @@
 import { useState, createContext, ReactNode } from "react";
-import useCurrentPath from "hooks/useCurrentPath";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
-import useRedirection from "hooks/useRedirection";
 
 interface LoadingContextValues {
   isLoaded: boolean;
 }
 
-export const LoadingContext = createContext<LoadingContextValues>({
+const loadingContextValues: LoadingContextValues = {
   isLoaded: false,
-});
+};
+
+export const LoadingContext = createContext<LoadingContextValues>(loadingContextValues);
 
 interface LoadingProps {
   children: ReactNode;
-  time?: number;
+  delay: number;
+  onLoadCallback?: () => void | undefined;
 }
 
-const Loading = ({ children, time = 6000 }: LoadingProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+const Loading = ({ children, onLoadCallback, delay }: LoadingProps) => {
+  const [isLoaded, setIsLoaded] = useState(loadingContextValues.isLoaded);
 
   useIsoLayoutEffect(() => {
     window.scrollTo(0, 0);
     window.addEventListener("load", () => {
-      useRedirection(useCurrentPath());
-      setTimeout(() => setIsLoaded(true), time);
+      if (onLoadCallback) onLoadCallback();
+      setTimeout(() => setIsLoaded(true), delay);
     });
   }, []);
 

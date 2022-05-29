@@ -4,6 +4,7 @@ import { COLORS } from "styles/theme";
 
 export const Container = styled.div`
   background: ${COLORS.PRIMARY};
+  width: 100vw;
 `;
 
 export const Box = styled.div`

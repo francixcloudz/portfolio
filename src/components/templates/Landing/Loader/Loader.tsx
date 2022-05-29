@@ -1,6 +1,5 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import Progress from "components/molecules/Progress/Progress";
-import { LoadingContext } from "components/organisms/Loading/Loading";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap, DomRect } from "types";
@@ -16,31 +15,34 @@ import {
   ScreenshotWrapper,
   CameraIcon,
 } from "./Loader.styled";
-import handleAnimations from "./utils/handleAnimations";
+import useAnimation from "./utils/useAnimation";
 
 export interface LoadingProps {
-  portraitRef: React.RefObject<HTMLDivElement>;
+  mainImage: React.RefObject<HTMLDivElement>;
+  isLoaded: boolean;
 }
 
-const Loader = ({ portraitRef }: LoadingProps) => {
-  const { isLoaded } = useContext(LoadingContext);
+const DEFAULT_DELAY = 2;
 
-  const [startAnimation, setStartAnimation] = useState(false);
-  const [portraitDomRect, setPortraitDomRect] = useState<DomRect>({});
+const Loader = ({ mainImage, isLoaded }: LoadingProps) => {
+  const [mainImageStyle, setMainImageStyle] = useState<DomRect>({});
 
   const allRefs = useRef<AllRefsGsap>({});
   const ref = useRefSet(allRefs);
 
+  const { startAnimation, clearAnimation } = useAnimation({
+    refs: new RefSet(allRefs.current),
+    delay: DEFAULT_DELAY,
+    setMainImageStyle,
+    mainImage,
+  });
+
   useIsoLayoutEffect(() => {
-    if (portraitRef.current) {
-      handleAnimations({
-        refs: new RefSet(allRefs.current),
-        setStartAnimation,
-        setPortraitDomRect,
-        portraitRef,
-      });
-    }
-  }, [portraitRef, allRefs]);
+    if (mainImage.current) startAnimation();
+    return () => {
+      clearAnimation();
+    };
+  }, [mainImage.current]);
 
   return (
     <Container isLoaded={isLoaded}>
@@ -48,13 +50,13 @@ const Loader = ({ portraitRef }: LoadingProps) => {
         <LoadingImage ref={(node) => ref("Loading", node)} src={gif} priority />
         <CameraIcon ref={(node) => ref("CameraIcon", node)} src={camera} alt="camera" />
         <div ref={(node) => ref("Progress", node)}>
-          {startAnimation && <Progress className="progress" duration={1} />}
+          <Progress className="progress" duration={1} delay={DEFAULT_DELAY} />
         </div>
         <Portrait ref={(node) => ref("Portrait", node)} src={portrait} alt="portrait" />
         <ScreenshotWrapper ref={(node) => ref("ScreenshotWrapper", node)} />
         <PortraitFixed
           ref={(node) => ref("PortraitFixed", node)}
-          style={portraitDomRect}
+          style={mainImageStyle}
           src={portrait}
           alt="portrait"
         />

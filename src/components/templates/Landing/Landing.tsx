@@ -1,8 +1,9 @@
 import { ReactElement, useContext, useRef, useState } from "react";
 import Title from "components/atoms/Title/Title";
 import Notification from "components/molecules/Notification/Notification";
-import Loading, { LoadingContext } from "components/organisms/Loading/Loading";
+import { LoadingContext } from "components/organisms/Loading/Loading";
 import Nav from "components/organisms/Nav/Nav";
+
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types";
@@ -10,29 +11,34 @@ import image from "assets/images/character.png";
 import smileImage from "assets/images/character_smile.png";
 import { Container, CharacterWrapper, Character, Content, Box } from "./Landing.styled";
 import Loader from "./Loader/Loader";
-import handleAnimations from "./utils/handleAnimations";
+import useAnimation from "./utils/useAnimation";
 
-const Landing = (): ReactElement | null => {
-  const { isLoaded } = useContext(LoadingContext);
+const Landing = (): ReactElement => {
+  const loadingContext = useContext(LoadingContext);
+  const { isLoaded } = loadingContext;
 
   const [isSmileImage, setIsSmileImage] = useState(true);
 
-  const portraitRef = useRef<HTMLDivElement>(null);
+  const mainImage = useRef<HTMLDivElement>(null);
   const allRefs = useRef<AllRefsGsap>({});
   const ref = useRefSet(allRefs);
 
+  const { setAnimation, startAnimation, clearAnimation } = useAnimation({
+    refs: new RefSet(allRefs.current),
+    setIsSmileImage,
+  });
+
   useIsoLayoutEffect(() => {
-    if (isLoaded) {
-      handleAnimations({
-        refs: new RefSet(allRefs.current),
-        setIsSmileImage,
-      });
-    }
+    setAnimation();
+    if (isLoaded) startAnimation();
+    return () => {
+      clearAnimation();
+    };
   }, [isLoaded]);
 
   return (
-    <Loading>
-      <Loader portraitRef={portraitRef} />
+    <>
+      <Loader mainImage={mainImage} isLoaded={isLoaded} />
       <Container>
         <Nav ref={(node) => ref("Nav", node)} />
         <Content ref={(node) => ref("Content", node)}>
@@ -46,7 +52,7 @@ const Landing = (): ReactElement | null => {
             />
             <CharacterWrapper>
               <Character
-                ref={portraitRef}
+                ref={mainImage}
                 alt="portrait"
                 src={isSmileImage ? smileImage : image}
                 onMouseOver={() => setIsSmileImage(true)}
@@ -57,7 +63,7 @@ const Landing = (): ReactElement | null => {
           </Box>
         </Content>
       </Container>
-    </Loading>
+    </>
   );
 };
 

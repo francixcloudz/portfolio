@@ -3,7 +3,6 @@ import ImageTemplate from "components/atoms/Image/Image";
 import { BREAKPOINTS, COLORS } from "styles/theme";
 
 export const Container = styled.div`
-  opacity: 0;
   background: ${COLORS.PRIMARY};
   width: 100vw;
   min-height: 100vh;
