@@ -1,8 +1,7 @@
-// Dependencies
 import styled from "styled-components";
-
-// Assets
+import ImageTemplate from "components/atoms/Image/Image";
 import { COLORS, BREAKPOINTS } from "styles/theme";
+import { FontWeight } from "styles/theme/Fonts";
 
 export const Container = styled.div`
   background: ${COLORS.PRIMARY};
@@ -49,7 +48,8 @@ export const Form = styled.form`
   textarea {
     cursor: pointer;
     border-radius: 0.5rem;
-    font-weight: 700;
+    font-weight: ${FontWeight.Nunito.Bold};
+
     padding: 1rem;
     color: ${COLORS.BLACK};
     background: linear-gradient(90deg, ${COLORS.WHITE} 11px, transparent 1%) center,
@@ -81,7 +81,8 @@ export const Submit = styled.input`
   padding: 10px 30px;
   border-radius: 10px;
   background: transparent;
-  font-weight: 700;
+  font-weight: ${FontWeight.Nunito.Bold};
+
   letter-spacing: 1px;
   color: ${COLORS.PRIMARY} !important;
   border: 2px solid ${COLORS.PRIMARY};
@@ -103,4 +104,19 @@ export const SocialIcons = styled.div`
   width: fit-content;
   margin: 20px auto 0 auto;
   display: flex;
+`;
+
+export const SocialIcon = styled(ImageTemplate)`
+  cursor: pointer;
+  color: ${COLORS.YELLOW};
+  width: 25px;
+  margin: 0 10px;
+
+  * {
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

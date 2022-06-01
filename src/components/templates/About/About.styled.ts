@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { COLORS, ANIMATIONS } from "styles/theme";
+import { FontWeight } from "styles/theme/Fonts";
 
 export const Container = styled.div`
   background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%) center,
@@ -53,7 +54,8 @@ export const Resume = styled.div`
       margin: 0 auto;
       padding: 10px 30px;
       border-radius: 20px;
-      font-weight: 700;
+      font-weight: ${FontWeight.Nunito.Bold};
+
       letter-spacing: 1px;
       color: ${COLORS.PRIMARY};
       border: 2px solid ${COLORS.PRIMARY};

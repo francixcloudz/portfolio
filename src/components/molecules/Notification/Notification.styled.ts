@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { ANIMATIONS, COLORS, FONT_FAMILY } from "styles/theme";
+import { ANIMATIONS, COLORS } from "styles/theme";
+import { FontFamily, FontWeight } from "styles/theme/Fonts";
 
 export const Button = styled.div`
   cursor: pointer;
@@ -24,10 +25,11 @@ export const Button = styled.div`
     border-radius: 50%;
     background-color: ${COLORS.YELLOW};
     color: ${COLORS.PRIMARY};
-    font-family: ${FONT_FAMILY.PRIMARY};
+    font-family: ${FontFamily.FredokaOne};
     animation: ZOOM 2s 1s both infinite;
     animation-direction: alternate;
     ${ANIMATIONS.ZOOM}
+  }
 `;
 
 export const Bell = styled.div`
@@ -122,9 +124,10 @@ export const Message = styled.blockquote`
   position: relative;
   background: ${COLORS.WHITE};
   border-radius: 20px;
-  font-style: italic;
   text-align: left;
-  font-weight: bold;
+  font-style: italic;
+  font-weight: ${FontWeight.NunitoItalic.Bold};
+
   animation: fadeIn ease 0.8s;
   box-shadow: -1px -1px 8px rgba(${COLORS.BLACK_RGB}, 0.1);
   margin: 0 auto;
@@ -138,7 +141,7 @@ export const Message = styled.blockquote`
     cursor: pointer;
     line-height: 1.4rem;
     color: ${COLORS.PRIMARY};
-    font-weight: 900;
+    font-weight: ${FontWeight.Nunito.ExtraBold};
   }
 
   @keyframes fadeIn {

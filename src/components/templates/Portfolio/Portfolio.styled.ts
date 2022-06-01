@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import TitleTemplate from "components/atoms/Title/Title";
+import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
 import { COLORS } from "styles/theme";
 
 export const Container = styled.div`
@@ -23,7 +23,7 @@ export const Content = styled.div`
   }
 `;
 
-export const Title = styled(TitleTemplate)`
+export const Title = styled(SectionTitle)`
   max-width: 95%;
   width: 600px;
 `;

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import Title from "components/atoms/Title/Title";
+import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types";
@@ -17,13 +17,13 @@ const About: React.FC = () => {
     <Container>
       <Content ref={(node) => ref("Content", node)}>
         <Box ref={(node) => ref("Box", node)}>
-          <Title
+          <SectionTitle
             title="Hey there! I'm Francisco"
             subtitle="Proactive, meticulous, and resourceful professional, eager to keep
             growing and learning"
             emoji={emoji}
-            variant="white"
             ref={(node) => ref("Title", node)}
+            isWhite
           />
           <p ref={(node) => ref("Paragraph", node)}>
             This is the place where you can check out my work and discover that we can create

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
 import { BREAKPOINTS, COLORS } from "styles/theme";
+import { FontWeight } from "styles/theme/Fonts";
 
 export const Image = styled(ImageTemplate)``;
 
@@ -58,9 +59,8 @@ export const Container = styled.a<{ isWhite: boolean }>`
   }
 
   p {
-    font-family: "Nunito", sans-serif;
     color: ${COLORS.WHITE};
-    font-weight: 700;
+    font-weight: ${FontWeight.Nunito.Bold};
     font-size: 8px;
     margin-bottom: 5px;
   }

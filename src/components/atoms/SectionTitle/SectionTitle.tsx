@@ -1,27 +1,27 @@
 import { StaticImageData } from "next/image";
 import { ForwardedRef, forwardRef } from "react";
-import { Emoji } from "styles/Templates";
-import { Container, TitleWrapper } from "./Title.styled";
-import { Variants } from "./utils/types";
+import { Container, TitleWrapper, Emoji } from "./SectionTitle.styled";
 
-export interface TitleProps {
+export type Variants = "white" | "black" | "principal";
+
+export interface SectionTitleProps {
   title: string;
   subtitle: string;
-  variant: Variants;
+  isWhite?: boolean;
   emoji?: StaticImageData;
   principal?: boolean;
 }
 
-const Title = forwardRef(
+const SectionTitle = forwardRef(
   (
-    { title, subtitle, emoji, variant, principal }: TitleProps,
+    { title, subtitle, emoji, isWhite, principal }: SectionTitleProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => {
     const BaseTitle = principal ? "h1" : "h2";
     const BaseSubtitle = principal ? "h2" : "p";
 
     return (
-      <Container variant={variant} ref={ref}>
+      <Container ref={ref} isWhite={isWhite}>
         <TitleWrapper>
           <BaseTitle className="title">{title}</BaseTitle>
           {emoji && <Emoji className="emoji" src={emoji} alt={title} />}
@@ -32,4 +32,4 @@ const Title = forwardRef(
   },
 );
 
-export default Title;
+export default SectionTitle;

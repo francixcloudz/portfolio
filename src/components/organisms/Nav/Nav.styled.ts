@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ANIMATIONS, BREAKPOINTS, COLORS } from "styles/theme";
+import { FontWeight } from "styles/theme/Fonts";
 
 export const Container = styled.div`
   position: absolute;
@@ -24,7 +25,8 @@ export const Links = styled.div<{ isOpen: boolean }>`
     max-width: fit-content;
     width: 100%;
     height: 100%;
-    font-weight: 700;
+    font-weight: ${FontWeight.Nunito.Bold};
+
     letter-spacing: 1px;
     color: ${COLORS.PRIMARY};
     margin: 0 auto;

@@ -1,9 +1,8 @@
 import { ReactElement, useContext, useRef, useState } from "react";
-import Title from "components/atoms/Title/Title";
+import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
 import Notification from "components/molecules/Notification/Notification";
 import { LoadingContext } from "components/organisms/Loading/Loading";
 import Nav from "components/organisms/Nav/Nav";
-
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types";
@@ -14,8 +13,7 @@ import Loader from "./Loader/Loader";
 import useAnimation from "./utils/useAnimation";
 
 const Landing = (): ReactElement => {
-  const loadingContext = useContext(LoadingContext);
-  const { isLoaded } = loadingContext;
+  const { isLoaded } = useContext(LoadingContext);
 
   const [isSmileImage, setIsSmileImage] = useState(true);
 
@@ -43,10 +41,9 @@ const Landing = (): ReactElement => {
         <Nav ref={(node) => ref("Nav", node)} />
         <Content ref={(node) => ref("Content", node)}>
           <Box>
-            <Title
+            <SectionTitle
               title="Francisco Arrigoni"
               subtitle="Sr. Frontend Engineer"
-              variant="principal"
               ref={(node) => ref("Title", node)}
               principal
             />

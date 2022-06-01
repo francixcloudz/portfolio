@@ -14,17 +14,21 @@ export const LoadingContext = createContext<LoadingContextValues>(loadingContext
 interface LoadingProps {
   children: ReactNode;
   delay: number;
-  onLoadCallback?: () => void | undefined;
+  onLoadCallback?: () => void;
+  onCompleteCallback?: () => void;
 }
 
-const Loading = ({ children, onLoadCallback, delay }: LoadingProps) => {
+const Loading = ({ children, delay, onLoadCallback, onCompleteCallback }: LoadingProps) => {
   const [isLoaded, setIsLoaded] = useState(loadingContextValues.isLoaded);
 
   useIsoLayoutEffect(() => {
     window.scrollTo(0, 0);
     window.addEventListener("load", () => {
       if (onLoadCallback) onLoadCallback();
-      setTimeout(() => setIsLoaded(true), delay);
+      setTimeout(() => {
+        setIsLoaded(true);
+        if (onCompleteCallback) onCompleteCallback();
+      }, delay);
     });
   }, []);
 

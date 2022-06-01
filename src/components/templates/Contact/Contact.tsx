@@ -1,9 +1,16 @@
 import { useState } from "react";
 import Loader from "components/atoms/Loader/Loader";
-import Title from "components/atoms/Title/Title";
-import { SocialIcon } from "styles/Templates";
+import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
 import emoji from "assets/images/emojis/Contact-me.png";
-import { Container, FormWrapper, Form, Error, Submit, SocialIcons } from "./Contact.styled";
+import {
+  Container,
+  FormWrapper,
+  Form,
+  Error,
+  Submit,
+  SocialIcons,
+  SocialIcon,
+} from "./Contact.styled";
 import handleSubmit from "./utils/handleSubmit";
 import socialLinks from "./utils/socialLinks";
 
@@ -13,7 +20,7 @@ const Contact: React.FC = () => {
 
   return (
     <Container id="Contact">
-      <Title title="Contact" subtitle="Let's start a friendship" emoji={emoji} variant="white" />
+      <SectionTitle title="Contact" subtitle="Let's start a friendship" emoji={emoji} isWhite />
       <FormWrapper>
         <Form
           onSubmit={(event) =>

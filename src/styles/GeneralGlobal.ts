@@ -1,12 +1,26 @@
-// Dependencies
+import { normalize } from "polished";
 import { createGlobalStyle } from "styled-components";
+import { FontVariants, FontFamily } from "./theme/Fonts";
 
 const GeneralGlobalStyle = createGlobalStyle`
-html {
+  ${normalize()}
+
+  ${FontVariants.map(
+    ({ fontName, variantName, variantWeight }) =>
+      `@font-face {
+      font-family: ${fontName};
+      src: url('/fonts/${variantName}.ttf') format('truetype');
+      font-weight: ${variantWeight};
+      font-style: normal;
+    }`,
+  )}
+
+  html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-y: scroll;
     overflow-y: overlay;
+    font-family: ${FontFamily.Nunito}
   }
   
   body {
@@ -34,7 +48,7 @@ html {
   span,
   input,
   textarea {
-    font-family: "Nunito", sans-serif;
+    font-family: ${FontFamily.Nunito};
     line-height: 1.2em;
     text-align: center;
     text-decoration: none;
@@ -43,17 +57,17 @@ html {
   }
   
   h1 {
-    font-family: "Fredoka One", cursive;
+    font-family: ${FontFamily.FredokaOne};
     letter-spacing: 1.5px;
   }
   
   h2 {
-    font-family: "Fredoka One", cursive;
+    font-family: ${FontFamily.FredokaOne};
     letter-spacing: 1.5px;
   }
   
   h3 {
-    font-family: "Fredoka One", cursive;
+    font-family: ${FontFamily.FredokaOne};
     letter-spacing: 1px;
   }
   
@@ -107,6 +121,7 @@ html {
     }
   }
   
+  h1,
   h2,
   h3 {
     margin-bottom: 0.5rem;

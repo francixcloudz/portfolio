@@ -1,10 +1,10 @@
-import { TitleProps } from "components/atoms/Title/Title";
+import { SectionTitleProps } from "components/atoms/SectionTitle/SectionTitle";
 import { ProjectsProps } from "components/organisms/Projects/Projects";
 import moonShot from "assets/images/emojis/Moonshot.png";
 import myWork from "assets/images/emojis/My-work.png";
 
 export type Portfolio = Array<{
-  title: TitleProps;
+  title: SectionTitleProps;
   projects: ProjectsProps;
 }>;
 

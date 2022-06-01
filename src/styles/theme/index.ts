@@ -5,14 +5,11 @@ export const COLORS = {
   BLACK: "#000000",
   PRIMARY: "#4117ab",
   YELLOW: "#fbb72d",
+  // TODO: Replace with polished rgba() method
   WHITE_RGB: "255, 255, 255",
   BLACK_RGB: "0, 0, 0",
   PRIMARY_RGB: "65, 23, 171",
   YELLOW_RGB: "251, 183, 45",
-};
-
-export const FONT_FAMILY = {
-  PRIMARY: '"Fredoka One", cursive',
 };
 
 export const BREAKPOINTS = {

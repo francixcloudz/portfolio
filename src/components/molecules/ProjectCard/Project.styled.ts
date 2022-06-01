@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
-import { COLORS, FONT_FAMILY, ANIMATIONS } from "styles/theme";
+import { COLORS, ANIMATIONS } from "styles/theme";
+import { FontFamily, FontWeight } from "styles/theme/Fonts";
 
 export const Image = styled(ImageTemplate)``;
 
@@ -70,7 +71,7 @@ export const Container = styled.div<{ isActive: boolean }>`
 
   .working {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: ${FontWeight.Nunito.Bold};
 
     ${Image} {
       cursor: default;
@@ -111,7 +112,7 @@ export const MainButton = styled.span<{ isActive: boolean }>`
   background: white;
   z-index: 5;
   color: #000000;
-  font-family: ${FONT_FAMILY.PRIMARY};
+  font-family: ${FontFamily.FredokaOne};
   box-shadow: 0 0 10px 0 rgb(${COLORS.PRIMARY_RGB}, 0.5);
   animation: ZOOM 0.3s linear;
   ${ANIMATIONS.ZOOM}
