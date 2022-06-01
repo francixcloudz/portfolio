@@ -37,11 +37,11 @@ class MyDocument extends Document {
   public render = () => (
     <Html lang="en">
       <Head>
-        {FontVariants.map(({ variantName }) => (
+        {FontVariants.map(({ fontName, variantName }) => (
           <link
-            key={variantName}
+            key={`${fontName}/${variantName}`}
             rel="preload"
-            href={`/fonts/${variantName}.ttf`}
+            href={`/fonts/${fontName}/${variantName}.ttf`}
             as="font"
             type="font/ttf"
           />

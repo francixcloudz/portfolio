@@ -1,22 +1,41 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
+  "private": true,
   "description": "The place where you can check out my work and discover that we can create something exciting together!",
   "author": "Francisco Arrigoni <franarrigoni@gmail.com>",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "husky-prepare": "husky install .husky",
     "format-prettier": "prettier --write .",
     "check-prettier": "prettier --check .",
     "check-types": "tsc --pretty --noEmit",
     "check-all": "yarn format-prettier && yarn check-prettier && yarn lint:eslint && yarn check-types && yarn build",
     "fix:eslint": "yarn lint:eslint -- --fix",
     "fix:prettier": "prettier \"src/**/*.{js,jsx,ts,tsx,scss}\" --write",
+    "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint ./src --ext .js,.jsx,.ts,.tsx --cache"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.9"
+  },
   "dependencies": {
+    "@svgr/webpack": "^6.2.1",
     "emailjs-com": "^2.6.4",
     "gsap": "^3.10.2",
     "next": "^12.1.4",
@@ -39,24 +58,10 @@
     "eslint-config-next": "^12.0.7",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^7.0.0",
-    "lint-staged": "^12.1.3",
+    "lint-staged": "^12.3.5",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.0",
+    "sort-package-json": "^1.57.0",
     "typescript": "^4.5.4"
-  },
-  "resolutions": {
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.9"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

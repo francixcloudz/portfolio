@@ -14,12 +14,12 @@ const fadeIn = {
   },
 };
 
-interface HandleAnimationsProps {
+interface UseAnimationProps {
   refs: RefSet;
   setIsSmileImage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const useAnimation = ({ refs, setIsSmileImage }: HandleAnimationsProps) => {
+const useAnimation = ({ refs, setIsSmileImage }: UseAnimationProps) => {
   const tl = gsap.timeline({
     ease: "none",
     duration: duration / 2,

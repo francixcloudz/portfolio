@@ -2,14 +2,14 @@ import { RefSet } from "hooks/useRefSet";
 import { DomRect } from "types";
 import { gsap } from "utils/gsap";
 
-interface HandleAnimationsProps {
+interface UseAnimationProps {
   refs: RefSet;
   delay: number;
   setMainImageStyle: React.Dispatch<React.SetStateAction<DomRect>>;
   mainImage: React.RefObject<HTMLDivElement>;
 }
 
-const useAnimation = ({ refs, delay, setMainImageStyle, mainImage }: HandleAnimationsProps) => {
+const useAnimation = ({ refs, delay, setMainImageStyle, mainImage }: UseAnimationProps) => {
   const tl = gsap.timeline({ delay });
 
   const startAnimation = () => {

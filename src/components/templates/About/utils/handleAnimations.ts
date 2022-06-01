@@ -14,11 +14,11 @@ const fadeIn = {
   },
 };
 
-interface HandleAnimationsProps {
+interface UseAnimationProps {
   refs: RefSet;
 }
 
-const handleAnimations = ({ refs }: HandleAnimationsProps) => {
+const handleAnimations = ({ refs }: UseAnimationProps) => {
   gsap.defaults({
     ease: "none",
     duration: duration / 2,

@@ -2,6 +2,8 @@ export enum FontFamily {
   FredokaOne = "FredokaOne",
   Nunito = "Nunito",
   NunitoItalic = "NunitoItalic",
+  Cinzel = "Cinzel",
+  LeagueGothic = "LeagueGothic",
 }
 
 enum FontWeightName {
@@ -22,6 +24,12 @@ export const FontWeight = {
   [FontFamily.NunitoItalic]: {
     [FontWeightName.Regular]: "400",
     [FontWeightName.Bold]: "600",
+  },
+  [FontFamily.Cinzel]: {
+    [FontWeightName.Regular]: "400",
+  },
+  [FontFamily.LeagueGothic]: {
+    [FontWeightName.Regular]: "400",
   },
 };
 

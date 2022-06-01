@@ -9,7 +9,7 @@ const GeneralGlobalStyle = createGlobalStyle`
     ({ fontName, variantName, variantWeight }) =>
       `@font-face {
       font-family: ${fontName};
-      src: url('/fonts/${variantName}.ttf') format('truetype');
+      src: url('/fonts/${fontName}/${variantName}.ttf') format('truetype');
       font-weight: ${variantWeight};
       font-style: normal;
     }`,
