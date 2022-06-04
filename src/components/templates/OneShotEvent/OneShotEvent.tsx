@@ -8,6 +8,7 @@ import {
   BrandName,
   DetailsVariant,
   Details,
+  MobileCTAButton,
 } from "./OneShotEvent.styled";
 
 const OneShotEvent = (): ReactElement => {
@@ -32,6 +33,7 @@ const OneShotEvent = (): ReactElement => {
           <Details variant={DetailsVariant.Small}>LINE UP</Details>
           <Details variant={DetailsVariant.Medium}>TEIKO - DJ NICO MARCO - DJ R.</Details>
         </FlyerContent>
+        <MobileCTAButton>RESERVAR LUGARES</MobileCTAButton>
       </Container>
     </>
   );

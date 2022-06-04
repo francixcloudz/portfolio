@@ -1,6 +1,5 @@
+import { rgba } from "polished";
 import styled from "styled-components";
-import { ANIMATIONS, BREAKPOINTS, COLORS } from "styles/theme";
-import { FontWeight } from "styles/theme/Fonts";
 
 export const Container = styled.div`
   position: absolute;
@@ -25,10 +24,10 @@ export const Links = styled.div<{ isOpen: boolean }>`
     max-width: fit-content;
     width: 100%;
     height: 100%;
-    font-weight: ${FontWeight.Nunito.Bold};
+    font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
 
     letter-spacing: 1px;
-    color: ${COLORS.PRIMARY};
+    color: ${({ theme }) => theme.colors.violet};
     margin: 0 auto;
   }
 
@@ -36,46 +35,52 @@ export const Links = styled.div<{ isOpen: boolean }>`
     border: 2px solid transparent;
 
     &:hover {
-      border: 2px solid ${COLORS.YELLOW};
-      color: ${COLORS.YELLOW};
-      box-shadow: inset 0 -2px 10px 0 rgba(${COLORS.YELLOW_RGB}, 0.7);
-      background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%) center,
-        linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center, ${COLORS.YELLOW};
+      border: 2px solid ${({ theme }) => theme.colors.yellow};
+      color: ${({ theme }) => theme.colors.yellow};
+      box-shadow: inset 0 -2px 10px 0 rgba(${({ theme }) => rgba(theme.colors.yellow, 0.7)});
+      background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
+          center,
+        linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
+        ${({ theme }) => theme.colors.yellow};
       background-size: 22px 22px;
     }
   }
 
   .contact {
-    border: 2px solid ${COLORS.PRIMARY};
-    box-shadow: 0 0 0 0 ${COLORS.PRIMARY};
+    border: 2px solid ${({ theme }) => theme.colors.violet};
+    box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.violet};
     animation-delay: 5s;
-    background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%) center,
-      linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center, ${COLORS.WHITE};
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
+        center,
+      linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
+      ${({ theme }) => theme.colors.white};
     background-size: 22px 22px;
     animation: PULSING 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-    ${ANIMATIONS.PULSING}
+    ${({ theme }) => theme.animations.PULSING}
 
     &:hover {
-      color: ${COLORS.WHITE};
+      color: ${({ theme }) => theme.colors.white};
       animation: none;
-      box-shadow: 0 6px 10px -3px rgba(${COLORS.PRIMARY_RGB}, 0.5);
-      background: linear-gradient(90deg, ${COLORS.PRIMARY} 21px, transparent 1%) center,
-        linear-gradient(${COLORS.PRIMARY} 21px, transparent 1%) center, ${COLORS.WHITE};
+      box-shadow: 0 6px 10px -3px rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
+      background: linear-gradient(90deg, ${({ theme }) => theme.colors.violet} 21px, transparent 1%)
+          center,
+        linear-gradient(${({ theme }) => theme.colors.violet} 21px, transparent 1%) center,
+        ${({ theme }) => theme.colors.white};
       background-size: 22px 22px;
     }
 
-    @media only screen and (min-width: ${BREAKPOINTS.MOBILE + 1}px) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xsmall + 1}px) {
       margin: 0 0 0 20px;
     }
   }
 
-  @media only screen and (max-width: ${BREAKPOINTS.MOBILE}px) {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
     display: none;
     position: absolute;
-    background: rgba(${COLORS.WHITE_RGB}, 0.95);
+    background: rgba(${({ theme }) => rgba(theme.colors.white, 0.95)});
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 0 10px 0 rgba(${COLORS.YELLOW_RGB}, 0.9);
+    box-shadow: 0 0 10px 0 rgba(${({ theme }) => rgba(theme.colors.yellow, 0.9)});
     top: 80px;
     max-width: 250px;
     width: 100%;
@@ -84,7 +89,7 @@ export const Links = styled.div<{ isOpen: boolean }>`
     margin: auto;
     z-index: 999;
     animation: FADE_IN ease 1000ms;
-    ${ANIMATIONS.FADE_IN}
+    ${({ theme }) => theme.animations.FADE_IN}
 
     ${({ isOpen }) => (isOpen ? `display: block` : "")};
 
@@ -112,7 +117,7 @@ export const Burger = styled.div<{ isOpen: boolean }>`
     position: absolute;
     height: 4.5px;
     width: 100%;
-    background: ${COLORS.PRIMARY};
+    background: ${({ theme }) => theme.colors.violet};
     border-radius: 9px;
     opacity: 1;
     left: 0;

@@ -8,7 +8,7 @@ import Document, {
 } from "next/document";
 import { Fragment } from "react";
 import { ServerStyleSheet } from "styled-components";
-import { FontVariants } from "styles/theme/Fonts";
+import { AllFontsData } from "styles/theme/data/fonts";
 
 class MyDocument extends Document {
   public static async getInitialProps(context: DocumentContext): Promise<DocumentInitialProps> {
@@ -37,10 +37,9 @@ class MyDocument extends Document {
   public render = () => (
     <Html lang="en">
       <Head>
-        {FontVariants.map(({ fontName, variantName }) => (
+        {AllFontsData.map(({ fontName, variantName }) => (
           <link
             key={`${fontName}/${variantName}`}
-            rel="preload"
             href={`/fonts/${fontName}/${variantName}.ttf`}
             as="font"
             type="font/ttf"

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS } from "styles/theme";
 
 export const Container = styled.div`
   svg {
@@ -24,7 +23,7 @@ export const ProgressPath = styled.path<{
   stroke-width: 1;
   stroke-linecap: round;
   animation: ${({ duration, delay }) => `progress ${duration}s ${delay}s ease-out forwards`};
-  stroke: ${COLORS.PRIMARY};
+  stroke: ${({ theme }) => theme.colors.violet};
 
   @keyframes progress {
     0% {

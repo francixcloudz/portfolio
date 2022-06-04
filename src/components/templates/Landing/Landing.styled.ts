@@ -1,21 +1,23 @@
+import { rgba } from "polished";
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
-import { BREAKPOINTS, COLORS } from "styles/theme";
 
 export const Container = styled.div`
-  background: ${COLORS.PRIMARY};
+  background: ${({ theme }) => theme.colors.violet};
   width: 100vw;
   min-height: 100vh;
 
   h1,
   h2 {
-    color: ${COLORS.PRIMARY};
+    color: ${({ theme }) => theme.colors.violet};
   }
 `;
 
 export const Content = styled.div`
-  background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%) center,
-    linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center, ${COLORS.PRIMARY};
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
+      center,
+    linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
+    ${({ theme }) => theme.colors.violet};
   padding-top: 20vh;
   background-size: 1px 1px;
   border-radius: 0 0 0 0;
@@ -41,9 +43,9 @@ export const Character = styled(ImageTemplate)`
   height: 200px;
   margin: 30px auto;
   border-radius: 50%;
-  box-shadow: 0 0 15px 0 rgba(${COLORS.YELLOW_RGB}, 0.5);
+  box-shadow: 0 0 15px 0 rgba(${({ theme }) => rgba(theme.colors.yellow, 0.5)});
 
-  @media only screen and (max-width: ${BREAKPOINTS.MOBILE}px) {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
     width: 40vw;
     height: 40vw;
   }

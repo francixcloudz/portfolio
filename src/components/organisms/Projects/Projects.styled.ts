@@ -1,6 +1,6 @@
+import { rgba } from "polished";
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
-import { COLORS, BREAKPOINTS } from "styles/theme";
 
 export const Container = styled.div`
   display: block;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   max-width: 95%;
   width: 1500px;
 
-  @media only screen and (min-width: ${BREAKPOINTS.TABLET}px) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.medium}px) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -22,19 +22,19 @@ export const Project = styled.div`
   display: block;
   flex: 1;
   border-radius: 20px;
-  box-shadow: 0 5px 10px -2.5px rgba(${COLORS.PRIMARY_RGB}, 0.5);
+  box-shadow: 0 5px 10px -2.5px rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
   max-width: 400px;
   max-height: 211px;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: ${COLORS.WHITE};
+  background: ${({ theme }) => theme.colors.white};
 
-  @media only screen and (min-width: ${BREAKPOINTS.MOBILE}px) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
     min-width: 400px;
   }
 
-  @media only screen and (min-width: ${BREAKPOINTS.TABLET + 1}px) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.medium + 1}px) {
     margin: 20px;
   }
 `;

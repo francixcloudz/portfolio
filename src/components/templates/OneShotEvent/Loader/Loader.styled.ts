@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS, ANIMATIONS } from "styles/theme";
 
 export const Container = styled.div<{ isLoaded: boolean }>`
   z-index: 10;
@@ -8,7 +7,7 @@ export const Container = styled.div<{ isLoaded: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${COLORS.WHITE};
+  background: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +21,8 @@ export const Container = styled.div<{ isLoaded: boolean }>`
     isLoaded
       ? `
       animation: FADE_OUT 0.4s ease forwards;
-      ${ANIMATIONS.FADE_OUT}`
+          ${({ theme }) => theme.animations.FADE_OUT}
+`
       : ``}
 `;
 

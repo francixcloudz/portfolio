@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import Image from "components/atoms/Image/Image";
-import { COLORS, ANIMATIONS } from "styles/theme";
 
 export const Container = styled.div<{ isLoaded: boolean }>`
   z-index: 10;
@@ -9,7 +8,7 @@ export const Container = styled.div<{ isLoaded: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${COLORS.WHITE};
+  background: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +22,8 @@ export const Container = styled.div<{ isLoaded: boolean }>`
     isLoaded
       ? `
       animation: FADE_OUT 0.4s ease forwards;
-      ${ANIMATIONS.FADE_OUT}`
+          ${({ theme }) => theme.animations.FADE_OUT}
+`
       : ``}
 `;
 
@@ -74,7 +74,7 @@ export const PortraitFixed = styled(Portrait)`
 
 export const ScreenshotWrapper = styled.div`
   ${portraitStyle}
-  background: ${COLORS.WHITE};
+  background: ${({ theme }) => theme.colors.white};
 `;
 
 export const CameraIcon = styled(Image)`

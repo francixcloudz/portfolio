@@ -1,6 +1,5 @@
+import { rgba } from "polished";
 import styled from "styled-components";
-import { ANIMATIONS, COLORS } from "styles/theme";
-import { FontFamily, FontWeight } from "styles/theme/Fonts";
 
 export const Button = styled.div`
   cursor: pointer;
@@ -23,26 +22,26 @@ export const Button = styled.div`
     line-height: 30px;
     font-size: 18px;
     border-radius: 50%;
-    background-color: ${COLORS.YELLOW};
-    color: ${COLORS.PRIMARY};
-    font-family: ${FontFamily.FredokaOne};
+    background-color: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.violet};
+    font-family: ${({ theme }) => theme.fonts.FredokaOne};
     animation: ZOOM 2s 1s both infinite;
     animation-direction: alternate;
-    ${ANIMATIONS.ZOOM}
+    ${({ theme }) => theme.animations.ZOOM}
   }
 `;
 
 export const Bell = styled.div`
   cursor: pointer;
   animation: BELL 1s 1s both infinite;
-  ${ANIMATIONS.BELL}
+  ${({ theme }) => theme.animations.BELL}
 
   * {
     cursor: pointer;
     display: block;
     margin: 0 auto;
-    background-color: ${COLORS.PRIMARY};
-    box-shadow: 0px 0px 15px ${COLORS.PRIMARY};
+    background-color: ${({ theme }) => theme.colors.violet};
+    box-shadow: 0px 0px 15px ${({ theme }) => theme.colors.violet};
   }
 
   .top {
@@ -73,14 +72,14 @@ export const Bell = styled.div`
 
     ::before {
       left: 1px;
-      border-bottom: 4px solid ${COLORS.PRIMARY};
+      border-bottom: 4px solid ${({ theme }) => theme.colors.violet};
       border-right: 0 solid transparent;
       border-left: 4px solid transparent;
     }
 
     :after {
       right: 1px;
-      border-bottom: 4px solid ${COLORS.PRIMARY};
+      border-bottom: 4px solid ${({ theme }) => theme.colors.violet};
       border-right: 4px solid transparent;
       border-left: 0 solid transparent;
     }
@@ -118,18 +117,18 @@ export const Bell = styled.div`
 
 export const Message = styled.blockquote`
   max-width: 450px;
-  filter: drop-shadow(-1px -1px 2px rgba(${COLORS.BLACK_RGB}, 0.1))
-    drop-shadow(1px 2px 2px rgba(${COLORS.BLACK_RGB}, 0.15));
+  filter: drop-shadow(-1px -1px 2px rgba(${({ theme }) => rgba(theme.colors.black, 0.1)}))
+    drop-shadow(1px 2px 2px rgba(${({ theme }) => rgba(theme.colors.black, 0.15)}));
   padding: 20px;
   position: relative;
-  background: ${COLORS.WHITE};
+  background: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
   text-align: left;
+  font-weight: ${({ theme }) => theme.fonts.NunitoItalic.weights.Bold};
   font-style: italic;
-  font-weight: ${FontWeight.NunitoItalic.Bold};
 
   animation: fadeIn ease 0.8s;
-  box-shadow: -1px -1px 8px rgba(${COLORS.BLACK_RGB}, 0.1);
+  box-shadow: -1px -1px 8px rgba(${({ theme }) => rgba(theme.colors.black, 0.1)});
   margin: 0 auto;
 
   p {
@@ -140,8 +139,8 @@ export const Message = styled.blockquote`
   a {
     cursor: pointer;
     line-height: 1.4rem;
-    color: ${COLORS.PRIMARY};
-    font-weight: ${FontWeight.Nunito.ExtraBold};
+    color: ${({ theme }) => theme.colors.violet};
+    font-weight: ${({ theme }) => theme.fonts.Nunito.weights.ExtraBold};
   }
 
   @keyframes fadeIn {
@@ -161,7 +160,7 @@ export const Message = styled.blockquote`
   &::before {
     opacity: 0;
     border: 12.5px solid transparent;
-    border-top: 12.5px solid ${COLORS.WHITE};
+    border-top: 12.5px solid ${({ theme }) => theme.colors.white};
     border-bottom: 0;
     height: 0;
     width: 0;

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
-import { BREAKPOINTS, COLORS } from "styles/theme";
-import { FontWeight } from "styles/theme/Fonts";
 
 export const Image = styled(ImageTemplate)``;
 
@@ -11,7 +9,7 @@ export const Container = styled.a<{ isWhite: boolean }>`
     cursor: pointer;
   }
 
-  ${({ isWhite }) =>
+  ${({ isWhite, theme }) =>
     isWhite
       ? `
       width: 50px;
@@ -23,10 +21,11 @@ export const Container = styled.a<{ isWhite: boolean }>`
       margin: 0 auto 15px;
       `
       : `
-      background: ${COLORS.WHITE};
+      background: ${theme.colors.white};
       width: 100px;
       position: relative;
-      @media only screen and (max-width: ${BREAKPOINTS.TABLET}px) {
+      
+      @media only screen and (max-width: ${theme.breakpoints.medium}px) {
         width: 80px;
       }
       `}
@@ -59,8 +58,8 @@ export const Container = styled.a<{ isWhite: boolean }>`
   }
 
   p {
-    color: ${COLORS.WHITE};
-    font-weight: ${FontWeight.Nunito.Bold};
+    color: ${({ theme }) => theme.colors.white};
+    font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
     font-size: 8px;
     margin-bottom: 5px;
   }

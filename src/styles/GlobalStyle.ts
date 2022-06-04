@@ -1,11 +1,11 @@
 import { normalize } from "polished";
 import { createGlobalStyle } from "styled-components";
-import { FontVariants, FontFamily } from "./theme/Fonts";
+import { AllFontsData } from "styles/theme/data/fonts";
 
-const GeneralGlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${normalize()}
 
-  ${FontVariants.map(
+  ${AllFontsData.map(
     ({ fontName, variantName, variantWeight }) =>
       `@font-face {
       font-family: ${fontName};
@@ -20,7 +20,7 @@ const GeneralGlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     overflow-y: scroll;
     overflow-y: overlay;
-    font-family: ${FontFamily.Nunito}
+    font-family: ${({ theme }) => theme.fonts.Nunito.family};
   }
   
   body {
@@ -48,7 +48,7 @@ const GeneralGlobalStyle = createGlobalStyle`
   span,
   input,
   textarea {
-    font-family: ${FontFamily.Nunito};
+    font-family: ${({ theme }) => theme.fonts.Nunito.family};
     line-height: 1.2em;
     text-align: center;
     text-decoration: none;
@@ -57,17 +57,17 @@ const GeneralGlobalStyle = createGlobalStyle`
   }
   
   h1 {
-    font-family: ${FontFamily.FredokaOne};
+    font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
     letter-spacing: 1.5px;
   }
   
   h2 {
-    font-family: ${FontFamily.FredokaOne};
+    font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
     letter-spacing: 1.5px;
   }
   
   h3 {
-    font-family: ${FontFamily.FredokaOne};
+    font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
     letter-spacing: 1px;
   }
   
@@ -156,4 +156,4 @@ const GeneralGlobalStyle = createGlobalStyle`
   }  
 `;
 
-export default GeneralGlobalStyle;
+export default GlobalStyle;

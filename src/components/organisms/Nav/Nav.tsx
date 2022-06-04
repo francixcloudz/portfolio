@@ -1,13 +1,13 @@
 import { useState, forwardRef, RefAttributes, ForwardedRef } from "react";
 import Logo from "components/atoms/Logo/Logo";
 import useResponsive from "hooks/useResponsive";
-import { BREAKPOINTS } from "styles/theme";
+import theme from "styles/theme/default";
 import { Container, Burger, Links } from "./Nav.styled";
 
 const Nav = forwardRef(
   ({ ...rest }: RefAttributes<HTMLDivElement>, ref: ForwardedRef<HTMLDivElement>) => {
     const [isOpen, setIsOpen] = useState(false);
-    const isMobile = useResponsive(BREAKPOINTS.MOBILE);
+    const isMobile = useResponsive(theme.breakpoints.xsmall);
 
     return (
       <Container ref={ref} {...rest}>

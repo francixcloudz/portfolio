@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS } from "styles/theme";
 
 export const Container = styled.div`
   will-change: transform;
@@ -41,7 +40,7 @@ export const Dot = styled.div`
   height: 10px;
   width: 10px;
   border-radius: calc(80px + 20px);
-  background-color: ${COLORS.PRIMARY};
+  background-color: ${({ theme }) => theme.colors.violet};
 
   @keyframes rotation {
     0% {

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
-import { COLORS } from "styles/theme";
 
 export const Container = styled.div`
-  background: ${COLORS.PRIMARY};
+  background: ${({ theme }) => theme.colors.violet};
   width: 100vw;
 `;
 
@@ -12,8 +11,10 @@ export const Box = styled.div`
 `;
 
 export const Content = styled.div`
-  background: linear-gradient(90deg, ${COLORS.WHITE} 21px, transparent 1%) center,
-    linear-gradient(${COLORS.WHITE} 21px, transparent 1%) center, ${COLORS.PRIMARY};
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
+      center,
+    linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
+    ${({ theme }) => theme.colors.violet};
   background-size: 22px 22px;
   border-radius: 0 0 20vw 20vw;
   padding: 20vh 0 20vh 0;

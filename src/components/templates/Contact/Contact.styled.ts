@@ -1,20 +1,21 @@
+import { rgba } from "polished";
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
-import { COLORS, BREAKPOINTS } from "styles/theme";
-import { FontWeight } from "styles/theme/Fonts";
 
 export const Container = styled.div`
-  background: ${COLORS.PRIMARY};
+  background: ${({ theme }) => theme.colors.violet};
   padding: 10vh 2.5% 20vh;
 `;
 
 export const FormWrapper = styled.div`
-  background: linear-gradient(90deg, ${COLORS.YELLOW} 21px, transparent 1%) center,
-    linear-gradient(${COLORS.YELLOW} 21px, transparent 1%) center, ${COLORS.PRIMARY};
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.yellow} 21px, transparent 1%)
+      center,
+    linear-gradient(${({ theme }) => theme.colors.yellow} 21px, transparent 1%) center,
+    ${({ theme }) => theme.colors.violet};
   background-size: 22px 22px;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 15px 0 rgba(${COLORS.BLACK_RGB}, 0.5);
+  box-shadow: 0 5px 15px 0 rgba(${({ theme }) => rgba(theme.colors.black, 0.5)});
   max-width: 600px;
   padding: 3rem;
   margin: 0 auto;
@@ -35,7 +36,7 @@ export const Form = styled.form`
   input {
     width: 48%;
 
-    @media only screen and (max-width: ${BREAKPOINTS.MOBILE}px) {
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
       width: 100%;
     }
   }
@@ -48,21 +49,25 @@ export const Form = styled.form`
   textarea {
     cursor: pointer;
     border-radius: 0.5rem;
-    font-weight: ${FontWeight.Nunito.Bold};
+    font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
 
     padding: 1rem;
-    color: ${COLORS.BLACK};
-    background: linear-gradient(90deg, ${COLORS.WHITE} 11px, transparent 1%) center,
-      linear-gradient(${COLORS.WHITE} 11px, transparent 1%) center, ${COLORS.WHITE};
+    color: ${({ theme }) => theme.colors.black};
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 11px, transparent 1%)
+        center,
+      linear-gradient(${({ theme }) => theme.colors.white} 11px, transparent 1%) center,
+      ${({ theme }) => theme.colors.white};
     background-size: 12px 12px;
-    box-shadow: 0 2.5px 10px -2.5px rgba(${COLORS.BLACK_RGB}, 0.15);
+    box-shadow: 0 2.5px 10px -2.5px rgba(${({ theme }) => rgba(theme.colors.black, 0.15)});
 
     &:hover,
     &:focus {
-      background: linear-gradient(90deg, ${COLORS.WHITE} 11px, transparent 1%) center,
-        linear-gradient(${COLORS.WHITE} 11px, transparent 1%) center, ${COLORS.PRIMARY};
+      background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 11px, transparent 1%)
+          center,
+        linear-gradient(${({ theme }) => theme.colors.white} 11px, transparent 1%) center,
+        ${({ theme }) => theme.colors.violet};
       background-size: 12px 12px;
-      box-shadow: 0 5px 15px -2.5px rgba(${COLORS.BLACK_RGB}, 0.3);
+      box-shadow: 0 5px 15px -2.5px rgba(${({ theme }) => rgba(theme.colors.black, 0.3)});
     }
   }
 `;
@@ -70,7 +75,7 @@ export const Form = styled.form`
 export const Error = styled.p`
   margin: auto;
   padding-bottom: 1rem;
-  text-shadow: 0 0.1rem 0.1rem rgba(${COLORS.BLACK_RGB}, 0.2);
+  text-shadow: 0 0.1rem 0.1rem rgba(${({ theme }) => rgba(theme.colors.black)};, 0.2);
 `;
 
 export const Submit = styled.input`
@@ -81,21 +86,25 @@ export const Submit = styled.input`
   padding: 10px 30px;
   border-radius: 10px;
   background: transparent;
-  font-weight: ${FontWeight.Nunito.Bold};
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
 
   letter-spacing: 1px;
-  color: ${COLORS.PRIMARY} !important;
-  border: 2px solid ${COLORS.PRIMARY};
+  color: ${({ theme }) => theme.colors.violet} !important;
+  border: 2px solid ${({ theme }) => theme.colors.violet};
   box-shadow: 0 6px 10px -3px rgba(65, 23, 171, 0.5);
   text-transform: uppercase;
-  background: linear-gradient(90deg, ${COLORS.YELLOW} 21px, transparent 1%) center,
-    linear-gradient(${COLORS.YELLOW} 21px, transparent 1%) center, ${COLORS.YELLOW};
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.yellow} 21px, transparent 1%)
+      center,
+    linear-gradient(${({ theme }) => theme.colors.yellow} 21px, transparent 1%) center,
+    ${({ theme }) => theme.colors.yellow};
   background-size: 22px 22px;
   height: 70px;
 
   &:hover {
-    background: linear-gradient(90deg, ${COLORS.PRIMARY} 21px, transparent 1%) center,
-      linear-gradient(${COLORS.PRIMARY} 21px, transparent 1%) center, ${COLORS.WHITE};
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.violet} 21px, transparent 1%)
+        center,
+      linear-gradient(${({ theme }) => theme.colors.violet} 21px, transparent 1%) center,
+      ${({ theme }) => theme.colors.white};
     background-size: 22px 22px;
   }
 `;
@@ -108,7 +117,7 @@ export const SocialIcons = styled.div`
 
 export const SocialIcon = styled(ImageTemplate)`
   cursor: pointer;
-  color: ${COLORS.YELLOW};
+  color: ${({ theme }) => theme.colors.yellow};
   width: 25px;
   margin: 0 10px;
 

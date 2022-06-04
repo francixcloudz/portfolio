@@ -1,13 +1,12 @@
 import styled from "styled-components";
+import Button from "components/atoms/Button/Button";
 import Icon from "components/atoms/Icon/Icon";
-import { COLORS } from "styles/theme";
-import { FontFamily } from "styles/theme/Fonts";
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: ${COLORS.BLACK};
+  background: ${({ theme }) => theme.colors.black};
 `;
 
 export const FlyerContent = styled.div`
@@ -20,14 +19,14 @@ export const FlyerContent = styled.div`
 export const OneShotLogo = styled(Icon.OneShot)`
   width: 12.5rem;
   height: 12.5rem;
-  fill: ${COLORS.WHITE};
+  fill: ${({ theme }) => theme.colors.white};
 `;
 
 export const BrandName = styled.p`
-  color: ${COLORS.WHITE};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 0.8rem;
   letter-spacing: 0.25rem;
-  font-family: ${FontFamily.Cinzel};
+  font-family: ${({ theme }) => theme.fonts.Cinzel.family};
 `;
 
 export enum DetailsVariant {
@@ -38,30 +37,32 @@ export enum DetailsVariant {
 }
 
 export const Details = styled.p<{ variant: DetailsVariant }>`
-  color: ${COLORS.WHITE};
-  font-family: ${FontFamily.LeagueGothic};
+  color: ${({ theme }) => theme.colors.white};
+  font-family: ${({ theme }) => theme.fonts.LeagueGothic.family};
   letter-spacing: 0.1rem;
 
   ${({ variant }) => {
     switch (variant) {
       case DetailsVariant.Small:
         return `
-          font-size: 0.6rem;
+          font-size: 0.8rem;
         `;
       case DetailsVariant.Medium:
         return `
-          font-size: 0.8rem;
+          font-size: 1rem;
         `;
       case DetailsVariant.Large:
         return `
-          font-size: 1.2rem;
+          font-size: 1.4rem;
         `;
       case DetailsVariant.ExtraLarge:
         return `
-          font-size: 1.5rem;
+          font-size: 1.8rem;
         `;
       default:
         return "";
     }
   }}
 `;
+
+export const MobileCTAButton = styled(Button)``;

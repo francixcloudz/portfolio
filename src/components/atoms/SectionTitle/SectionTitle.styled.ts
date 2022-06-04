@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import ImageTemplate from "components/atoms/Image/Image";
-import { COLORS } from "styles/theme";
 
 export const Container = styled.div<{ isWhite?: boolean }>`
   .title,
   .subtitle {
-    color: ${({ isWhite }) => (isWhite ? COLORS.WHITE : COLORS.PRIMARY)};
+    color: ${({ isWhite, theme }) => (isWhite ? theme.colors.white : theme.colors.violet)};
   }
 `;
 
