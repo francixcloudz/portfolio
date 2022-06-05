@@ -1,4 +1,4 @@
-import { baseUrl } from "data";
+import baseUrl from "utils/baseUrl";
 import lenses from "assets/images/lenses.png";
 import lenses_white from "assets/images/lenses_white.png";
 import smile from "assets/images/smile.png";

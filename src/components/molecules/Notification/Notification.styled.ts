@@ -24,7 +24,7 @@ export const Button = styled.div`
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.yellow};
     color: ${({ theme }) => theme.colors.violet};
-    font-family: ${({ theme }) => theme.fonts.FredokaOne};
+    font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
     animation: ZOOM 2s 1s both infinite;
     animation-direction: alternate;
     ${({ theme }) => theme.animations.ZOOM}
@@ -117,8 +117,8 @@ export const Bell = styled.div`
 
 export const Message = styled.blockquote`
   max-width: 450px;
-  filter: drop-shadow(-1px -1px 2px rgba(${({ theme }) => rgba(theme.colors.black, 0.1)}))
-    drop-shadow(1px 2px 2px rgba(${({ theme }) => rgba(theme.colors.black, 0.15)}));
+  filter: drop-shadow(-1px -1px 2px ${({ theme }) => rgba(theme.colors.black, 0.1)})
+    drop-shadow(1px 2px 2px ${({ theme }) => rgba(theme.colors.black, 0.15)});
   padding: 20px;
   position: relative;
   background: ${({ theme }) => theme.colors.white};
@@ -128,7 +128,7 @@ export const Message = styled.blockquote`
   font-style: italic;
 
   animation: fadeIn ease 0.8s;
-  box-shadow: -1px -1px 8px rgba(${({ theme }) => rgba(theme.colors.black, 0.1)});
+  box-shadow: -1px -1px 8px ${({ theme }) => rgba(theme.colors.black, 0.1)};
   margin: 0 auto;
 
   p {

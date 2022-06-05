@@ -18,12 +18,12 @@ export const Container = styled.div<{ isLoaded: boolean }>`
     width: 0;
   }
 
-  ${({ isLoaded }) =>
+  ${({ isLoaded, theme }) =>
     isLoaded
       ? `
       animation: FADE_OUT 0.4s ease forwards;
-          ${({ theme }) => theme.animations.FADE_OUT}
-`
+      ${theme.animations.FADE_OUT}
+      `
       : ``}
 `;
 

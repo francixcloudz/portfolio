@@ -5,7 +5,7 @@ import designIcon from "assets/images/icons/design.png";
 import githubIcon from "assets/images/icons/github.png";
 import tabIcon from "assets/images/icons/tab.png";
 import workingIcon from "assets/images/icons/working.png";
-import { Container, Content, MainButton, Stack, Image } from "./Project.styled";
+import { Container, Content, MainButton, Stack, Image } from "./ProjectCard.styled";
 
 interface ProjectCardProps {
   project: Project;

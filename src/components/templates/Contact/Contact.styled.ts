@@ -15,7 +15,7 @@ export const FormWrapper = styled.div`
   background-size: 22px 22px;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 15px 0 rgba(${({ theme }) => rgba(theme.colors.black, 0.5)});
+  box-shadow: 0 5px 15px 0 ${({ theme }) => rgba(theme.colors.black, 0.5)};
   max-width: 600px;
   padding: 3rem;
   margin: 0 auto;
@@ -58,7 +58,7 @@ export const Form = styled.form`
       linear-gradient(${({ theme }) => theme.colors.white} 11px, transparent 1%) center,
       ${({ theme }) => theme.colors.white};
     background-size: 12px 12px;
-    box-shadow: 0 2.5px 10px -2.5px rgba(${({ theme }) => rgba(theme.colors.black, 0.15)});
+    box-shadow: 0 2.5px 10px -2.5px ${({ theme }) => rgba(theme.colors.black, 0.15)};
 
     &:hover,
     &:focus {
@@ -67,7 +67,7 @@ export const Form = styled.form`
         linear-gradient(${({ theme }) => theme.colors.white} 11px, transparent 1%) center,
         ${({ theme }) => theme.colors.violet};
       background-size: 12px 12px;
-      box-shadow: 0 5px 15px -2.5px rgba(${({ theme }) => rgba(theme.colors.black, 0.3)});
+      box-shadow: 0 5px 15px -2.5px ${({ theme }) => rgba(theme.colors.black, 0.3)};
     }
   }
 `;
@@ -75,7 +75,7 @@ export const Form = styled.form`
 export const Error = styled.p`
   margin: auto;
   padding-bottom: 1rem;
-  text-shadow: 0 0.1rem 0.1rem rgba(${({ theme }) => rgba(theme.colors.black)};, 0.2);
+  text-shadow: 0 0.1rem 0.1rem ${({ theme }) => rgba(theme.colors.black, 0.2)};
 `;
 
 export const Submit = styled.input`
@@ -91,7 +91,7 @@ export const Submit = styled.input`
   letter-spacing: 1px;
   color: ${({ theme }) => theme.colors.violet} !important;
   border: 2px solid ${({ theme }) => theme.colors.violet};
-  box-shadow: 0 6px 10px -3px rgba(65, 23, 171, 0.5);
+  box-shadow: 0 6px 10px -3px ${({ theme }) => rgba(theme.colors.violet, 0.5)};
   text-transform: uppercase;
   background: linear-gradient(90deg, ${({ theme }) => theme.colors.yellow} 21px, transparent 1%)
       center,

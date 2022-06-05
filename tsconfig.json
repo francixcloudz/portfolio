@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "preserve",
-    "target": "es5",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -19,6 +19,6 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
+  "include": ["pages", "src", "src/types.d.ts", "src/index.d.ts"],
   "exclude": ["node_modules"]
 }

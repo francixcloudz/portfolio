@@ -2,7 +2,7 @@ import { useRef } from "react";
 import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import { AllRefsGsap } from "types";
+import { AllRefsGsap } from "types/animations";
 import emoji from "assets/images/emojis/Hello.png";
 import { Container, Content, Box, Resume } from "./About.styled";
 import handleAnimations from "./utils/handleAnimations";

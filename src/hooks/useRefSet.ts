@@ -1,4 +1,4 @@
-import { AllRefsGsap } from "types";
+import { AllRefsGsap } from "types/animations";
 
 const useRefSet =
   (allRefs: React.MutableRefObject<AllRefsGsap>) =>

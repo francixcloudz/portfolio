@@ -18,7 +18,7 @@ export const Container = styled.div`
   }
 
   .overlay {
-    background: rgba(${({ theme }) => rgba(theme.colors.black, 0.85)});
+    background: ${({ theme }) => rgba(theme.colors.black, 0.85)};
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -33,7 +33,7 @@ export const Container = styled.div`
       linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
       ${({ theme }) => theme.colors.violet};
     background-size: 22px 22px;
-    box-shadow: 0 0 30px 0 rgba(${({ theme }) => rgba(theme.colors.violet, 0.7)});
+    box-shadow: 0 0 30px 0 ${({ theme }) => rgba(theme.colors.violet, 0.7)};
     border-radius: 20px;
     width: 90%;
     height: fit-content;
@@ -68,14 +68,14 @@ export const Close = styled.span`
   background: white;
   z-index: 5;
   color: #000000;
-  font-family: ${({ theme }) => theme.fonts.FredokaOne};
-  box-shadow: 0 0 10px 0 rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
+  font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+  box-shadow: 0 0 10px 0 ${({ theme }) => rgba(theme.colors.violet, 0.5)};
   animation: ZOOM 0.3s linear;
   ${({ theme }) => theme.animations.ZOOM}
 
   &:hover {
     color: ${({ theme }) => theme.colors.violet};
-    box-shadow: 0 0 10px 0 rgba(${({ theme }) => rgba(theme.colors.violet, 0.7)});
+    box-shadow: 0 0 10px 0 ${({ theme }) => rgba(theme.colors.violet, 0.7)};
   }
 `;
 
@@ -86,14 +86,14 @@ export const PageList = styled.div`
   p {
     position: absolute;
     margin: 0;
-    background: rgba(${({ theme }) => rgba(theme.colors.white, 0.75)});
+    background: ${({ theme }) => rgba(theme.colors.white, 0.75)};
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     padding: 0.5rem 0.7rem;
     border-radius: 15px;
-    box-shadow: 0 0 5px 0 rgba(${({ theme }) => rgba(theme.colors.black, 0.2)});
+    box-shadow: 0 0 5px 0 ${({ theme }) => rgba(theme.colors.black, 0.2)};
     font-size: 0.8rem;
     bottom: 0.5rem;
     left: 0.5rem;
@@ -115,8 +115,8 @@ export const PageList = styled.div`
     background: white;
     z-index: 5;
     color: #000000;
-    font-family: ${({ theme }) => theme.fonts.FredokaOne};
-    box-shadow: inset 0 0 0.5rem 0 rgba(${({ theme }) => rgba(theme.colors.violet, 0.2)});
+    font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+    box-shadow: inset 0 0 0.5rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.2)};
   }
 
   ${Image} {
@@ -129,7 +129,7 @@ export const PageList = styled.div`
     max-height: 400px;
     border-radius: 20px;
     margin: 20px auto;
-    box-shadow: 0 5px 10px -2.5px rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
+    box-shadow: 0 5px 10px -2.5px ${({ theme }) => rgba(theme.colors.violet, 0.5)};
     width: 100%;
     height: 100%;
     background: ${({ theme }) => theme.colors.white};

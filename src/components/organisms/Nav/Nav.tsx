@@ -2,7 +2,7 @@ import { useState, forwardRef, RefAttributes, ForwardedRef } from "react";
 import Logo from "components/atoms/Logo/Logo";
 import useResponsive from "hooks/useResponsive";
 import theme from "styles/theme/default";
-import { Container, Burger, Links } from "./Nav.styled";
+import { Container, Burger, Links, PortfolioLink, ContactLink } from "./Nav.styled";
 
 const Nav = forwardRef(
   ({ ...rest }: RefAttributes<HTMLDivElement>, ref: ForwardedRef<HTMLDivElement>) => {
@@ -21,12 +21,8 @@ const Nav = forwardRef(
           </Burger>
         )}
         <Links isOpen={isOpen}>
-          <a className="portfolio" href="#Portfolio">
-            Portfolio
-          </a>
-          <a className="contact" href="#Contact">
-            Say Hello!
-          </a>
+          <PortfolioLink href="#Portfolio">Portfolio</PortfolioLink>
+          <ContactLink href="#Contact">Say Hello!</ContactLink>
         </Links>
       </Container>
     );

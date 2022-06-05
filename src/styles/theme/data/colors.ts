@@ -1,4 +1,3 @@
-// TODO: Replace implementation with polished rgba() method
 const colors = {
   white: "#ffffff",
   black: "#000000",

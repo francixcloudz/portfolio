@@ -3,7 +3,7 @@ import DesignModal from "components/organisms/DesignModal/DesignModal";
 import Projects from "components/organisms/Projects/Projects";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import { AllRefsGsap } from "types";
+import { AllRefsGsap } from "types/animations";
 import { Container, Content, Box, Title } from "./Portfolio.styled";
 import getPortfolio from "./utils/getPortfolio";
 import handleAnimations from "./utils/handleAnimations";

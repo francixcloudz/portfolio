@@ -1,5 +1,7 @@
-import { ReactElement, useContext, useState } from "react";
+import { ReactElement, useContext } from "react";
+import CheckoutMercadoPago from "components/organisms/CheckoutMercadoPago/CheckoutMercadoPago";
 import { LoadingContext } from "components/organisms/Loading/Loading";
+import useGenericModal from "hooks/useGenericModal";
 import Loader from "./Loader/Loader";
 import {
   Container,
@@ -14,7 +16,7 @@ import {
 const OneShotEvent = (): ReactElement => {
   const { isLoaded } = useContext(LoadingContext);
 
-  const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
+  const { isOpenModal, openModal, handleClose } = useGenericModal();
 
   return (
     <>
@@ -33,8 +35,9 @@ const OneShotEvent = (): ReactElement => {
           <Details variant={DetailsVariant.Small}>LINE UP</Details>
           <Details variant={DetailsVariant.Medium}>TEIKO - DJ NICO MARCO - DJ R.</Details>
         </FlyerContent>
-        <MobileCTAButton>RESERVAR LUGARES</MobileCTAButton>
+        <MobileCTAButton onClick={() => openModal()}>RESERVAR LUGARES</MobileCTAButton>
       </Container>
+      <CheckoutMercadoPago isOpen={isOpenModal} onClose={handleClose} />
     </>
   );
 };

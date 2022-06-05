@@ -22,7 +22,7 @@ export const Project = styled.div`
   display: block;
   flex: 1;
   border-radius: 20px;
-  box-shadow: 0 5px 10px -2.5px rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
+  box-shadow: 0 5px 10px -2.5px ${({ theme }) => rgba(theme.colors.violet, 0.5)};
   max-width: 400px;
   max-height: 211px;
   width: 100%;

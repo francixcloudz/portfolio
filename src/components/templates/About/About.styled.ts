@@ -40,7 +40,7 @@ export const Resume = styled.div`
   flex-direction: column;
   text-align: center;
   vertical-align: middle;
-  box-shadow: 0 0 15px 0 rgba(${({ theme }) => rgba(theme.colors.black, 0.3)});
+  box-shadow: 0 0 15px 0 ${({ theme }) => rgba(theme.colors.black, 0.3)};
   width: 18em;
   height: 18em;
   padding: 4vh;
@@ -63,7 +63,7 @@ export const Resume = styled.div`
       color: ${({ theme }) => theme.colors.violet};
       border: 2px solid ${({ theme }) => theme.colors.violet};
       cursor: pointer;
-      box-shadow: 0 6px 10px -3px rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
+      box-shadow: 0 6px 10px -3px ${({ theme }) => rgba(theme.colors.violet, 0.5)};
       background: linear-gradient(90deg, ${({ theme }) => theme.colors.yellow} 21px, transparent 1%)
           center,
         linear-gradient(${({ theme }) => theme.colors.yellow} 21px, transparent 1%) center,

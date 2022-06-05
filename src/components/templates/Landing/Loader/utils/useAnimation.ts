@@ -1,5 +1,5 @@
 import { RefSet } from "hooks/useRefSet";
-import { DomRect } from "types";
+import { DomRect } from "types/animations";
 import { gsap } from "utils/gsap";
 
 interface UseAnimationProps {

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import { AllRefsGsap } from "types";
+import { AllRefsGsap } from "types/animations";
 import { Container, SvgWrapper, HandSvg, GlassSvg, BrainSvg } from "./Loader.styled";
 import useAnimation from "./utils/useAnimation";
 

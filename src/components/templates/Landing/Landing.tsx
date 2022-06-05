@@ -5,7 +5,7 @@ import { LoadingContext } from "components/organisms/Loading/Loading";
 import Nav from "components/organisms/Nav/Nav";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import { AllRefsGsap } from "types";
+import { AllRefsGsap } from "types/animations";
 import image from "assets/images/character.png";
 import smileImage from "assets/images/character_smile.png";
 import { Container, CharacterWrapper, Character, Content, Box } from "./Landing.styled";

@@ -16,71 +16,13 @@ export const Container = styled.div`
 export const Links = styled.div<{ isOpen: boolean }>`
   margin-top: 5px;
 
-  a {
-    cursor: pointer;
-    padding: 10px 30px;
-    border-radius: 20px;
-    background: transparent;
-    max-width: fit-content;
-    width: 100%;
-    height: 100%;
-    font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
-
-    letter-spacing: 1px;
-    color: ${({ theme }) => theme.colors.violet};
-    margin: 0 auto;
-  }
-
-  .portfolio {
-    border: 2px solid transparent;
-
-    &:hover {
-      border: 2px solid ${({ theme }) => theme.colors.yellow};
-      color: ${({ theme }) => theme.colors.yellow};
-      box-shadow: inset 0 -2px 10px 0 rgba(${({ theme }) => rgba(theme.colors.yellow, 0.7)});
-      background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
-          center,
-        linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
-        ${({ theme }) => theme.colors.yellow};
-      background-size: 22px 22px;
-    }
-  }
-
-  .contact {
-    border: 2px solid ${({ theme }) => theme.colors.violet};
-    box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.violet};
-    animation-delay: 5s;
-    background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
-        center,
-      linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
-      ${({ theme }) => theme.colors.white};
-    background-size: 22px 22px;
-    animation: PULSING 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-    ${({ theme }) => theme.animations.PULSING}
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.white};
-      animation: none;
-      box-shadow: 0 6px 10px -3px rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
-      background: linear-gradient(90deg, ${({ theme }) => theme.colors.violet} 21px, transparent 1%)
-          center,
-        linear-gradient(${({ theme }) => theme.colors.violet} 21px, transparent 1%) center,
-        ${({ theme }) => theme.colors.white};
-      background-size: 22px 22px;
-    }
-
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xsmall + 1}px) {
-      margin: 0 0 0 20px;
-    }
-  }
-
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
     display: none;
     position: absolute;
-    background: rgba(${({ theme }) => rgba(theme.colors.white, 0.95)});
+    background: ${({ theme }) => rgba(theme.colors.white, 0.95)};
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 0 10px 0 rgba(${({ theme }) => rgba(theme.colors.yellow, 0.9)});
+    box-shadow: 0 0 10px 0 ${({ theme }) => rgba(theme.colors.yellow, 0.9)};
     top: 80px;
     max-width: 250px;
     width: 100%;
@@ -90,16 +32,72 @@ export const Links = styled.div<{ isOpen: boolean }>`
     z-index: 999;
     animation: FADE_IN ease 1000ms;
     ${({ theme }) => theme.animations.FADE_IN}
-
     ${({ isOpen }) => (isOpen ? `display: block` : "")};
+  }
+`;
 
-    a {
-      display: block;
-    }
+const Link = styled.a`
+  cursor: pointer;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background: transparent;
+  max-width: fit-content;
+  width: 100%;
+  height: 100%;
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
+  letter-spacing: 1px;
+  color: ${({ theme }) => theme.colors.violet};
+  margin: 0 auto;
 
-    .contact {
-      margin: 10px auto 0 auto;
-    }
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
+    display: block;
+  }
+`;
+
+export const PortfolioLink = styled(Link)`
+  border: 2px solid transparent;
+
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.yellow};
+    box-shadow: inset 0 -2px 10px 0 ${({ theme }) => rgba(theme.colors.yellow, 0.7)};
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
+        center,
+      linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
+      ${({ theme }) => theme.colors.yellow};
+    background-size: 22px 22px;
+  }
+`;
+
+export const ContactLink = styled(Link)`
+  border: 2px solid ${({ theme }) => theme.colors.violet};
+  box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.violet};
+  animation-delay: 5s;
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.white} 21px, transparent 1%)
+      center,
+    linear-gradient(${({ theme }) => theme.colors.white} 21px, transparent 1%) center,
+    ${({ theme }) => theme.colors.white};
+  background-size: 22px 22px;
+  animation: PULSING 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  ${({ theme }) => theme.animations.PULSING}
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    animation: none;
+    box-shadow: 0 6px 10px -3px ${({ theme }) => rgba(theme.colors.violet, 0.5)};
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.violet} 21px, transparent 1%)
+        center,
+      linear-gradient(${({ theme }) => theme.colors.violet} 21px, transparent 1%) center,
+      ${({ theme }) => theme.colors.white};
+    background-size: 22px 22px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xsmall + 1}px) {
+    margin: 0 0 0 20px;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
+    margin: 10px auto 0 auto;
   }
 `;
 

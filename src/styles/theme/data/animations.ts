@@ -43,7 +43,7 @@ const animations = {
     }`,
   PULSING: `@keyframes PULSING {
       to {
-        box-shadow: 0 0 0 30px rgba(${({ theme }) => rgba(theme.colors.black, 0)});
+        box-shadow: 0 0 0 30px ${({ theme }) => rgba(theme.colors.black, 0)};
       }
     }`,
   FADE_IN: `@keyframes FADE_IN {

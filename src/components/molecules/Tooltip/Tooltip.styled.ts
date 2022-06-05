@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const Box = styled.div`
   position: absolute;
   width: max-content;
-  background: rgba(${({ theme }) => rgba(theme.colors.black, 0.9)});
+  background: ${({ theme }) => rgba(theme.colors.black, 0.9)};
   color: ${({ theme }) => theme.colors.white};
   padding: 7.5px;
   border-radius: 5px;
@@ -52,7 +52,7 @@ export const Box = styled.div`
     width: 7.5px;
     border-width: 7.5px;
     border-style: solid;
-    border-color: rgba(${({ theme }) => rgba(theme.colors.black, 0.7)}) transparent transparent
+    border-color: ${({ theme }) => rgba(theme.colors.black, 0.7)} transparent transparent
       transparent;
   }
 `;

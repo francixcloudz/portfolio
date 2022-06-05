@@ -58,7 +58,7 @@ export const Container = styled.div<{ isActive: boolean }>`
   }
 
   .button {
-    box-shadow: 0 3px 6px 0 rgba(${({ theme }) => rgba(theme.colors.white, 0.6)});
+    box-shadow: 0 3px 6px 0 ${({ theme }) => rgba(theme.colors.white, 0.6)};
     padding: 5px;
     border-radius: 5px;
     background: white;
@@ -79,7 +79,7 @@ export const Container = styled.div<{ isActive: boolean }>`
       display: block;
       margin: 10px auto;
       width: 32px;
-      filter: drop-shadow(0 4px 2px rgba(${({ theme }) => rgba(theme.colors.black, 0.5)}));
+      filter: drop-shadow(0 4px 2px ${({ theme }) => rgba(theme.colors.black, 0.5)});
     }
   }
 `;
@@ -113,16 +113,16 @@ export const MainButton = styled.span<{ isActive: boolean }>`
   background: white;
   z-index: 5;
   color: #000000;
-  font-family: ${({ theme }) => theme.fonts.FredokaOne};
-  box-shadow: 0 0 10px 0 rgba(${({ theme }) => rgba(theme.colors.violet, 0.5)});
+  font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+  box-shadow: 0 0 10px 0 ${({ theme }) => rgba(theme.colors.violet, 0.5)};
   animation: ZOOM 0.3s linear;
   ${({ theme }) => theme.animations.ZOOM}
 
   &:hover {
     color: ${({ theme }) => theme.colors.violet};
-    box-shadow: 0 0 10px 0 rgba(${({ theme }) => rgba(theme.colors.violet, 0.7)});
+    box-shadow: 0 0 10px 0 ${({ theme }) => rgba(theme.colors.violet, 0.7)};
   }
 
-  ${({ isActive }) =>
-    isActive ? `box-shadow: 0 0 15px 0 rgba(${({ theme }) => rgba(theme.colors.white, 0.75)})` : ""}
+  ${({ isActive, theme }) =>
+    isActive ? `box-shadow: 0 0 15px 0 ${rgba(theme.colors.white, 0.75)};` : ""}
 `;

@@ -11,6 +11,8 @@ module.exports = {
   },
   compiler: {
     styledComponents: true,
+    ssr: true,
+    displayName: true,
   },
   images: {
     domains: ["localhost", "arrigoni.in", "arrigoni.s3.sa-east-1.amazonaws.com"],

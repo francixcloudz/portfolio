@@ -1,7 +1,3 @@
-export interface User {
-  id: number;
-}
-
 export interface DomRect {
   x?: number;
   y?: number;

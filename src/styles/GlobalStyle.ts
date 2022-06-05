@@ -1,4 +1,4 @@
-import { normalize } from "polished";
+import { normalize, rgba } from "polished";
 import { createGlobalStyle } from "styled-components";
 import { AllFontsData } from "styles/theme/data/fonts";
 
@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
     text-decoration: none;
     color: black;
-    text-shadow: 0 0.2em 0.2em rgba(0, 0, 0, 0.15);
+    text-shadow: 0 0.2em 0.2em ${({ theme }) => rgba(theme.colors.black, 0.15)};
   }
   
   h1 {
@@ -141,7 +141,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: ${({ theme }) => rgba(theme.colors.black, 0.4)};
     border-radius: 100px;
     box-sizing: content-box;
     background-clip: content-box;
@@ -152,7 +152,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${({ theme }) => rgba(theme.colors.black, 0.5)};
   }  
 `;
 

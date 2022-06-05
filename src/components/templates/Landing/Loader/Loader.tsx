@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import Progress from "components/molecules/Progress/Progress";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import { AllRefsGsap, DomRect } from "types";
+import { AllRefsGsap, DomRect } from "types/animations";
 import portrait from "assets/images/character_smile.png";
 import camera from "assets/images/icons/camera.png";
 import gif from "assets/images/loading.gif";

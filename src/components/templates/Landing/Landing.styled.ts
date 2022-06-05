@@ -43,7 +43,7 @@ export const Character = styled(ImageTemplate)`
   height: 200px;
   margin: 30px auto;
   border-radius: 50%;
-  box-shadow: 0 0 15px 0 rgba(${({ theme }) => rgba(theme.colors.yellow, 0.5)});
+  box-shadow: 0 0 15px 0 ${({ theme }) => rgba(theme.colors.yellow, 0.5)};
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xsmall}px) {
     width: 40vw;
