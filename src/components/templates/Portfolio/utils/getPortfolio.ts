@@ -1,4 +1,4 @@
-import { SectionTitleProps } from "components/atoms/SectionTitle/SectionTitle";
+import { SectionTitleProps } from "components/molecules/SectionTitle/SectionTitle";
 import { ProjectsProps } from "components/organisms/Projects/Projects";
 import moonShot from "assets/images/emojis/Moonshot.png";
 import myWork from "assets/images/emojis/My-work.png";

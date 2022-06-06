@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Loader from "components/atoms/Loader/Loader";
-import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 import emoji from "assets/images/emojis/Contact-me.png";
 import {
   Container,

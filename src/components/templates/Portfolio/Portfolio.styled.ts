@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.colors.violet};

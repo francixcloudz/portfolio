@@ -3,6 +3,7 @@ declare module "*.svg" {
   export default content;
 }
 
+declare module "*.gif";
 declare module "*.ico";
 declare module "*.jpg";
 declare module "*.jpeg";

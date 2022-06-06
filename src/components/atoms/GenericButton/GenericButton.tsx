@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ReactElement, ComponentProps, ForwardedRef, forwardRef } from "react";
 
-export type AbstractButtonProps = ComponentProps<"button"> & ComponentProps<"a">;
+export type GenericButtonProps = ComponentProps<"button"> & ComponentProps<"a">;
 
-const AbstractButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, AbstractButtonProps>(
-  ({ href, type, ...props }: AbstractButtonProps, ref): ReactElement => {
+const GenericButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, GenericButtonProps>(
+  ({ href, type, ...props }: GenericButtonProps, ref): ReactElement => {
     if (href && !props.disabled) {
       const to = { pathname: href };
       return href.startsWith("/") ? (
@@ -29,4 +29,4 @@ const AbstractButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Abstrac
   },
 );
 
-export default AbstractButton;
+export default GenericButton;

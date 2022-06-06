@@ -1,5 +1,5 @@
 import { ReactElement, useContext, useRef, useState } from "react";
-import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 import Notification from "components/molecules/Notification/Notification";
 import { LoadingContext } from "components/organisms/Loading/Loading";
 import Nav from "components/organisms/Nav/Nav";

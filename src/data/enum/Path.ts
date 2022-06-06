@@ -5,7 +5,7 @@ export enum Path {
 }
 
 export enum ApiPath {
-  GetCheckoutSession = "/checkout-session",
+  GetCheckoutSession = "/mercadopago-session",
 }
 
 export type ApiEndpoints = ApiPath;

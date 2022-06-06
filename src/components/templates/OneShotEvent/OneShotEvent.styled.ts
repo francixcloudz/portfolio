@@ -1,12 +1,22 @@
 import styled from "styled-components";
-import Button from "components/atoms/Button/Button";
+import Button from "components/atoms/GenericButton/GenericButton";
+import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Icon from "components/atoms/Icon/Icon";
 
-export const Container = styled.div`
+export const Container = styled.div<{ isMobile: boolean }>`
   width: 100vw;
   height: 100vh;
 
   background: ${({ theme }) => theme.colors.black};
+
+  display: flex;
+  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  justify-content: center;
+  align-items: center;
+
+  > * {
+    width: ${({ isMobile }) => (isMobile ? "100%" : "50%")};
+  }
 `;
 
 export const FlyerContent = styled.div`
@@ -66,3 +76,5 @@ export const Details = styled.p<{ variant: DetailsVariant }>`
 `;
 
 export const MobileCTAButton = styled(Button)``;
+
+export const Modal = styled(GenericModal)``;

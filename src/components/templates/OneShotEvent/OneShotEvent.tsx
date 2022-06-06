@@ -1,7 +1,10 @@
 import { ReactElement, useContext } from "react";
-import CheckoutMercadoPago from "components/organisms/CheckoutMercadoPago/CheckoutMercadoPago";
+import { GenericModalVariants } from "components/atoms/GenericModal/GenericModal";
 import { LoadingContext } from "components/organisms/Loading/Loading";
+import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 import useGenericModal from "hooks/useGenericModal";
+import useResponsive from "hooks/useResponsive";
+import breakpoints from "styles/theme/data/breakpoints";
 import Loader from "./Loader/Loader";
 import {
   Container,
@@ -11,17 +14,20 @@ import {
   DetailsVariant,
   Details,
   MobileCTAButton,
+  Modal,
 } from "./OneShotEvent.styled";
 
 const OneShotEvent = (): ReactElement => {
   const { isLoaded } = useContext(LoadingContext);
+
+  const isMobile = useResponsive(breakpoints.large);
 
   const { isOpenModal, openModal, handleClose } = useGenericModal();
 
   return (
     <>
       <Loader isLoaded={isLoaded} />
-      <Container>
+      <Container isMobile={isMobile}>
         <FlyerContent>
           <OneShotLogo />
           <BrandName>[ONE]SHOT</BrandName>
@@ -35,9 +41,17 @@ const OneShotEvent = (): ReactElement => {
           <Details variant={DetailsVariant.Small}>LINE UP</Details>
           <Details variant={DetailsVariant.Medium}>TEIKO - DJ NICO MARCO - DJ R.</Details>
         </FlyerContent>
-        <MobileCTAButton onClick={() => openModal()}>RESERVAR LUGARES</MobileCTAButton>
+        {isMobile ? (
+          <MobileCTAButton onClick={() => openModal()}>RESERVAR LUGARES</MobileCTAButton>
+        ) : (
+          <TicketsCheckoutForm />
+        )}
       </Container>
-      <CheckoutMercadoPago isOpen={isOpenModal} onClose={handleClose} />
+      {isMobile && (
+        <Modal variant={GenericModalVariants.Center} isOpen={isOpenModal} onClose={handleClose}>
+          <TicketsCheckoutForm />
+        </Modal>
+      )}
     </>
   );
 };

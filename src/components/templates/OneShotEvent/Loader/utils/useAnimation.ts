@@ -8,10 +8,7 @@ interface UseAnimationProps {
 const useAnimation = ({ refs }: UseAnimationProps) => {
   const tl = gsap.timeline();
 
-  const startAnimation = () => {
-    // eslint-disable-next-line no-console
-    console.log(refs);
-  };
+  const startAnimation = () => {};
 
   return {
     startAnimation,

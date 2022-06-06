@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import SectionTitle from "components/atoms/SectionTitle/SectionTitle";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
