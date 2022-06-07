@@ -7,7 +7,7 @@ export const Container = styled.div<{ isLoaded: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.black};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,22 +1,25 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, ComponentProps, useState } from "react";
 import { awsS3Url } from "data";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useMercadoPago from "hooks/useMercadoPago";
 import { Ticket, TicketKeys } from "types/payment";
 import {
-  FormContainer,
+  Container,
+  ButtonsWrapper,
   AddTicketButton,
   SubmitButton,
-  TicketWrapper,
+  TicketsWrapper,
+  TicketItem,
   TicketDetails,
   DeleteTicketButton,
   DniInput,
   NameInput,
 } from "./TicketsCheckoutForm.styled";
 
-const TicketsCheckoutForm = (): ReactElement => {
+const TicketsCheckoutForm = ({ ...rest }: ComponentProps<typeof Container>): ReactElement => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [tickets, setTickets] = useState<Array<Partial<Ticket>>>([{}]);
+  const hasMultipleTicket = tickets.length > 1;
 
   const { initSDK, openCheckoutPage } = useMercadoPago();
 
@@ -68,29 +71,42 @@ const TicketsCheckoutForm = (): ReactElement => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <Container onSubmit={handleSubmit} {...rest}>
       {isFormVisible && (
         <>
-          {tickets.map(({ name, dni }, index) => (
-            <TicketWrapper>
-              <TicketDetails key={`${name}-${dni}`}>
-                <NameInput
-                  value={tickets[index][TicketKeys.Name] || ""}
-                  onChange={(event) => updateTicket(TicketKeys.Name, event.target.value, index)}
-                />
-                <DniInput
-                  value={tickets[index][TicketKeys.Dni] || ""}
-                  onChange={(event) => updateTicket(TicketKeys.Dni, event.target.value, index)}
-                />
-              </TicketDetails>
-              <DeleteTicketButton onClick={() => deleteTicket(index)}>Delete</DeleteTicketButton>
-            </TicketWrapper>
-          ))}
-          <AddTicketButton onClick={() => addTicket}>Add</AddTicketButton>
-          <SubmitButton type="submit" />
+          <TicketsWrapper>
+            {tickets.map(({ name, dni }, index) => (
+              <TicketItem key={dni}>
+                {/* eslint-disable-next-line react/no-array-index-key */}
+                <TicketDetails key={`${name}-${dni}-${index}`}>
+                  <NameInput
+                    type="text"
+                    placeholder="Nombre completo"
+                    value={tickets[index][TicketKeys.Name] || ""}
+                    onChange={(event) => updateTicket(TicketKeys.Name, event.target.value, index)}
+                  />
+                  <DniInput
+                    type="number"
+                    placeholder="DNI"
+                    value={tickets[index][TicketKeys.Dni] || ""}
+                    onChange={(event) => updateTicket(TicketKeys.Dni, event.target.value, index)}
+                  />
+                </TicketDetails>
+                {hasMultipleTicket && (
+                  <DeleteTicketButton onClick={() => deleteTicket(index)}>x</DeleteTicketButton>
+                )}
+              </TicketItem>
+            ))}
+          </TicketsWrapper>
+          <ButtonsWrapper>
+            <AddTicketButton type="button" onClick={() => addTicket()}>
+              Agregar otro ticket
+            </AddTicketButton>
+            <SubmitButton type="submit">Comprar ticket{hasMultipleTicket && "s"}</SubmitButton>
+          </ButtonsWrapper>
         </>
       )}
-    </FormContainer>
+    </Container>
   );
 };
 

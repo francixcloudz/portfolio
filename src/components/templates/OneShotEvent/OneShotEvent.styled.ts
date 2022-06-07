@@ -1,29 +1,55 @@
+import { rgba } from "polished";
 import styled from "styled-components";
-import Button from "components/atoms/GenericButton/GenericButton";
-import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Icon from "components/atoms/Icon/Icon";
+import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
 export const Container = styled.div<{ isMobile: boolean }>`
-  width: 100vw;
-  height: 100vh;
-
+  min-width: 100vw;
+  min-height: 100vh;
   background: ${({ theme }) => theme.colors.black};
-
   display: flex;
-  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
 
-  > * {
-    width: ${({ isMobile }) => (isMobile ? "100%" : "50%")};
-  }
+  ${({ isMobile }) =>
+    isMobile
+      ? `
+      flex-direction: column;
+        > * {
+          width: 100%;
+          min-width: 100vw;
+          min-height: 100vh;
+          padding: 5vw;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        `
+      : ``}
 `;
 
-export const FlyerContent = styled.div`
+export const FlyerWrapper = styled.div<{ isMobile: boolean }>`
+  width: ${({ isMobile }) => (isMobile ? "100%" : "30%")};
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({ isMobile }) => (isMobile ? "space-between" : "center")};
+  align-items: center;
+`;
+
+export const Flyer = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  ${({ isMobile }) =>
+    isMobile
+      ? `
+          margin: auto;
+        `
+      : ``}
 `;
 
 export const OneShotLogo = styled(Icon.OneShot)`
@@ -46,10 +72,12 @@ export enum DetailsVariant {
   ExtraLarge = "ExtraLarge",
 }
 
-export const Details = styled.p<{ variant: DetailsVariant }>`
+export const Details = styled.p<{ variant?: DetailsVariant }>`
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.LeagueGothic.family};
   letter-spacing: 0.1rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0.15rem 0.15rem 0 ${({ theme }) => rgba(theme.colors.white, 0.3)};
 
   ${({ variant }) => {
     switch (variant) {
@@ -63,18 +91,40 @@ export const Details = styled.p<{ variant: DetailsVariant }>`
         `;
       case DetailsVariant.Large:
         return `
-          font-size: 1.4rem;
+          font-size: 1.2rem;
         `;
       case DetailsVariant.ExtraLarge:
         return `
-          font-size: 1.8rem;
+          font-size: 2.2rem;
         `;
       default:
         return "";
     }
-  }}
+  }};
 `;
 
-export const MobileCTAButton = styled(Button)``;
+export const MobileCTAButton = styled.a`
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  letter-spacing: 1px;
+  font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.white};
+  background: linear-gradient(90deg, ${({ theme }) => theme.colors.violet} 21px, transparent 1%)
+      center,
+    linear-gradient(${({ theme }) => theme.colors.violet} 21px, transparent 1%) center,
+    ${({ theme }) => theme.colors.white};
+  background-size: 22px 22px;
+  padding: 1rem;
 
-export const Modal = styled(GenericModal)``;
+  :hover {
+    box-shadow: 0 6px 10px -3px ${({ theme }) => rgba(theme.colors.violet, 0.8)};
+  }
+`;
+
+export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
+  width: ${({ isMobile }) => (isMobile ? "100%" : "55%")};
+`;
