@@ -1,8 +1,7 @@
 import { AllRefsGsap } from "types/animations";
 
 const useRefSet =
-  (allRefs: React.MutableRefObject<AllRefsGsap>) =>
-  (refName: string, node: HTMLDivElement | null) => {
+  (allRefs: React.MutableRefObject<AllRefsGsap>) => (refName: string, node: HTMLElement | null) => {
     // eslint-disable-next-line no-param-reassign
     if (node) allRefs.current[refName] = node;
   };
@@ -22,5 +21,10 @@ export class RefSet {
 
   public child(refName: string, index: number) {
     return (this.get(refName) as HTMLElement).children[index];
+  }
+
+  public children(refName: string) {
+    const response = (this.get(refName) as HTMLElement)?.children;
+    return response ? [...response] : [];
   }
 }

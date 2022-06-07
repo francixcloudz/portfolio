@@ -29,8 +29,8 @@ export const Container = styled.div<{ isLoaded: boolean }>`
 
 export const Wrapper = styled.div`
   position: relative;
-  width: 50vw;
-  height: 50vw;
+  width: 95vw;
+  height: 95vw;
   max-width: 400px;
   max-height: 400px;
 

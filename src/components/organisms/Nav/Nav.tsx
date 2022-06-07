@@ -12,6 +12,10 @@ const Nav = forwardRef(
     return (
       <Container ref={ref} {...rest}>
         <Logo />
+        <Links isOpen={isOpen}>
+          <PortfolioLink href="#Portfolio">Portfolio</PortfolioLink>
+          <ContactLink href="#Contact">Say Hello!</ContactLink>
+        </Links>
         {isMobile && (
           <Burger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
             <span />
@@ -20,10 +24,6 @@ const Nav = forwardRef(
             <span />
           </Burger>
         )}
-        <Links isOpen={isOpen}>
-          <PortfolioLink href="#Portfolio">Portfolio</PortfolioLink>
-          <ContactLink href="#Contact">Say Hello!</ContactLink>
-        </Links>
       </Container>
     );
   },

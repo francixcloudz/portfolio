@@ -1,35 +1,45 @@
-import { useRef } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
-import { Container, SvgWrapper, HandSvg, GlassSvg, BrainSvg } from "./Loader.styled";
+import { Container, SvgWrapper, OneShotLogo } from "./Loader.styled";
 import useAnimation from "./utils/useAnimation";
 
 export interface LoadingProps {
+  mainImage: React.RefObject<HTMLDivElement>;
   isLoaded: boolean;
 }
 
-const Loader = ({ isLoaded }: LoadingProps) => {
+const DEFAULT_DELAY = 1;
+
+const Loader = ({ isLoaded, mainImage }: LoadingProps) => {
   const allRefs = useRef<AllRefsGsap>({});
   const ref = useRefSet(allRefs);
 
-  const { startAnimation, clearAnimation } = useAnimation({
+  const [mainImageStyle, setMainImageStyle] = useState<CSSProperties>({});
+
+  const { setAnimation, startAnimation, clearAnimation } = useAnimation({
     refs: new RefSet(allRefs.current),
+    delay: DEFAULT_DELAY,
+    setMainImageStyle,
+    mainImage,
   });
 
   useIsoLayoutEffect(() => {
-    startAnimation();
+    setAnimation();
+  }, []);
+
+  useEffect(() => {
+    if (mainImage.current) startAnimation();
     return () => {
       clearAnimation();
     };
-  }, []);
+  }, [mainImage.current]);
 
   return (
     <Container isLoaded={isLoaded}>
-      <SvgWrapper>
-        <GlassSvg ref={(node) => ref("GlassSvg", node)} />
-        <BrainSvg ref={(node) => ref("BrainSvg", node)} />
-        <HandSvg ref={(node) => ref("HandSvg", node)} />
+      <SvgWrapper ref={(node) => ref("LoaderImage", node)} style={mainImageStyle}>
+        <OneShotLogo />
       </SvgWrapper>
     </Container>
   );

@@ -141,6 +141,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   ::-webkit-scrollbar-thumb {
+    cursor: pointer;
     background-color: ${({ theme }) => rgba(theme.colors.black, 0.4)};
     border-radius: 100px;
     box-sizing: content-box;

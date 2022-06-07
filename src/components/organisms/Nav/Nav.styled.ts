@@ -1,5 +1,5 @@
 import { rgba } from "polished";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
@@ -32,7 +32,11 @@ export const Links = styled.div<{ isOpen: boolean }>`
     z-index: 999;
     animation: FADE_IN ease 1000ms;
     ${({ theme }) => theme.animations.FADE_IN}
-    ${({ isOpen }) => (isOpen ? `display: block` : "")};
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        display: block;
+      `}
   }
 `;
 
@@ -137,26 +141,26 @@ export const Burger = styled.div<{ isOpen: boolean }>`
   }
 
   ${({ isOpen }) =>
-    isOpen
-      ? `
-    span:nth-child(1) {
-      top: 18px;
-      width: 0%;
-      left: 50%;
-    }
+    isOpen &&
+    css`
+      span:nth-child(1) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+      }
 
-    span:nth-child(2) {
-      transform: rotate(45deg);
-    }
+      span:nth-child(2) {
+        transform: rotate(45deg);
+      }
 
-    span:nth-child(3) {
-      transform: rotate(-45deg);
-    }
+      span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
 
-    span:nth-child(4) {
-      top: 18px;
-      width: 0%;
-      left: 50%;
-    }`
-      : ""}
+      span:nth-child(4) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+      }
+    `}
 `;

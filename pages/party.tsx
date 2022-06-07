@@ -5,12 +5,12 @@ import Loading from "components/organisms/Loading/Loading";
 import OneShotEvent from "components/templates/OneShotEvent/OneShotEvent";
 
 const metaData = {
-  title: "[ONE]SHOT ⚡ Private Event",
-  description: "[ONE]CORP Te invita a una noche especial",
+  title: "[ONE]SHOT 👁 Private Event",
+  description: "[ONE]SHOT 👁 Private Event",
 };
 
-const Events = (): ReactElement => (
-  <Loading delay={0}>
+const Party = (): ReactElement => (
+  <Loading delay={1500}>
     <Head {...metaData} />
     <PageContainer>
       <OneShotEvent />
@@ -18,4 +18,4 @@ const Events = (): ReactElement => (
   </Loading>
 );
 
-export default Events;
+export default Party;

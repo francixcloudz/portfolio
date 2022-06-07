@@ -1,6 +1,6 @@
-import { ReactElement, useContext, useRef, useState } from "react";
-import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
+import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import Notification from "components/molecules/Notification/Notification";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 import { LoadingContext } from "components/organisms/Loading/Loading";
 import Nav from "components/organisms/Nav/Nav";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
@@ -28,6 +28,9 @@ const Landing = (): ReactElement => {
 
   useIsoLayoutEffect(() => {
     setAnimation();
+  }, []);
+
+  useEffect(() => {
     if (isLoaded) startAnimation();
     return () => {
       clearAnimation();
@@ -48,13 +51,17 @@ const Landing = (): ReactElement => {
               principal
             />
             <CharacterWrapper>
-              <Character
-                ref={mainImage}
-                alt="portrait"
-                src={isSmileImage ? smileImage : image}
-                onMouseOver={() => setIsSmileImage(true)}
-                onMouseOut={() => setIsSmileImage(false)}
-              />
+              {isSmileImage ? (
+                <Character ref={mainImage} alt="portrait" src={smileImage} />
+              ) : (
+                <Character
+                  ref={mainImage}
+                  alt="portrait"
+                  src={image}
+                  onMouseOver={() => setIsSmileImage(true)}
+                  onMouseOut={() => setIsSmileImage(false)}
+                />
+              )}
               <Notification ref={(node) => ref("Notification", node)} />
             </CharacterWrapper>
           </Box>

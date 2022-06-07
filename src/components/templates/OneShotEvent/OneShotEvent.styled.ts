@@ -1,5 +1,5 @@
 import { rgba } from "polished";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Icon from "components/atoms/Icon/Icon";
 import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
@@ -13,21 +13,20 @@ export const Container = styled.div<{ isMobile: boolean }>`
   align-items: center;
 
   ${({ isMobile }) =>
-    isMobile
-      ? `
+    isMobile &&
+    css`
       flex-direction: column;
-        > * {
-          width: 100%;
-          min-width: 100vw;
-          min-height: 100vh;
-          padding: 5vw;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        `
-      : ``}
+      > * {
+        width: 100%;
+        min-width: 100vw;
+        min-height: 100vh;
+        padding: 5vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    `}
 `;
 
 export const FlyerWrapper = styled.div<{ isMobile: boolean }>`
@@ -39,22 +38,29 @@ export const FlyerWrapper = styled.div<{ isMobile: boolean }>`
 `;
 
 export const Flyer = styled.div<{ isMobile: boolean }>`
+  ${({ isMobile }) =>
+    isMobile &&
+    css`
+      margin: auto;
+    `}
+`;
+
+export const FlyerContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
 
-  ${({ isMobile }) =>
-    isMobile
-      ? `
-          margin: auto;
-        `
-      : ``}
+export const SvgWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+  height: 15rem;
 `;
 
 export const OneShotLogo = styled(Icon.OneShot)`
-  width: 12.5rem;
-  height: 12.5rem;
   fill: ${({ theme }) => theme.colors.white};
 `;
 
@@ -83,19 +89,19 @@ export const Details = styled.p<{ variant?: DetailsVariant }>`
     switch (variant) {
       case DetailsVariant.Small:
         return `
-          font-size: 0.8rem;
+          font-size: 1rem;
         `;
       case DetailsVariant.Medium:
         return `
-          font-size: 1rem;
+          font-size: 1.2rem;
         `;
       case DetailsVariant.Large:
         return `
-          font-size: 1.2rem;
+          font-size: 1.5rem;
         `;
       case DetailsVariant.ExtraLarge:
         return `
-          font-size: 2.2rem;
+          font-size: 3rem;
         `;
       default:
         return "";
@@ -127,4 +133,5 @@ export const MobileCTAButton = styled.a`
 
 export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
   width: ${({ isMobile }) => (isMobile ? "100%" : "55%")};
+  max-height: 100vh;
 `;

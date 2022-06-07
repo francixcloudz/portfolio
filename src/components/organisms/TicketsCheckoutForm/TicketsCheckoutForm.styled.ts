@@ -53,7 +53,7 @@ export const SubmitButton = styled(Button)`
   padding: 1rem;
 
   :hover {
-    box-shadow: 0 6px 10px -3px ${({ theme }) => rgba(theme.colors.violet, 0.8)};
+    box-shadow: 0 0.5rem 1rem -0.2rem ${({ theme }) => rgba(theme.colors.violet, 0.8)};
   }
 `;
 
@@ -77,10 +77,10 @@ export const DeleteTicketButton = styled(GenericButton)`
   }
 `;
 
-export const TicketsWrapper = styled.div`
+export const TicketsWrapper = styled.div<{ isMobile: boolean }>`
   width: 100%;
   overflow: auto;
-  box-shadow: 0 0.2rem 1.2rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.4)};
+  box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.6)};
   border-radius: 1rem;
   padding: 2rem;
   background: ${({ theme }) => `
@@ -106,12 +106,20 @@ export const TicketsWrapper = styled.div`
     linear-gradient(90deg, ${theme.colors.violet_darkest} 2.6px, ${theme.colors.black} 2.6px) -1.3px 0px / 32.5px 32.5px
   `};
 
+  ${({ isMobile }) =>
+    isMobile
+      ? `flex: 1;`
+      : `
+      max-width: 700px;
+      max-height: 25.2rem;
+    `}
+
   ::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => rgba(theme.colors.violet, 0.4)};
-  }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: ${({ theme }) => rgba(theme.colors.violet, 0.5)};
+    :hover {
+      background-color: ${({ theme }) => rgba(theme.colors.violet, 0.5)};
+    }
   }
 
   > *:not(:last-child) {
