@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { awsS3Url } from "data";
 import { Path } from "data/enum/Path";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
@@ -11,6 +11,8 @@ interface UseFormProps {
 }
 
 const useForm = ({ price }: UseFormProps) => {
+  const ticketsWrapper = useRef<HTMLDivElement>(null);
+
   const [tickets, setTickets] = useState<Array<Partial<Ticket>>>([{}]);
   const [isFormVisible, setIsFormVisible] = useState(false);
 
@@ -20,7 +22,8 @@ const useForm = ({ price }: UseFormProps) => {
     initSDK(() => setIsFormVisible(true));
   }, []);
 
-  const hasMultipleTicket = tickets.length > 1;
+  const ticketsCount = tickets.length;
+  const hasMultipleTicket = ticketsCount > 1;
 
   const handleSubmit = () => {
     openCheckoutPage({
@@ -54,6 +57,12 @@ const useForm = ({ price }: UseFormProps) => {
     setTickets((previousState) => [...previousState, {}]);
   };
 
+  useEffect(() => {
+    if (ticketsWrapper.current && ticketsWrapper.current?.lastChild) {
+      (ticketsWrapper.current.lastChild as HTMLDivElement).scrollIntoView();
+    }
+  }, [ticketsCount]);
+
   const deleteTicket = (index: number) => {
     setTickets((previousState) => {
       const newState = [...previousState];
@@ -72,9 +81,10 @@ const useForm = ({ price }: UseFormProps) => {
 
   return {
     tickets,
-    ticketsCount: tickets.length,
+    ticketsCount,
     hasMultipleTicket,
     isFormVisible,
+    ticketsWrapper,
     handleSubmit,
     addTicket,
     deleteTicket,

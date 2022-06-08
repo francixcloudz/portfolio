@@ -21,6 +21,7 @@ import {
 } from "./OneShotEvent.styled";
 import useAnimation from "./utils/useAnimation";
 
+// TODO: Modularize
 const OneShotEvent = (): ReactElement => {
   const { isLoaded, isDelayLoaded } = useContext(LoadingContext);
 

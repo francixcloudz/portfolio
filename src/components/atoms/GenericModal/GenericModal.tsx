@@ -1,6 +1,6 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, forwardRef } from "react";
 import ReactDOM from "react-dom";
-import { Container, Close, Content, Overlay, Modal } from "./GenericModal.styled";
+import { Container, CloseIcon, Content, Overlay, Modal } from "./GenericModal.styled";
 import { GenericModalVariants } from "./utils/data";
 
 export interface GenericModalProps {
@@ -10,28 +10,28 @@ export interface GenericModalProps {
   variant: GenericModalVariants;
 }
 
-const GenericModal = ({
-  children,
-  isOpen,
-  onClose,
-  variant,
-}: GenericModalProps): ReactElement | null => {
-  if (!isOpen) return null;
+const GenericModal = forwardRef<HTMLDivElement, GenericModalProps>(
+  (
+    { children, isOpen, onClose, variant, ...rest }: GenericModalProps,
+    ref,
+  ): ReactElement | null => {
+    if (!isOpen) return null;
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const ModalVariant = Modal[variant];
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const ModalVariant = Modal[variant];
 
-  return ReactDOM.createPortal(
-    <Container>
-      <Overlay onClick={onClose} />
-      <ModalVariant isOpen={isOpen}>
-        <Content>{children}</Content>
-        <Close onClick={onClose}>x</Close>
-      </ModalVariant>
-    </Container>,
-    document.body,
-  );
-};
+    return ReactDOM.createPortal(
+      <Container ref={ref} {...rest}>
+        <Overlay onClick={onClose} />
+        <ModalVariant isOpen={isOpen}>
+          <Content>{children}</Content>
+          <CloseIcon onClick={onClose}>x</CloseIcon>
+        </ModalVariant>
+      </Container>,
+      document.body,
+    );
+  },
+);
 
 export { GenericModalVariants };
 

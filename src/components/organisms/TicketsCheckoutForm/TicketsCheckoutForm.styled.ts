@@ -1,6 +1,7 @@
 import { rgba } from "polished";
 import styled from "styled-components";
 import GenericButton from "components/atoms/GenericButton/GenericButton";
+import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Icon from "components/atoms/Icon/Icon";
 
 export const Container = styled.div`
@@ -110,11 +111,7 @@ export const TicketsWrapper = styled.div`
   max-width: 700px;
   height: 100%;
   max-height: 25.2rem;
-
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
-    flex: 1;
-    height: fit-content;
-  }
+  flex: 1;
 
   ::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => rgba(theme.colors.violet, 0.4)};
@@ -241,4 +238,51 @@ export const TagsWrapper = styled.div`
   justify-items: center;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+`;
+
+export const InfoModal = styled(GenericModal)`
+  > *:nth-child(1) {
+    background: ${({ theme }) => rgba(theme.colors.violet_darkest, 0.7)};
+  }
+  > *:nth-child(2) {
+    padding: 2rem;
+    box-shadow: 0 0 2rem 0 ${({ theme }) => rgba(theme.colors.black, 0.5)};
+
+    background: ${({ theme }) => `
+  radial-gradient(
+    circle,
+    transparent 20%,
+    ${theme.colors.black} 20%,
+    ${theme.colors.black} 80%,
+    transparent 80%,
+    transparent
+  )
+  0% 0% / 65px 65px,
+  radial-gradient(
+      circle,
+      transparent 20%,
+      ${theme.colors.black} 20%,
+      ${theme.colors.black} 80%,
+      transparent 80%,
+      transparent
+    )
+    32.5px 32.5px / 65px 65px,
+  linear-gradient(${theme.colors.violet_darkest} 2.6px, transparent 2.6px) 0px -1.3px / 32.5px 32.5px,
+  linear-gradient(90deg, ${theme.colors.violet_darkest} 2.6px, ${theme.colors.black} 2.6px) -1.3px 0px / 32.5px 32.5px
+`};
+  }
+`;
+
+export const DetailsTitle = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+  font-size: 1.3rem;
+
+  margin-top: 2rem;
+`;
+
+export const DetailsContent = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
+  font-size: 1rem;
 `;

@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import { rgba } from "polished";
+import styled, { css } from "styled-components";
+import GenericButton from "components/atoms/GenericButton/GenericButton";
 import { GenericModalVariants } from "./utils/data";
 
 export const Container = styled.div`
@@ -10,21 +12,24 @@ export const Container = styled.div`
   top: 0;
 `;
 
-export const Close = styled.span`
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 50%;
+export const CloseIcon = styled(GenericButton)`
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #001955;
-  border: solid rgba(0, 25, 85, 0.15);
-  background: #ffffff;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: ${({ theme }) => rgba(theme.colors.white, 1)};
+  background: ${({ theme }) => rgba(theme.colors.violet, 1)};
   cursor: pointer;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+
+  :hover {
+    box-shadow: 0 5px 15px -2.5px ${({ theme }) => rgba(theme.colors.violet, 0.3)};
+  }
 `;
 
 export const Modal = {
@@ -32,7 +37,7 @@ export const Modal = {
     z-index: 10;
     background: #ffffff;
     box-shadow: 0px 40px 56px -24px rgba(22, 32, 57, 0.16);
-    border-radius: 4px;
+    border-radius: 0.5rem;
     width: 90%;
     height: fit-content;
     padding: 2rem;
@@ -45,7 +50,11 @@ export const Modal = {
     max-width: fit-content;
     max-height: fit-content;
     overflow: overlay;
-    ${({ isOpen }) => (isOpen ? `animation: fadeInTop 1s linear forwards` : "")};
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        animation: fadeInTop 1s linear forwards;
+      `};
 
     @keyframes fadeInTop {
       0%,
@@ -95,11 +104,16 @@ export const Modal = {
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.large}px) {
       max-width: 910px;
-      ${Close} {
+      ${CloseIcon} {
         left: -10%;
       }
     }
-    ${({ isOpen }) => (isOpen ? `animation: fadeInRight 1s linear forwards` : "")};
+
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        animation: fadeInRight 1s linear forwards;
+      `};
 
     @keyframes fadeInRight {
       0% {
@@ -129,7 +143,7 @@ export const Overlay = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
