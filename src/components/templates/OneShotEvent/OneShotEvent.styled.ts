@@ -18,7 +18,6 @@ export const Container = styled.div`
       width: 100%;
       min-width: 100vw;
       min-height: 100vh;
-      padding: 5vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -107,7 +106,7 @@ export const MobileCTAButton = styled.a`
   cursor: pointer;
   border-radius: 0.5rem;
   background: transparent;
-  width: 100%;
+  width: 90%;
   height: 100%;
   letter-spacing: 1px;
   font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
@@ -119,6 +118,7 @@ export const MobileCTAButton = styled.a`
     ${({ theme }) => theme.colors.white};
   background-size: 22px 22px;
   padding: 1rem;
+  margin: 5vw auto;
   display: none;
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
@@ -136,5 +136,6 @@ export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
     width: 100%;
+    padding: 5vw;
   }
 `;

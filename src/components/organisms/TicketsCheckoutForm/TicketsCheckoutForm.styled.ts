@@ -132,7 +132,7 @@ export const TicketItem = styled.div`
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: inset 0 -0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.3)};
-  background: ${({ theme }) => rgba(theme.colors.violet_darkest, 0.5)};
+  background: ${({ theme }) => rgba(theme.colors.violet_darker, 0.5)};
 `;
 
 export const TicketDetails = styled.div`
@@ -150,16 +150,16 @@ const Input = styled.input`
   border-radius: 0.25rem;
   font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
   padding: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.violet_darkest};
+  border: 1px solid ${({ theme }) => theme.colors.violet_darker};
   color: ${({ theme }) => theme.colors.white};
   background: linear-gradient(
         90deg,
-        ${({ theme }) => theme.colors.violet_darkest} 11px,
+        ${({ theme }) => theme.colors.violet_darker} 11px,
         transparent 1%
       )
       center,
-    linear-gradient(${({ theme }) => theme.colors.violet_darkest} 11px, transparent 1%) center,
-    ${({ theme }) => theme.colors.violet_darkest};
+    linear-gradient(${({ theme }) => theme.colors.violet_darker} 11px, transparent 1%) center,
+    ${({ theme }) => theme.colors.violet_darker};
   background-size: 12px 12px;
   box-shadow: 0 2.5px 10px -2.5px ${({ theme }) => rgba(theme.colors.violet, 0.15)};
 
@@ -168,11 +168,11 @@ const Input = styled.input`
     border: 1px solid ${({ theme }) => theme.colors.violet};
     background: linear-gradient(
           90deg,
-          ${({ theme }) => theme.colors.violet_darkest} 11px,
+          ${({ theme }) => theme.colors.violet_darker} 11px,
           transparent 1%
         )
         center,
-      linear-gradient(${({ theme }) => theme.colors.violet_darkest} 11px, transparent 1%) center,
+      linear-gradient(${({ theme }) => theme.colors.violet_darker} 11px, transparent 1%) center,
       ${({ theme }) => theme.colors.violet};
     background-size: 12px 12px;
     box-shadow: 0 5px 15px -2.5px ${({ theme }) => rgba(theme.colors.violet, 0.3)};

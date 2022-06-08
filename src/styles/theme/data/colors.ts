@@ -3,7 +3,8 @@ const colors = {
   black: "#000000",
   yellow: "#fbb72d",
   violet: "#4117ab",
-  violet_darkest: "#0d0424",
+  violet_darker: "#220c59",
+  violet_darkest: "#1a0945",
 };
 
 export default colors;
