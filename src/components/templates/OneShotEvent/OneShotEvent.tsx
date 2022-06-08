@@ -69,7 +69,7 @@ const OneShotEvent = (): ReactElement => {
               <Details variant={DetailsVariant.Medium} style={{}}>
                 FIESTA CACHENGUE
               </Details>
-              {isMobile && (
+              {!isMobile && (
                 <>
                   <Details variant={DetailsVariant.Small} style={{ marginBottom: 0 }}>
                     SONIDO DE ALTA CALIDAD

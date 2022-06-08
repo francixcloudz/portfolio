@@ -1,6 +1,7 @@
 import { rgba } from "polished";
 import styled from "styled-components";
 import GenericButton from "components/atoms/GenericButton/GenericButton";
+import Icon from "components/atoms/Icon/Icon";
 
 export const Container = styled.div`
   display: flex;
@@ -79,7 +80,6 @@ export const DeleteTicketButton = styled(GenericButton)`
 `;
 
 export const TicketsWrapper = styled.div`
-  width: 100%;
   overflow: auto;
   box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.6)};
   border-radius: 1rem;
@@ -106,11 +106,14 @@ export const TicketsWrapper = styled.div`
     linear-gradient(${theme.colors.violet_darkest} 2.6px, transparent 2.6px) 0px -1.3px / 32.5px 32.5px,
     linear-gradient(90deg, ${theme.colors.violet_darkest} 2.6px, ${theme.colors.black} 2.6px) -1.3px 0px / 32.5px 32.5px
   `};
+  width: 100%;
   max-width: 700px;
+  height: 100%;
   max-height: 25.2rem;
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
     flex: 1;
+    height: fit-content;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -187,4 +190,55 @@ export const DniInput = styled(Input)``;
 export const TotalPrice = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-weight: ${({ theme }) => theme.fonts.Nunito.weights.ExtraBold};
+`;
+
+export const InfoButton = styled(Button)`
+  color: ${({ theme }) => theme.colors.violet};
+  background: ${({ theme }) => rgba(theme.colors.violet, 0.3)};
+  border: 1px solid ${({ theme }) => theme.colors.violet_darker};
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
+`;
+
+export const InfoIcon = styled(Icon.Info)`
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  fill: ${({ theme }) => theme.colors.violet};
+`;
+
+export const LockBanner = styled.div`
+  color: ${({ theme }) => theme.colors.violet};
+  background: ${({ theme }) => rgba(theme.colors.violet, 0.3)};
+  border: 1px solid ${({ theme }) => theme.colors.violet_darker};
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
+`;
+
+export const LockIcon = styled(Icon.Lock)`
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  fill: ${({ theme }) => theme.colors.violet};
+`;
+
+export const TagsWrapper = styled.div`
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 `;

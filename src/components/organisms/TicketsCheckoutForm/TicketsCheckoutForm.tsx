@@ -1,4 +1,4 @@
-import { forwardRef, ComponentProps, ForwardedRef } from "react";
+import { forwardRef, ComponentProps, ForwardedRef, useState } from "react";
 import { TicketKeys } from "types/payment";
 import {
   Container,
@@ -12,6 +12,11 @@ import {
   DniInput,
   NameInput,
   TotalPrice,
+  InfoButton,
+  InfoIcon,
+  LockBanner,
+  LockIcon,
+  TagsWrapper,
 } from "./TicketsCheckoutForm.styled";
 import useForm from "./utils/useForm";
 
@@ -19,6 +24,8 @@ const PRODUCT_PRICE = 600;
 
 const TicketsCheckoutForm = forwardRef(
   ({ ...rest }: ComponentProps<typeof Container>, ref: ForwardedRef<HTMLDivElement>) => {
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+
     const {
       tickets,
       ticketsCount,
@@ -32,6 +39,16 @@ const TicketsCheckoutForm = forwardRef(
 
     return (
       <Container {...rest} ref={ref}>
+        <TagsWrapper>
+          <InfoButton onClick={() => setIsInfoModalOpen(true)}>
+            <InfoIcon />
+            Detalles del evento
+          </InfoButton>
+          <LockBanner>
+            <LockIcon />
+            Prohibida la entrada a menores de 20
+          </LockBanner>
+        </TagsWrapper>
         {isFormVisible && (
           <>
             <TicketsWrapper>
