@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { awsS3Url } from "data";
+import { Path } from "data/enum/Path";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useMercadoPago from "hooks/useMercadoPago";
 import { Ticket, TicketKeys } from "types/payment";
+import baseUrl from "utils/baseUrl";
 
 interface UseFormProps {
   price: number;
@@ -22,7 +24,7 @@ const useForm = ({ price }: UseFormProps) => {
 
   const handleSubmit = () => {
     openCheckoutPage({
-      statement_descriptor: "[ONE]CORP",
+      statement_descriptor: "[ONE]SHOT",
       items: [
         {
           id: "[ONE]SHOT Pass",
@@ -38,9 +40,9 @@ const useForm = ({ price }: UseFormProps) => {
       binary_mode: false,
       auto_return: "approved",
       back_urls: {
-        success: "https://www.success.com",
-        failure: "http://www.failure.com",
-        pending: "http://www.pending.com",
+        success: `${baseUrl}/${Path.OneShot}?success=true`,
+        failure: `${baseUrl}/${Path.OneShot}?failure=true`,
+        pending: `${baseUrl}/${Path.OneShot}?pending=true`,
       },
       payment_methods: {
         installments: 1,
