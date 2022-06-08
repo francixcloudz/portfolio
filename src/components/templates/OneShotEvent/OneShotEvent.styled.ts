@@ -58,8 +58,8 @@ export const OneShotLogo = styled(Image)`
   height: 15rem;
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
   }
 `;
 
