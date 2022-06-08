@@ -9,11 +9,12 @@ import useAnimation from "./utils/useAnimation";
 export interface LoadingProps {
   mainImage: React.RefObject<HTMLDivElement>;
   isLoaded: boolean;
+  isDelayLoaded: boolean;
 }
 
 const DEFAULT_DELAY = 1;
 
-const Loader = ({ isLoaded, mainImage }: LoadingProps) => {
+const Loader = ({ mainImage, isLoaded, isDelayLoaded }: LoadingProps) => {
   const [loaderImageStyle, setLoaderImageStyle] = useState<CSSProperties>({});
 
   const allRefs = useRef<AllRefsGsap>({});
@@ -31,14 +32,14 @@ const Loader = ({ isLoaded, mainImage }: LoadingProps) => {
   }, []);
 
   useMemo(() => {
-    if (mainImage.current) startAnimation();
+    if (mainImage.current && isLoaded) startAnimation();
     return () => {
       clearAnimation();
     };
-  }, [mainImage.current]);
+  }, [mainImage.current, isLoaded]);
 
   return (
-    <Container isLoaded={isLoaded}>
+    <Container isDelayLoaded={isDelayLoaded}>
       <OneShotLogo
         ref={(node) => ref("LoaderImage", node)}
         src={OneShotImage}

@@ -16,7 +16,7 @@ const metaData = {
 };
 
 const Party = (): ReactElement => (
-  <Loading delay={1500}>
+  <Loading delay={2000}>
     <Head {...metaData} />
     <PageContainer>
       <OneShotEvent />

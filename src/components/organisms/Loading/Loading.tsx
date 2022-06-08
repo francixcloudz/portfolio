@@ -3,10 +3,12 @@ import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 
 interface LoadingContextValues {
   isLoaded: boolean;
+  isDelayLoaded: boolean;
 }
 
 const loadingContextValues: LoadingContextValues = {
   isLoaded: false,
+  isDelayLoaded: false,
 };
 
 export const LoadingContext = createContext<LoadingContextValues>(loadingContextValues);
@@ -20,13 +22,15 @@ interface LoadingProps {
 
 const Loading = ({ children, delay, onLoadCallback, onCompleteCallback }: LoadingProps) => {
   const [isLoaded, setIsLoaded] = useState(loadingContextValues.isLoaded);
+  const [isDelayLoaded, setIsDelayLoaded] = useState(loadingContextValues.isLoaded);
 
   useIsoLayoutEffect(() => {
     window.scrollTo(0, 0);
     window.addEventListener("load", () => {
+      setIsLoaded(true);
       if (onLoadCallback) onLoadCallback();
       setTimeout(() => {
-        setIsLoaded(true);
+        setIsDelayLoaded(true);
         if (onCompleteCallback) onCompleteCallback();
       }, delay);
     });
@@ -37,6 +41,7 @@ const Loading = ({ children, delay, onLoadCallback, onCompleteCallback }: Loadin
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         isLoaded,
+        isDelayLoaded,
       }}
     >
       {children}

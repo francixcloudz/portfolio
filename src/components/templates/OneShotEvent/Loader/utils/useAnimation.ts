@@ -31,8 +31,8 @@ const useAnimation = ({ refs, delay, setLoaderImageStyle, mainImage }: UseAnimat
       delay,
       ease: "none",
       // TODO: Fix first load of mainImage
-      left: leftMainImage * 1.79729264655,
-      top: topMainImage * 1.12752560199,
+      left: leftMainImage,
+      top: topMainImage,
       width: widthMainImage,
       height: heightMainImage,
     });

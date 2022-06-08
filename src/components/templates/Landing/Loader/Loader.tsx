@@ -20,11 +20,12 @@ import useAnimation from "./utils/useAnimation";
 export interface LoadingProps {
   mainImage: React.RefObject<HTMLDivElement>;
   isLoaded: boolean;
+  isDelayLoaded: boolean;
 }
 
 const DEFAULT_DELAY = 2;
 
-const Loader = ({ mainImage, isLoaded }: LoadingProps) => {
+const Loader = ({ mainImage, isLoaded, isDelayLoaded }: LoadingProps) => {
   const [mainImageStyle, setMainImageStyle] = useState<DomRect>({});
 
   const allRefs = useRef<AllRefsGsap>({});
@@ -38,14 +39,14 @@ const Loader = ({ mainImage, isLoaded }: LoadingProps) => {
   });
 
   useIsoLayoutEffect(() => {
-    if (mainImage.current) startAnimation();
+    if (mainImage.current && isLoaded) startAnimation();
     return () => {
       clearAnimation();
     };
-  }, [mainImage.current]);
+  }, [mainImage.current, isLoaded]);
 
   return (
-    <Container isLoaded={isLoaded}>
+    <Container isDelayLoaded={isDelayLoaded}>
       <Wrapper>
         <LoadingImage ref={(node) => ref("Loading", node)} src={gif} priority />
         <CameraIcon ref={(node) => ref("CameraIcon", node)} src={camera} alt="camera" />

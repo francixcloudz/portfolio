@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import Image from "components/atoms/Image/Image";
 
-export const Container = styled.div<{ isLoaded: boolean }>`
+export const Container = styled.div<{ isDelayLoaded: boolean }>`
   z-index: 10;
   width: 100vw;
   height: 100vh;
@@ -18,8 +18,8 @@ export const Container = styled.div<{ isLoaded: boolean }>`
     width: 0;
   }
 
-  ${({ isLoaded, theme }) =>
-    isLoaded
+  ${({ isDelayLoaded, theme }) =>
+    isDelayLoaded
       ? `
       animation: FADE_OUT 0.4s ease forwards;
       ${theme.animations.FADE_OUT}

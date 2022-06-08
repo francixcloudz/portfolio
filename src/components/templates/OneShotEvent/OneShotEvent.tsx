@@ -20,7 +20,7 @@ import {
 import useAnimation from "./utils/useAnimation";
 
 const OneShotEvent = (): ReactElement => {
-  const { isLoaded } = useContext(LoadingContext);
+  const { isLoaded, isDelayLoaded } = useContext(LoadingContext);
 
   const mainImage = useRef<HTMLDivElement>(null);
   const allRefs = useRef<AllRefsGsap>({});
@@ -35,15 +35,15 @@ const OneShotEvent = (): ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (isLoaded) startAnimation();
+    if (isDelayLoaded) startAnimation();
     return () => {
       clearAnimation();
     };
-  }, [isLoaded]);
+  }, [isDelayLoaded]);
 
   return (
     <>
-      <Loader mainImage={mainImage} isLoaded={isLoaded} />
+      <Loader mainImage={mainImage} isLoaded={isLoaded} isDelayLoaded={isDelayLoaded} />
       <Container>
         <FlyerWrapper>
           <Flyer>

@@ -16,7 +16,8 @@ export const Container = styled.div`
 export const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 100%;
+  max-width: 450px;
 
   > *:not(:last-child) {
     margin-bottom: 1rem;

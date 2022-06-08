@@ -13,7 +13,7 @@ import Loader from "./Loader/Loader";
 import useAnimation from "./utils/useAnimation";
 
 const Landing = (): ReactElement => {
-  const { isLoaded } = useContext(LoadingContext);
+  const { isLoaded, isDelayLoaded } = useContext(LoadingContext);
 
   const [isSmileImage, setIsSmileImage] = useState(true);
 
@@ -31,15 +31,15 @@ const Landing = (): ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (isLoaded) startAnimation();
+    if (isDelayLoaded) startAnimation();
     return () => {
       clearAnimation();
     };
-  }, [isLoaded]);
+  }, [isDelayLoaded]);
 
   return (
     <>
-      <Loader mainImage={mainImage} isLoaded={isLoaded} />
+      <Loader mainImage={mainImage} isLoaded={isLoaded} isDelayLoaded={isDelayLoaded} />
       <Container>
         <Nav ref={(node) => ref("Nav", node)} />
         <Content ref={(node) => ref("Content", node)}>

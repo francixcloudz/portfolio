@@ -53,8 +53,14 @@ export const FlyerContent = styled.div`
 `;
 
 export const OneShotLogo = styled(Image)`
+  margin: auto;
   width: 15rem;
   height: 15rem;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    width: 10rem;
+    height: 10rem;
+  }
 `;
 
 export const BrandName = styled.p`

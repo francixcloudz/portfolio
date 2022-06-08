@@ -47,7 +47,7 @@ const TicketsCheckoutForm = forwardRef(
                       onChange={(event) => updateTicket(TicketKeys.Name, event.target.value, index)}
                     />
                     <DniInput
-                      type="number"
+                      type="tel"
                       placeholder="DNI"
                       value={tickets[index][TicketKeys.Dni] || ""}
                       onChange={(event) => updateTicket(TicketKeys.Dni, event.target.value, index)}
