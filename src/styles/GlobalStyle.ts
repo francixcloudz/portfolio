@@ -39,6 +39,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     border: 0;
   }
+
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
   
   h1,
   h2,

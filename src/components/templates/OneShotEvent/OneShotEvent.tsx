@@ -2,15 +2,13 @@ import { ReactElement, useContext, useEffect, useRef } from "react";
 import { LoadingContext } from "components/organisms/Loading/Loading";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import useResponsive from "hooks/useResponsive";
-import breakpoints from "styles/theme/data/breakpoints";
 import { AllRefsGsap } from "types/animations";
+import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
 import Loader from "./Loader/Loader";
 import {
   Container,
   FlyerWrapper,
   Flyer,
-  SvgWrapper,
   OneShotLogo,
   BrandName,
   DetailsVariant,
@@ -23,8 +21,6 @@ import useAnimation from "./utils/useAnimation";
 
 const OneShotEvent = (): ReactElement => {
   const { isLoaded } = useContext(LoadingContext);
-
-  const isMobile = useResponsive(breakpoints.large);
 
   const mainImage = useRef<HTMLDivElement>(null);
   const allRefs = useRef<AllRefsGsap>({});
@@ -47,12 +43,11 @@ const OneShotEvent = (): ReactElement => {
 
   return (
     <>
-      <Container isMobile={isMobile}>
-        <FlyerWrapper isMobile={isMobile}>
-          <Flyer isMobile={isMobile}>
-            <SvgWrapper ref={mainImage}>
-              <OneShotLogo />
-            </SvgWrapper>
+      <Loader mainImage={mainImage} isLoaded={isLoaded} />
+      <Container>
+        <FlyerWrapper>
+          <Flyer>
+            <OneShotLogo ref={mainImage} src={OneShotImage} alt="OneShot Logo" priority />
             <FlyerContent ref={(node) => ref("FlyerContent", node)}>
               <BrandName>[ONE]SHOT</BrandName>
               <Details variant={DetailsVariant.Medium} style={{ marginBottom: 0 }}>
@@ -84,15 +79,12 @@ const OneShotEvent = (): ReactElement => {
               </Details>
             </FlyerContent>
           </Flyer>
-          {isMobile && (
-            <MobileCTAButton ref={(node) => ref("MobileCTAButton", node)} href="#Tickets">
-              RESERVAR LUGARES
-            </MobileCTAButton>
-          )}
+          <MobileCTAButton ref={(node) => ref("MobileCTAButton", node)} href="#Tickets">
+            RESERVAR LUGARES
+          </MobileCTAButton>
         </FlyerWrapper>
         <StyledTicketsCheckoutForm ref={(node) => ref("TicketsCheckoutForm", node)} id="Tickets" />
       </Container>
-      <Loader mainImage={mainImage} isLoaded={isLoaded} />
     </>
   );
 };

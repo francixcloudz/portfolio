@@ -77,7 +77,7 @@ export const DeleteTicketButton = styled(GenericButton)`
   }
 `;
 
-export const TicketsWrapper = styled.div<{ isMobile: boolean }>`
+export const TicketsWrapper = styled.div`
   width: 100%;
   overflow: auto;
   box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.6)};
@@ -105,14 +105,12 @@ export const TicketsWrapper = styled.div<{ isMobile: boolean }>`
     linear-gradient(${theme.colors.violet_darkest} 2.6px, transparent 2.6px) 0px -1.3px / 32.5px 32.5px,
     linear-gradient(90deg, ${theme.colors.violet_darkest} 2.6px, ${theme.colors.black} 2.6px) -1.3px 0px / 32.5px 32.5px
   `};
+  max-width: 700px;
+  max-height: 25.2rem;
 
-  ${({ isMobile }) =>
-    isMobile
-      ? `flex: 1;`
-      : `
-      max-width: 700px;
-      max-height: 25.2rem;
-    `}
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    flex: 1;
+  }
 
   ::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => rgba(theme.colors.violet, 0.4)};
@@ -184,3 +182,8 @@ const Input = styled.input`
 export const NameInput = styled(Input)``;
 
 export const DniInput = styled(Input)``;
+
+export const TotalPrice = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.ExtraBold};
+`;

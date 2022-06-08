@@ -1,10 +1,5 @@
-import { forwardRef, ComponentProps, useState, ForwardedRef } from "react";
-import { awsS3Url } from "data";
-import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
-import useMercadoPago from "hooks/useMercadoPago";
-import useResponsive from "hooks/useResponsive";
-import breakpoints from "styles/theme/data/breakpoints";
-import { Ticket, TicketKeys } from "types/payment";
+import { forwardRef, ComponentProps, ForwardedRef } from "react";
+import { TicketKeys } from "types/payment";
 import {
   Container,
   ButtonsWrapper,
@@ -16,75 +11,35 @@ import {
   DeleteTicketButton,
   DniInput,
   NameInput,
+  TotalPrice,
 } from "./TicketsCheckoutForm.styled";
+import useForm from "./utils/useForm";
+
+const PRODUCT_PRICE = 600;
 
 const TicketsCheckoutForm = forwardRef(
   ({ ...rest }: ComponentProps<typeof Container>, ref: ForwardedRef<HTMLDivElement>) => {
-    const isMobile = useResponsive(breakpoints.large);
-
-    const [isFormVisible, setIsFormVisible] = useState(false);
-    const [tickets, setTickets] = useState<Array<Partial<Ticket>>>([{}]);
-    const hasMultipleTicket = tickets.length > 1;
-
-    const { initSDK, openCheckoutPage } = useMercadoPago();
-
-    useIsoLayoutEffect(() => {
-      initSDK(() => setIsFormVisible(true));
-    }, []);
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      openCheckoutPage({
-        statement_descriptor: "[ONE]CORP",
-        items: [
-          {
-            id: "[ONE]SHOT Pass",
-            title: "[ONE]SHOT Pass",
-            currency_id: "ARS",
-            picture_url: `${awsS3Url}/OneShot.png`,
-            description: "Pass to [ONE]SHOT Private Event",
-            category_id: "tickets",
-            quantity: tickets.length,
-            unit_price: 600,
-          },
-        ],
-        binary_mode: false,
-        auto_return: "approved",
-        back_urls: {
-          success: "https://www.success.com",
-          failure: "http://www.failure.com",
-          pending: "http://www.pending.com",
-        },
-        payment_methods: {
-          installments: 1,
-        },
-      });
-    };
-
-    const addTicket = () => {
-      setTickets((previousState) => [...previousState, {}]);
-    };
-
-    const deleteTicket = (index: number) => {
-      setTickets((previousState) => [...previousState].splice(index, 1));
-    };
-
-    const updateTicket = (key: TicketKeys, value: string, index: number) => {
-      setTickets((previousState) =>
-        [...previousState].splice(index, 1, { ...previousState[index], [key]: value }),
-      );
-    };
+    const {
+      tickets,
+      ticketsCount,
+      hasMultipleTicket,
+      isFormVisible,
+      handleSubmit,
+      addTicket,
+      deleteTicket,
+      updateTicket,
+    } = useForm({ price: PRODUCT_PRICE });
 
     return (
-      <Container onSubmit={handleSubmit} {...rest} ref={ref}>
+      <Container {...rest} ref={ref}>
         {isFormVisible && (
           <>
-            <TicketsWrapper isMobile={isMobile}>
-              {tickets.map(({ name, dni }, index) => (
+            <TicketsWrapper>
+              {new Array(ticketsCount).fill(null).map((_, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <TicketItem key={`TicketItem-${index}`}>
                   {/* eslint-disable-next-line react/no-array-index-key */}
-                  <TicketDetails key={`${name}-${dni}-${index}`}>
+                  <TicketDetails key={`TicketDetails-${index}`}>
                     <NameInput
                       type="text"
                       placeholder="Nombre completo"
@@ -108,7 +63,10 @@ const TicketsCheckoutForm = forwardRef(
               <AddTicketButton type="button" onClick={() => addTicket()}>
                 Agregar otro ticket
               </AddTicketButton>
-              <SubmitButton type="submit">Comprar ticket{hasMultipleTicket && "s"}</SubmitButton>
+              <SubmitButton onClick={() => handleSubmit()}>
+                Comprar ticket{hasMultipleTicket && "s"}
+              </SubmitButton>
+              <TotalPrice>Total: ${tickets.length * PRODUCT_PRICE}</TotalPrice>
             </ButtonsWrapper>
           </>
         )}

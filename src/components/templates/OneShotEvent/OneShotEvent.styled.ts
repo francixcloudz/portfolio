@@ -1,9 +1,9 @@
 import { rgba } from "polished";
-import styled, { css } from "styled-components";
-import Icon from "components/atoms/Icon/Icon";
+import styled from "styled-components";
+import Image from "components/atoms/Image/Image";
 import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
-export const Container = styled.div<{ isMobile: boolean }>`
+export const Container = styled.div`
   min-width: 100vw;
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.black};
@@ -12,37 +12,38 @@ export const Container = styled.div<{ isMobile: boolean }>`
   justify-content: space-evenly;
   align-items: center;
 
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    flex-direction: column;
+    > * {
+      width: 100%;
+      min-width: 100vw;
+      min-height: 100vh;
+      padding: 5vw;
+      display: flex;
       flex-direction: column;
-      > * {
-        width: 100%;
-        min-width: 100vw;
-        min-height: 100vh;
-        padding: 5vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-    `}
+      justify-content: center;
+      align-items: center;
+    }
+  }
 `;
 
-export const FlyerWrapper = styled.div<{ isMobile: boolean }>`
-  width: ${({ isMobile }) => (isMobile ? "100%" : "30%")};
+export const FlyerWrapper = styled.div`
+  width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: ${({ isMobile }) => (isMobile ? "space-between" : "center")};
   align-items: center;
+  justify-content: center;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
-export const Flyer = styled.div<{ isMobile: boolean }>`
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      margin: auto;
-    `}
+export const Flyer = styled.div`
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    margin: auto;
+  }
 `;
 
 export const FlyerContent = styled.div`
@@ -52,16 +53,9 @@ export const FlyerContent = styled.div`
   align-items: center;
 `;
 
-export const SvgWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const OneShotLogo = styled(Image)`
   width: 15rem;
   height: 15rem;
-`;
-
-export const OneShotLogo = styled(Icon.OneShot)`
-  fill: ${({ theme }) => theme.colors.white};
 `;
 
 export const BrandName = styled.p`
@@ -125,6 +119,11 @@ export const MobileCTAButton = styled.a`
     ${({ theme }) => theme.colors.white};
   background-size: 22px 22px;
   padding: 1rem;
+  display: none;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    display: block;
+  }
 
   :hover {
     box-shadow: 0 6px 10px -3px ${({ theme }) => rgba(theme.colors.violet, 0.8)};
@@ -132,6 +131,10 @@ export const MobileCTAButton = styled.a`
 `;
 
 export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
-  width: ${({ isMobile }) => (isMobile ? "100%" : "55%")};
+  width: 55%;
   max-height: 100vh;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    width: 100%;
+  }
 `;

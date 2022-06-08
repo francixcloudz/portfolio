@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Icon from "components/atoms/Icon/Icon";
+import Image from "components/atoms/Image/Image";
 
 export const Container = styled.div<{ isLoaded: boolean }>`
   z-index: 10;
@@ -26,17 +26,10 @@ export const Container = styled.div<{ isLoaded: boolean }>`
     `}
 `;
 
-export const SvgWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const OneShotLogo = styled(Image)`
   position: fixed;
-  left: 25%;
-  top: 25%;
-  width: 50%;
-  height: 50%;
-`;
-
-export const OneShotLogo = styled(Icon.OneShot)`
-  fill: ${({ theme }) => theme.colors.white};
+  width: 95vw;
+  height: 95vw;
+  max-width: 400px;
+  max-height: 400px;
 `;

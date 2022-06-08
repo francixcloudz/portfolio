@@ -5,11 +5,11 @@ import { gsap } from "utils/gsap";
 interface UseAnimationProps {
   refs: RefSet;
   delay: number;
-  setMainImageStyle: React.Dispatch<React.SetStateAction<CSSProperties>>;
+  setLoaderImageStyle: React.Dispatch<React.SetStateAction<CSSProperties>>;
   mainImage: React.RefObject<HTMLDivElement>;
 }
 
-const useAnimation = ({ refs, delay, setMainImageStyle, mainImage }: UseAnimationProps) => {
+const useAnimation = ({ refs, delay, setLoaderImageStyle, mainImage }: UseAnimationProps) => {
   const tl = gsap.timeline();
 
   const setAnimation = () => {
@@ -17,7 +17,7 @@ const useAnimation = ({ refs, delay, setMainImageStyle, mainImage }: UseAnimatio
       refs.get("LoaderImage") as HTMLDivElement
     ).getBoundingClientRect() as DOMRect;
     const { x: left, y: top, width, height } = loaderImageInfo;
-    setMainImageStyle({ left, top, width, height });
+    setLoaderImageStyle({ left, top, width, height });
   };
 
   const startAnimation = () => {
@@ -30,8 +30,9 @@ const useAnimation = ({ refs, delay, setMainImageStyle, mainImage }: UseAnimatio
     tl.to(refs.get("LoaderImage"), {
       delay,
       ease: "none",
-      left: leftMainImage,
-      top: topMainImage,
+      // TODO: Fix first load of mainImage
+      left: leftMainImage * 1.79729264655,
+      top: topMainImage * 1.12752560199,
       width: widthMainImage,
       height: heightMainImage,
     });

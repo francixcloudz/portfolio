@@ -1,8 +1,9 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties, useMemo, useRef, useState } from "react";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
-import { Container, SvgWrapper, OneShotLogo } from "./Loader.styled";
+import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
+import { Container, OneShotLogo } from "./Loader.styled";
 import useAnimation from "./utils/useAnimation";
 
 export interface LoadingProps {
@@ -13,15 +14,15 @@ export interface LoadingProps {
 const DEFAULT_DELAY = 1;
 
 const Loader = ({ isLoaded, mainImage }: LoadingProps) => {
+  const [loaderImageStyle, setLoaderImageStyle] = useState<CSSProperties>({});
+
   const allRefs = useRef<AllRefsGsap>({});
   const ref = useRefSet(allRefs);
-
-  const [mainImageStyle, setMainImageStyle] = useState<CSSProperties>({});
 
   const { setAnimation, startAnimation, clearAnimation } = useAnimation({
     refs: new RefSet(allRefs.current),
     delay: DEFAULT_DELAY,
-    setMainImageStyle,
+    setLoaderImageStyle,
     mainImage,
   });
 
@@ -29,7 +30,7 @@ const Loader = ({ isLoaded, mainImage }: LoadingProps) => {
     setAnimation();
   }, []);
 
-  useEffect(() => {
+  useMemo(() => {
     if (mainImage.current) startAnimation();
     return () => {
       clearAnimation();
@@ -38,9 +39,13 @@ const Loader = ({ isLoaded, mainImage }: LoadingProps) => {
 
   return (
     <Container isLoaded={isLoaded}>
-      <SvgWrapper ref={(node) => ref("LoaderImage", node)} style={mainImageStyle}>
-        <OneShotLogo />
-      </SvgWrapper>
+      <OneShotLogo
+        ref={(node) => ref("LoaderImage", node)}
+        src={OneShotImage}
+        alt="OneShot Logo"
+        style={loaderImageStyle}
+        priority
+      />
     </Container>
   );
 };
