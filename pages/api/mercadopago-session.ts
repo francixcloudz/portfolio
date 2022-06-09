@@ -7,8 +7,11 @@ type Error = { statusCode: number; message: string };
 
 module.exports = async (request: NextApiRequest, response: NextApiResponse) => {
   try {
+    const accessToken = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
+      ? process.env.NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN_TEST
+      : process.env.NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN;
     mercadopago.configure({
-      access_token: process.env.NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN,
+      access_token: accessToken,
     });
     const session = await mercadopago.preferences.create({
       ...(request.body as PaymentDetailsMercadoPago),

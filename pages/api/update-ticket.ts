@@ -24,10 +24,8 @@ module.exports = async (request, response) => {
         },
       ),
     );
-    // ok
     response.status(200).json(dbs.data);
   } catch (error) {
-    // something went wrong
     response.status(500).json({ error: (error as Error).message });
   }
 };

@@ -19,8 +19,11 @@ const useMercadoPago = (): UseMercadoPago => {
 
   const openCheckoutPage = async (paymentDetails: PaymentDetailsMercadoPago) => {
     const { id } = await getMercadoPagoSession(paymentDetails);
+    const publicKey = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
+      ? process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY_TEST
+      : process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
     // eslint-disable-next-line @typescript-eslint/dot-notation
-    const mercadopago = new window["MercadoPago"](process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY, {
+    const mercadopago = new window["MercadoPago"](publicKey, {
       locale: "es-AR",
     });
     mercadopago.checkout({

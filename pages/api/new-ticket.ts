@@ -1,18 +1,16 @@
 import { query, client, FaunaDatabaseResponseType } from "utils/fauna";
 
 module.exports = async (request, response) => {
-  const formData = request.body.data;
+  const { paymentStatus, users } = request.body;
   try {
     const dbs: FaunaDatabaseResponseType = await client.query(
       query.Create(
         // iterate each item in result
-        query.Collection("companies"),
+        query.Collection("tickets"),
         {
           data: {
-            id: formData.id,
-            email: formData.email,
-            name: formData.name,
-            phone: formData.phone,
+            paymentStatus,
+            users,
           },
         },
       ),
@@ -20,7 +18,6 @@ module.exports = async (request, response) => {
     // ok
     response.status(200).json(dbs.data);
   } catch (error) {
-    // something went wrong
     response.status(500).json({ error: (error as Error).message });
   }
 };

@@ -9,16 +9,14 @@ module.exports = async (request, response) => {
           // make paginatable
           query.Match(
             // query index
-            query.Index("all_companies"), // specify source
+            query.Index("all_tickets"), // specify source
           ),
         ),
         (ref) => query.Get(ref), // lookup each result by its reference
       ),
     );
-    // ok
     response.status(200).json(dbs.data);
   } catch (error) {
-    // something went wrong
     response.status(500).json({ error: (error as Error).message });
   }
 };
