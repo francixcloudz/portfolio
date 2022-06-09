@@ -1,8 +1,12 @@
-import { query, client, FaunaDatabaseResponseType } from "utils/fauna";
+import faunadb from "faunadb";
 
 module.exports = async (request, response) => {
   try {
-    const dbs: FaunaDatabaseResponseType = await client.query(
+    const secret = process.env.FAUNADB_SECRET_KEY || "not found";
+    const { query } = faunadb;
+    const client = new faunadb.Client({ secret });
+
+    const dbs = await client.query(
       query.Map(
         // iterate each item in result
         query.Paginate(
@@ -15,7 +19,7 @@ module.exports = async (request, response) => {
         (ref) => query.Get(ref), // lookup each result by its reference
       ),
     );
-    response.status(200).json(dbs.data);
+    response.status(200).json(dbs);
   } catch (error) {
     response.status(500).json(error);
   }

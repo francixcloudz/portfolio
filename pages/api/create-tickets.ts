@@ -1,8 +1,12 @@
-import { query, client } from "utils/fauna";
+import faunadb from "faunadb";
 
 module.exports = async (request, response) => {
-  const { tickets, paymentId } = request.body;
   try {
+    const secret = process.env.FAUNADB_SECRET_KEY || "not found";
+    const { query } = faunadb;
+    const client = new faunadb.Client({ secret });
+
+    const { tickets, paymentId } = request.body;
     const dbs = await client.query(
       query.Create(query.Collection("tickets"), {
         data: {

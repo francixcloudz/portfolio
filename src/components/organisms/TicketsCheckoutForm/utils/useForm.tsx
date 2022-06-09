@@ -46,7 +46,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const handleSubmit = async () => {
     setStatus(Status.Loading);
     try {
-      const rootDomain = process.env.ROOT_DOMAIN;
+      const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
       const { id, paymentUrl } = await getMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [

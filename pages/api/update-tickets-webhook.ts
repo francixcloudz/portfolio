@@ -1,9 +1,13 @@
+import faunadb from "faunadb";
 import axiosInstance from "utils/axiosInstance";
-import { query, client } from "utils/fauna";
 
 module.exports = async (request, response) => {
-  const { id } = request.body.data;
   try {
+    const secret = process.env.FAUNADB_SECRET_KEY || "not found";
+    const { query } = faunadb;
+    const client = new faunadb.Client({ secret });
+
+    const { id } = request.body.data;
     const {
       data: { status },
     } = await axiosInstance.get(`https://api.mercadopago.com/v1/payments/${id}`);
