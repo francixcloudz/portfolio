@@ -4,6 +4,7 @@ import Image from "components/atoms/Image/Image";
 import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
 export const Container = styled.div`
+  position: relative;
   min-width: 100vw;
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.black};

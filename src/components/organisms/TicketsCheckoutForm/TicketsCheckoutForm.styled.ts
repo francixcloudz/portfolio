@@ -115,6 +115,7 @@ export const TicketsWrapper = styled.div`
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
     height: auto;
     flex: 1;
+    position: static;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -217,7 +218,12 @@ const TagBannerStyle = css`
 `;
 
 export const InfoButton = styled.div`
+  cursor: pointer;
   ${TagBannerStyle}
+
+  * {
+    cursor: pointer;
+  }
 `;
 
 export const LockBanner = styled.div`
