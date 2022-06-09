@@ -49,7 +49,6 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
       setStatus(Status.Loading);
       const { data } = await createTicket(tickets);
       const { id } = data.ref["@ref"];
-      const backUrl = `${baseUrl}/${Path.Party}?id=${id}`;
       redirectToMercadoPago({
         id,
         statement_descriptor: "[ONE]SHOT",
@@ -65,16 +64,6 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
             unit_price: price,
           },
         ],
-        binary_mode: false,
-        auto_return: "approved",
-        back_urls: {
-          success: `${backUrl}&status=${Status.Success}`,
-          failure: `${backUrl}&status=${Status.Failure}`,
-          pending: `${backUrl}&status=${Status.Pending}`,
-        },
-        payment_methods: {
-          installments: 1,
-        },
       });
     } catch (error) {
       // eslint-disable-next-line no-console
