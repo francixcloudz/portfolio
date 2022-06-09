@@ -1,5 +1,5 @@
 import { rgba } from "polished";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import GenericButton from "components/atoms/GenericButton/GenericButton";
 import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Icon from "components/atoms/Icon/Icon";
@@ -192,48 +192,6 @@ export const TotalPrice = styled.p`
   font-weight: ${({ theme }) => theme.fonts.Nunito.weights.ExtraBold};
 `;
 
-export const InfoButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.violet};
-  background: ${({ theme }) => rgba(theme.colors.violet, 0.3)};
-  border: 1px solid ${({ theme }) => theme.colors.violet_darker};
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: fit-content;
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
-`;
-
-export const InfoIcon = styled(Icon.Info)`
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 0.5rem;
-  fill: ${({ theme }) => theme.colors.violet};
-`;
-
-export const LockBanner = styled.div`
-  color: ${({ theme }) => theme.colors.violet};
-  background: ${({ theme }) => rgba(theme.colors.violet, 0.3)};
-  border: 1px solid ${({ theme }) => theme.colors.violet_darker};
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: fit-content;
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
-`;
-
-export const LockIcon = styled(Icon.Lock)`
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 0.5rem;
-  fill: ${({ theme }) => theme.colors.violet};
-`;
-
 export const TagsWrapper = styled.div`
   display: grid;
   justify-content: center;
@@ -241,6 +199,43 @@ export const TagsWrapper = styled.div`
   justify-items: center;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
+`;
+
+const TagBannerStyle = css`
+  color: ${({ theme }) => theme.colors.violet};
+  background: ${({ theme }) => rgba(theme.colors.violet, 0.3)};
+  border: 1px solid ${({ theme }) => theme.colors.violet_darker};
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
+`;
+
+export const InfoButton = styled(Button)`
+  ${TagBannerStyle}
+`;
+
+export const LockBanner = styled.div`
+  ${TagBannerStyle}
+`;
+
+const TagIconStyle = css`
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  fill: ${({ theme }) => theme.colors.violet};
+`;
+
+export const InfoIcon = styled(Icon.Info)`
+  ${TagIconStyle}
+`;
+
+export const LockIcon = styled(Icon.Lock)`
+  ${TagIconStyle}
 `;
 
 export const InfoModal = styled(GenericModal)`
