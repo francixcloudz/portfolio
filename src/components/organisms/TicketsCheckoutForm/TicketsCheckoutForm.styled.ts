@@ -109,9 +109,12 @@ export const TicketsWrapper = styled.div`
   `};
   width: 100%;
   max-width: 700px;
-  height: 100%;
-  max-height: 25.2rem;
-  flex: 1;
+  height: 25.2rem;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
+    height: auto;
+    flex: 1;
+  }
 
   ::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => rgba(theme.colors.violet, 0.4)};
@@ -237,7 +240,7 @@ export const TagsWrapper = styled.div`
   align-items: center;
   justify-items: center;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
 `;
 
 export const InfoModal = styled(GenericModal)`
