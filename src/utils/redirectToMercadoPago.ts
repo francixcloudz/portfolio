@@ -12,9 +12,7 @@ const redirectToMercadoPago = async (paymentDetails: PaymentDetailsMercadoPago) 
       ? process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY_TEST
       : process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
     // eslint-disable-next-line @typescript-eslint/dot-notation
-    const mercadopago = new window["MercadoPago"](publicKey, {
-      locale: "es-AR",
-    });
+    const mercadopago = new window["MercadoPago"](publicKey);
     mercadopago.checkout({
       preference: { id: sessionId, ...paymentDetails },
       theme: {
@@ -22,6 +20,7 @@ const redirectToMercadoPago = async (paymentDetails: PaymentDetailsMercadoPago) 
         headerColor: colors.violet,
       },
       autoOpen: true,
+      target: "_blank",
     });
   });
   document.body.appendChild(script);

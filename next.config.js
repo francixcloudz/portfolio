@@ -9,6 +9,19 @@ module.exports = {
 
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: "/party",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' *.mercadolibre.com",
+          },
+        ],
+      },
+    ];
+  },
   compiler: {
     styledComponents: true,
     ssr: true,

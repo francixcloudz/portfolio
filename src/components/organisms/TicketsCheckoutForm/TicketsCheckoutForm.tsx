@@ -26,11 +26,18 @@ import {
 } from "./TicketsCheckoutForm.styled";
 import useForm, { Status } from "./utils/useForm";
 
+interface TicketsCheckoutFormProps {
+  minimumAge?: number;
+}
+
 const PRODUCT_PRICE = 600;
 
 // TODO: Modularize
 const TicketsCheckoutForm = forwardRef(
-  ({ ...rest }: ComponentProps<typeof Container>, ref: ForwardedRef<HTMLDivElement>) => {
+  (
+    { minimumAge, ...rest }: TicketsCheckoutFormProps & ComponentProps<typeof Container>,
+    ref: ForwardedRef<HTMLDivElement>,
+  ) => {
     const {
       status,
       tickets,
@@ -57,10 +64,12 @@ const TicketsCheckoutForm = forwardRef(
               <InfoIcon />
               Detalles del evento
             </InfoButton>
-            <LockBanner>
-              <LockIcon />
-              Prohibida la entrada a menores de 20
-            </LockBanner>
+            {minimumAge && (
+              <LockBanner>
+                <LockIcon />
+                Prohibida la entrada a menores de {minimumAge}
+              </LockBanner>
+            )}
           </TagsWrapper>
           <TicketsWrapper ref={ticketsWrapper}>
             {new Array(ticketsCount).fill(null).map((_, index) => (
@@ -95,7 +104,11 @@ const TicketsCheckoutForm = forwardRef(
             >
               Agregar otro ticket
             </AddTicketButton>
-            <SubmitButton onClick={() => handleSubmit()} disabled={status === Status.Loading}>
+            <SubmitButton
+              id="paycontainer"
+              onClick={() => handleSubmit()}
+              disabled={status === Status.Loading}
+            >
               {status === Status.Loading ? (
                 <StyledInlineLoader />
               ) : (
