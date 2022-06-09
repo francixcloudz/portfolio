@@ -5,11 +5,12 @@ import { PaymentDetailsMercadopago } from "types/payment";
 module.exports = async (request: NextApiRequest, response: NextApiResponse) => {
   try {
     const preferences = request.body as PaymentDetailsMercadopago;
-    const accessToken = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
+    const isSandbox = Boolean(Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV));
+    const accessToken = isSandbox
       ? process.env.NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN_TEST
       : process.env.NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN;
     mercadopago.configure({
-      sandbox: true,
+      sandbox: isSandbox,
       access_token: accessToken,
     });
     const session = await mercadopago.preferences.create(preferences);
