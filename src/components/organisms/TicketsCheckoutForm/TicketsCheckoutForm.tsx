@@ -102,7 +102,7 @@ const TicketsCheckoutForm = forwardRef(
                   {status === Status.Loading ? (
                     <StyledInlineLoader />
                   ) : (
-                    `Comprar ${ticketsCount} ticket${hasMultipleTicket && "s"}`
+                    `Comprar ${ticketsCount} ticket${hasMultipleTicket ? "s" : ""}`
                   )}
                 </SubmitButton>
                 <TotalPrice>Total: ${ticketsCount * PRODUCT_PRICE}</TotalPrice>

@@ -30,7 +30,6 @@ const useMercadoPago = (): UseMercadoPago => {
     });
     mercadopago.checkout({
       preference: { id, ...paymentDetails },
-      autoOpen: true,
     });
   };
 
