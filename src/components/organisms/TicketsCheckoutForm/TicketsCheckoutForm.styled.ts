@@ -216,7 +216,7 @@ const TagBannerStyle = css`
   font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
 `;
 
-export const InfoButton = styled(Button)`
+export const InfoButton = styled.div`
   ${TagBannerStyle}
 `;
 
