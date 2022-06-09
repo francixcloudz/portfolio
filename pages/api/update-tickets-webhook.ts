@@ -1,5 +1,5 @@
 import axiosInstance from "utils/axiosInstance";
-import { query, client, FaunaDatabaseResponseType } from "utils/fauna";
+import { query, client } from "utils/fauna";
 
 module.exports = async (request, response) => {
   const { id } = request.body.data;

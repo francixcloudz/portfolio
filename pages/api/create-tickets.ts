@@ -8,10 +8,11 @@ module.exports = async (request, response) => {
         data: {
           tickets,
           paymentId,
-          paymentStatus: null,
+          paymentStatus: "null",
         },
       }),
     );
+    console.log(dbs);
     response.status(200).json(dbs);
   } catch (error) {
     response.status(500).json(error);

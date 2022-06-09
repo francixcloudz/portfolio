@@ -7,10 +7,8 @@ interface CreateTicketsProps {
   paymentId: string;
 }
 
-const createTickets = async ({ tickets, paymentId }: CreateTicketsProps) => {
-  const response = await axiosInstance.post(ApiPath.CreateTickets, {
-    body: { tickets, paymentId },
-  });
+const createTickets = async (newTicket: CreateTicketsProps) => {
+  const response = await axiosInstance.post(ApiPath.CreateTickets, newTicket);
   return response;
 };
 
