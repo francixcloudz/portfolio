@@ -23,9 +23,9 @@ const handleSubmit: (props: {
   setLoading(true);
   return sendForm(
     "gmail",
-    `${process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE}`,
+    `${process.env.EMAILJS_TEMPLATE}`,
     event.target,
-    `${process.env.NEXT_PUBLIC_EMAILJS_USER}`,
+    `${process.env.EMAILJS_USER}`,
   ).then(
     () => {
       handleMessage("Thank you for your time 💛 I'll get back to you shortly");
