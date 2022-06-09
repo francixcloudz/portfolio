@@ -99,15 +99,13 @@ const TicketsCheckoutForm = forwardRef(
           <ButtonsWrapper>
             <AddTicketButton
               type="button"
-              onClick={() => addTicket()}
-              disabled={status === Status.Loading}
+              onClick={() => (status === Status.Loading ? null : addTicket())}
             >
               Agregar otro ticket
             </AddTicketButton>
             <SubmitButton
               id="paycontainer"
-              onClick={() => handleSubmit()}
-              disabled={status === Status.Loading}
+              onClick={() => (status === Status.Loading ? null : handleSubmit())}
             >
               {status === Status.Loading ? (
                 <StyledInlineLoader />

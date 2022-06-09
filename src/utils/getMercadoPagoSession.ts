@@ -12,7 +12,7 @@ const getMercadopagoSession = async (
 ): Promise<MercadopagoSession> => {
   const {
     data: { response },
-  } = await axiosInstance.post(ApiPath.GetCheckoutSession, paymentDetails);
+  } = await axiosInstance.post(ApiPath.MercadopagoSession, paymentDetails);
   return {
     id: response.id,
     paymentUrl: response.init_point,

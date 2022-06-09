@@ -1,14 +1,14 @@
 import { query, client } from "utils/fauna";
 
 module.exports = async (request, response) => {
-  const { tickets, paymentId, paymentStatus } = request.body;
+  const { tickets, paymentId } = request.body;
   try {
     const dbs = await client.query(
       query.Create(query.Collection("tickets"), {
         data: {
           tickets,
           paymentId,
-          paymentStatus,
+          paymentStatus: null,
         },
       }),
     );

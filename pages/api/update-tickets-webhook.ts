@@ -1,9 +1,13 @@
+import axiosInstance from "utils/axiosInstance";
 import { query, client, FaunaDatabaseResponseType } from "utils/fauna";
 
 module.exports = async (request, response) => {
-  const formData = request.body.data;
+  const { id } = request.body.data;
   try {
-    const dbs: FaunaDatabaseResponseType = await client.query(
+    const {
+      data: { status },
+    } = await axiosInstance.get(`https://api.mercadopago.com/v1/payments/${id}`);
+    await client.query(
       query.Update(
         // extracts a single value from a document
         query.Select(
@@ -11,20 +15,17 @@ module.exports = async (request, response) => {
           // retrieving the first document from a Match result
           query.Get(
             // retrieving all matches
-            query.Match("all_companies_email", formData.email),
+            query.Match("all_tickets_paymentId", id),
           ),
         ),
         {
           data: {
-            id: formData.id,
-            email: formData.email,
-            name: formData.name,
-            phone: formData.phone,
+            paymentStatus: status,
           },
         },
       ),
     );
-    response.status(200).json(dbs.data);
+    response.status(200);
   } catch (error) {
     response.status(500).json(error);
   }

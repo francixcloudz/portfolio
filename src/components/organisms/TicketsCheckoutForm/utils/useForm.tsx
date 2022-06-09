@@ -1,14 +1,16 @@
 import { useState, useRef, useEffect, RefObject } from "react";
 import { awsS3Url } from "data";
-import { Path } from "data/enum/Path";
+import { ApiPath, Path } from "data/enum/Path";
 import { Ticket, TicketKeys } from "types/payment";
-import baseUrl from "utils/baseUrl";
-import createTickets, { PaymentStatus } from "utils/createTickets";
+import createTickets from "utils/createTickets";
 import getMercadopagoSession from "utils/getMercadoPagoSession";
 
-export enum FormStatus {
+export enum Status {
   Default = "Default",
   Loading = "Loading",
+  Success = "Success",
+  Failure = "Failure",
+  Pending = "pending",
 }
 
 const DEFAULT_TICKET: Ticket = {
@@ -19,8 +21,6 @@ const DEFAULT_TICKET: Ticket = {
 interface UseFormProps {
   price: number;
 }
-
-type Status = FormStatus | PaymentStatus;
 
 interface UseFormResponse {
   status: Status;
@@ -38,14 +38,15 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const ticketsWrapper = useRef<HTMLDivElement>(null);
 
   const [tickets, setTickets] = useState<Array<Ticket>>([DEFAULT_TICKET]);
-  const [status, setStatus] = useState<Status>(FormStatus.Default);
+  const [status, setStatus] = useState<Status>(Status.Default);
 
   const ticketsCount = tickets.length;
   const hasMultipleTicket = ticketsCount > 1;
 
   const handleSubmit = async () => {
-    setStatus(FormStatus.Loading);
+    setStatus(Status.Loading);
     try {
+      const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
       const { id, paymentUrl } = await getMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [
@@ -62,12 +63,13 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
         ],
         auto_return: "approved",
         back_urls: {
-          success: `${baseUrl}/${Path.Party}?status=${PaymentStatus.Success}`,
-          failure: `${baseUrl}/${Path.Party}?status=${PaymentStatus.Failure}`,
-          pending: `${baseUrl}/${Path.Party}?status=${PaymentStatus.Pending}`,
+          success: `${rootDomain}/${Path.Party}?status=${Status.Success}`,
+          failure: `${rootDomain}/${Path.Party}?status=${Status.Failure}`,
+          pending: `${rootDomain}/${Path.Party}?status=${Status.Pending}`,
         },
+        notification_url: `${rootDomain}/api/${ApiPath.UpdateTickets}?source_news=webhooks`,
       });
-      await createTickets({ tickets, paymentId: id, paymentStatus: PaymentStatus.Pending });
+      await createTickets({ tickets, paymentId: id });
       window.location.href = paymentUrl;
     } catch (error) {
       // eslint-disable-next-line no-console

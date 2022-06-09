@@ -16,6 +16,7 @@ export interface PaymentDetailsMercadopago {
     failure: string;
     pending: string;
   };
+  notification_url: string;
 }
 export enum TicketKeys {
   Name = "name",
