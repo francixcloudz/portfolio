@@ -1,6 +1,5 @@
 import { forwardRef, ComponentProps, ForwardedRef } from "react";
 import { GenericModalVariants } from "components/atoms/GenericModal/utils/data";
-import Loader from "components/atoms/Loader/Loader";
 import useGenericModal from "hooks/useGenericModal";
 import { TicketKeys } from "types/payment";
 import {
@@ -23,7 +22,7 @@ import {
   InfoModal,
   DetailsTitle,
   DetailsContent,
-  LoaderWrapper,
+  StyledInlineLoader,
 } from "./TicketsCheckoutForm.styled";
 import useForm, { Status } from "./utils/useForm";
 
@@ -94,18 +93,17 @@ const TicketsCheckoutForm = forwardRef(
                     )}
                   </TicketItem>
                 ))}
-                {status === Status.Loading && (
-                  <LoaderWrapper>
-                    <Loader />
-                  </LoaderWrapper>
-                )}
               </TicketsWrapper>
               <ButtonsWrapper>
                 <AddTicketButton type="button" onClick={() => addTicket()}>
                   Agregar otro ticket
                 </AddTicketButton>
-                <SubmitButton onClick={() => handleSubmit()}>
-                  Comprar {ticketsCount} ticket{hasMultipleTicket && "s"}
+                <SubmitButton onClick={() => handleSubmit()} disabled={status === Status.Loading}>
+                  {status === Status.Loading ? (
+                    <StyledInlineLoader />
+                  ) : (
+                    `Comprar ${ticketsCount} ticket${hasMultipleTicket && "s"}`
+                  )}
                 </SubmitButton>
                 <TotalPrice>Total: ${ticketsCount * PRODUCT_PRICE}</TotalPrice>
               </ButtonsWrapper>

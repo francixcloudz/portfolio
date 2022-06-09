@@ -5,7 +5,7 @@ const Loader = (): ReactElement => (
   <Container>
     {new Array(4).fill(null).map((_, index) => (
       // eslint-disable-next-line react/no-array-index-key
-      <DotContainer key={index}>
+      <DotContainer key={`Loader-${index}`}>
         <Dot />
       </DotContainer>
     ))}

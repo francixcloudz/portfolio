@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import GenericButton from "components/atoms/GenericButton/GenericButton";
 import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Icon from "components/atoms/Icon/Icon";
+import InlineLoader from "components/atoms/InlineLoader/InlineLoader";
 
 export const Container = styled.div`
   display: flex;
@@ -81,7 +82,6 @@ export const DeleteTicketButton = styled(GenericButton)`
 `;
 
 export const TicketsWrapper = styled.div`
-  position: relative;
   overflow: auto;
   box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.6)};
   border-radius: 1rem;
@@ -115,7 +115,6 @@ export const TicketsWrapper = styled.div`
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
     height: auto;
     flex: 1;
-    position: static;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -292,14 +291,4 @@ export const DetailsContent = styled.p`
   font-size: 1rem;
 `;
 
-export const LoaderWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: ${({ theme }) => rgba(theme.colors.black, 0.8)};
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: center;
-  align-items: center;
-`;
+export const StyledInlineLoader = styled(InlineLoader)``;

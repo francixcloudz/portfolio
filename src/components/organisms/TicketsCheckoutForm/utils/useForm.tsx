@@ -46,31 +46,31 @@ const useForm = ({ price }: UseFormProps) => {
       const { data } = await createTicket(tickets);
       const { id } = data.ref["@ref"];
       const backUrl = `${baseUrl}/${Path.Party}?id=${id}`;
-      openCheckoutPage({
-        statement_descriptor: "[ONE]SHOT",
-        items: [
-          {
-            id: "[ONE]SHOT Pass",
-            title: "[ONE]SHOT Pass",
-            currency_id: "ARS",
-            picture_url: `${awsS3Url}/OneShot.png`,
-            description: "Pass to [ONE]SHOT Private Event",
-            category_id: "tickets",
-            quantity: ticketsCount,
-            unit_price: price,
-          },
-        ],
-        binary_mode: false,
-        auto_return: "approved",
-        back_urls: {
-          success: `${backUrl}&status=${Status.Success}`,
-          failure: `${backUrl}&status=${Status.Failure}`,
-          pending: `${backUrl}&status=${Status.Pending}`,
-        },
-        payment_methods: {
-          installments: 1,
-        },
-      });
+      // openCheckoutPage({
+      //   statement_descriptor: "[ONE]SHOT",
+      //   items: [
+      //     {
+      //       id: "[ONE]SHOT Pass",
+      //       title: "[ONE]SHOT Pass",
+      //       currency_id: "ARS",
+      //       picture_url: `${awsS3Url}/OneShot.png`,
+      //       description: "Pass to [ONE]SHOT Private Event",
+      //       category_id: "tickets",
+      //       quantity: ticketsCount,
+      //       unit_price: price,
+      //     },
+      //   ],
+      //   binary_mode: false,
+      //   auto_return: "approved",
+      //   back_urls: {
+      //     success: `${backUrl}&status=${Status.Success}`,
+      //     failure: `${backUrl}&status=${Status.Failure}`,
+      //     pending: `${backUrl}&status=${Status.Pending}`,
+      //   },
+      //   payment_methods: {
+      //     installments: 1,
+      //   },
+      // });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
