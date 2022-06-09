@@ -3,8 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { PaymentDetailsMercadoPago } from "types/payment";
 import { MercadoPagoSession } from "utils/getMercadoPagoSession";
 
-type Error = { statusCode: number; message: string };
-
 module.exports = async (request: NextApiRequest, response: NextApiResponse) => {
   try {
     const accessToken = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
@@ -18,6 +16,6 @@ module.exports = async (request: NextApiRequest, response: NextApiResponse) => {
     });
     response.status(200).json(session as MercadoPagoSession);
   } catch (error) {
-    response.status((error as Error).statusCode || 500).json({ error: (error as Error).message });
+    response.status(500).json(error);
   }
 };

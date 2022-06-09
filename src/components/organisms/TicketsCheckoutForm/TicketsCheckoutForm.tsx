@@ -1,5 +1,6 @@
 import { forwardRef, ComponentProps, ForwardedRef } from "react";
 import { GenericModalVariants } from "components/atoms/GenericModal/utils/data";
+import Loader from "components/atoms/Loader/Loader";
 import useGenericModal from "hooks/useGenericModal";
 import { TicketKeys } from "types/payment";
 import {
@@ -22,8 +23,9 @@ import {
   InfoModal,
   DetailsTitle,
   DetailsContent,
+  LoaderWrapper,
 } from "./TicketsCheckoutForm.styled";
-import useForm from "./utils/useForm";
+import useForm, { Status } from "./utils/useForm";
 
 const PRODUCT_PRICE = 600;
 
@@ -31,6 +33,7 @@ const PRODUCT_PRICE = 600;
 const TicketsCheckoutForm = forwardRef(
   ({ ...rest }: ComponentProps<typeof Container>, ref: ForwardedRef<HTMLDivElement>) => {
     const {
+      status,
       tickets,
       ticketsCount,
       hasMultipleTicket,
@@ -91,6 +94,11 @@ const TicketsCheckoutForm = forwardRef(
                     )}
                   </TicketItem>
                 ))}
+                {status === Status.Loading && (
+                  <LoaderWrapper>
+                    <Loader />
+                  </LoaderWrapper>
+                )}
               </TicketsWrapper>
               <ButtonsWrapper>
                 <AddTicketButton type="button" onClick={() => addTicket()}>

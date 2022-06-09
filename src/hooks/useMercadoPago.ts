@@ -1,15 +1,20 @@
 import { PaymentDetailsMercadoPago } from "types/payment";
 import getMercadoPagoSession from "utils/getMercadoPagoSession";
 
-export type OpenCheckoutPage = (paymentDetails: PaymentDetailsMercadoPago) => Promise<void>;
+export type OpenCheckoutPage = (
+  id: string,
+  paymentDetails: PaymentDetailsMercadoPago,
+) => Promise<void>;
+
+type InitSDK = (onLoadCallback: () => void) => void;
 
 interface UseMercadoPago {
-  initSDK: (onLoadCallback: () => void) => void;
+  initSDK: InitSDK;
   openCheckoutPage: OpenCheckoutPage;
 }
 
 const useMercadoPago = (): UseMercadoPago => {
-  const initSDK = (onLoadCallback: () => void) => {
+  const initSDK: InitSDK = (onLoadCallback) => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src = "https://sdk.mercadopago.com/js/v2";
@@ -17,8 +22,8 @@ const useMercadoPago = (): UseMercadoPago => {
     document.body.appendChild(script);
   };
 
-  const openCheckoutPage = async (paymentDetails: PaymentDetailsMercadoPago) => {
-    const { id } = await getMercadoPagoSession(paymentDetails);
+  const openCheckoutPage: OpenCheckoutPage = async (id, paymentDetails) => {
+    await getMercadoPagoSession(paymentDetails);
     const publicKey = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
       ? process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY_TEST
       : process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
@@ -33,6 +38,7 @@ const useMercadoPago = (): UseMercadoPago => {
       autoOpen: true,
     });
   };
+
   return { initSDK, openCheckoutPage };
 };
 

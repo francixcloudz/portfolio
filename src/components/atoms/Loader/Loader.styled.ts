@@ -40,7 +40,7 @@ export const Dot = styled.div`
   height: 10px;
   width: 10px;
   border-radius: calc(80px + 20px);
-  background-color: ${({ theme }) => theme.colors.violet};
+  background-color: ${({ theme }) => theme.colors.white};
 
   @keyframes rotation {
     0% {

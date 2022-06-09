@@ -81,6 +81,7 @@ export const DeleteTicketButton = styled(GenericButton)`
 `;
 
 export const TicketsWrapper = styled.div`
+  position: relative;
   overflow: auto;
   box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.6)};
   border-radius: 1rem;
@@ -283,4 +284,16 @@ export const DetailsContent = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-weight: ${({ theme }) => theme.fonts.Nunito.weights.Bold};
   font-size: 1rem;
+`;
+
+export const LoaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: ${({ theme }) => rgba(theme.colors.black, 0.8)};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
 `;

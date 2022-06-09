@@ -28,5 +28,5 @@ export enum TicketKeys {
 
 export interface Ticket {
   [TicketKeys.Name]: string;
-  [TicketKeys.Dni]: number;
+  [TicketKeys.Dni]: string;
 }
