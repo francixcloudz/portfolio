@@ -1,3 +1,4 @@
+import colors from "styles/theme/data/colors";
 import { PaymentDetailsMercadoPago } from "types/payment";
 import getMercadoPagoSession from "utils/getMercadoPagoSession";
 
@@ -21,16 +22,6 @@ const useMercadoPago = (): UseMercadoPago => {
 
   const openCheckoutPage: OpenCheckoutPage = async (paymentDetails) => {
     const id = await getMercadoPagoSession(paymentDetails);
-    const publicKey = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
-      ? process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY_TEST
-      : process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
-    // eslint-disable-next-line @typescript-eslint/dot-notation
-    const mercadopago = new window["MercadoPago"](publicKey, {
-      locale: "es-AR",
-    });
-    mercadopago.checkout({
-      preference: { id, ...paymentDetails },
-    });
   };
 
   return { initSDK, openCheckoutPage };

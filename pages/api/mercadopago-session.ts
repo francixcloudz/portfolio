@@ -11,7 +11,7 @@ module.exports = async (request: NextApiRequest, response: NextApiResponse) => {
     mercadopago.configure({
       access_token: accessToken,
     });
-    const session = await mercadopago.preferences.create({
+    const session = await mercadopago.preference.create({
       ...(request.body as PaymentDetailsMercadoPago),
     });
     response.status(200).json(session as MercadoPagoSession);

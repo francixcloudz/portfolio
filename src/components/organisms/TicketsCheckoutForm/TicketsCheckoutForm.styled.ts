@@ -62,6 +62,7 @@ export const SubmitButton = styled(Button)`
 `;
 
 export const DeleteTicketButton = styled(GenericButton)`
+  display: block;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 0.25rem;

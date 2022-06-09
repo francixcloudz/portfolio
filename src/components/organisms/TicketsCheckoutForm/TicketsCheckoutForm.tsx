@@ -36,7 +36,6 @@ const TicketsCheckoutForm = forwardRef(
       tickets,
       ticketsCount,
       hasMultipleTicket,
-      isFormVisible,
       ticketsWrapper,
       handleSubmit,
       addTicket,
@@ -63,52 +62,48 @@ const TicketsCheckoutForm = forwardRef(
               Prohibida la entrada a menores de 20
             </LockBanner>
           </TagsWrapper>
-          {isFormVisible && (
-            <>
-              <TicketsWrapper ref={ticketsWrapper}>
-                {new Array(ticketsCount).fill(null).map((_, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <TicketItem key={`TicketItem-${index}`}>
-                    {/* eslint-disable-next-line react/no-array-index-key */}
-                    <TicketDetails key={`TicketDetails-${index}`}>
-                      <NameInput
-                        type="text"
-                        placeholder="Nombre completo"
-                        value={tickets[index][TicketKeys.Name] || ""}
-                        onChange={(event) =>
-                          updateTicket(TicketKeys.Name, event.target.value, index)
-                        }
-                      />
-                      <DniInput
-                        type="tel"
-                        placeholder="DNI"
-                        value={tickets[index][TicketKeys.Dni] || ""}
-                        onChange={(event) =>
-                          updateTicket(TicketKeys.Dni, event.target.value, index)
-                        }
-                      />
-                    </TicketDetails>
-                    {hasMultipleTicket && (
-                      <DeleteTicketButton onClick={() => deleteTicket(index)}>x</DeleteTicketButton>
-                    )}
-                  </TicketItem>
-                ))}
-              </TicketsWrapper>
-              <ButtonsWrapper>
-                <AddTicketButton type="button" onClick={() => addTicket()}>
-                  Agregar otro ticket
-                </AddTicketButton>
-                <SubmitButton onClick={() => handleSubmit()} disabled={status === Status.Loading}>
-                  {status === Status.Loading ? (
-                    <StyledInlineLoader />
-                  ) : (
-                    `Comprar ${ticketsCount} ticket${hasMultipleTicket ? "s" : ""}`
-                  )}
-                </SubmitButton>
-                <TotalPrice>Total: ${ticketsCount * PRODUCT_PRICE}</TotalPrice>
-              </ButtonsWrapper>
-            </>
-          )}
+          <TicketsWrapper ref={ticketsWrapper}>
+            {new Array(ticketsCount).fill(null).map((_, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <TicketItem key={`TicketItem-${index}`}>
+                {/* eslint-disable-next-line react/no-array-index-key */}
+                <TicketDetails key={`TicketDetails-${index}`}>
+                  <NameInput
+                    type="text"
+                    placeholder="Nombre completo"
+                    value={tickets[index][TicketKeys.Name] || ""}
+                    onChange={(event) => updateTicket(TicketKeys.Name, event.target.value, index)}
+                  />
+                  <DniInput
+                    type="tel"
+                    placeholder="DNI"
+                    value={tickets[index][TicketKeys.Dni] || ""}
+                    onChange={(event) => updateTicket(TicketKeys.Dni, event.target.value, index)}
+                  />
+                </TicketDetails>
+                {hasMultipleTicket && (
+                  <DeleteTicketButton onClick={() => deleteTicket(index)}>x</DeleteTicketButton>
+                )}
+              </TicketItem>
+            ))}
+          </TicketsWrapper>
+          <ButtonsWrapper>
+            <AddTicketButton
+              type="button"
+              onClick={() => addTicket()}
+              disabled={status === Status.Loading}
+            >
+              Agregar otro ticket
+            </AddTicketButton>
+            <SubmitButton onClick={() => handleSubmit()} disabled={status === Status.Loading}>
+              {status === Status.Loading ? (
+                <StyledInlineLoader />
+              ) : (
+                `Comprar ${ticketsCount} ticket${hasMultipleTicket ? "s" : ""}`
+              )}
+            </SubmitButton>
+            <TotalPrice>Total: ${ticketsCount * PRODUCT_PRICE}</TotalPrice>
+          </ButtonsWrapper>
         </Container>
         <InfoModal
           isOpen={isOpenInfoModal}

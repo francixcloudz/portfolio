@@ -1,4 +1,5 @@
 export interface PaymentDetailsMercadoPago {
+  id: string;
   statement_descriptor: string;
   items: {
     id: string;
