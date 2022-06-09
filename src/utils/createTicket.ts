@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { ApiPath } from "data/enum/Path";
 import { Ticket } from "types/payment";
 import axiosInstance from "utils/axiosInstance";
@@ -10,10 +11,12 @@ export interface CreateTicketResponse {
   };
 }
 
-const createTicket = async (tickets: Array<Ticket>): Promise<CreateTicketResponse> => {
+const createTicket = async (
+  tickets: Array<Ticket>,
+): Promise<AxiosResponse<CreateTicketResponse>> => {
   const response = (await axiosInstance.post(ApiPath.CreateTicket, {
     body: tickets,
-  })) as CreateTicketResponse;
+  })) as AxiosResponse<CreateTicketResponse>;
   return response;
 };
 

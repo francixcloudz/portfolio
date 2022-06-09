@@ -1,10 +1,7 @@
 import { PaymentDetailsMercadoPago } from "types/payment";
 import getMercadoPagoSession from "utils/getMercadoPagoSession";
 
-export type OpenCheckoutPage = (
-  id: string,
-  paymentDetails: PaymentDetailsMercadoPago,
-) => Promise<void>;
+export type OpenCheckoutPage = (paymentDetails: PaymentDetailsMercadoPago) => Promise<void>;
 
 type InitSDK = (onLoadCallback: () => void) => void;
 
@@ -22,8 +19,8 @@ const useMercadoPago = (): UseMercadoPago => {
     document.body.appendChild(script);
   };
 
-  const openCheckoutPage: OpenCheckoutPage = async (id, paymentDetails) => {
-    await getMercadoPagoSession(paymentDetails);
+  const openCheckoutPage: OpenCheckoutPage = async (paymentDetails) => {
+    const id = await getMercadoPagoSession(paymentDetails);
     const publicKey = Number(process.env.NEXT_PUBLIC_MERCADOPAGO_IS_TESTING_ENV)
       ? process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY_TEST
       : process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
@@ -32,9 +29,7 @@ const useMercadoPago = (): UseMercadoPago => {
       locale: "es-AR",
     });
     mercadopago.checkout({
-      preference: {
-        id,
-      },
+      preference: { id, ...paymentDetails },
       autoOpen: true,
     });
   };

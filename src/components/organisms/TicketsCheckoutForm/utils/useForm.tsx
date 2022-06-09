@@ -43,10 +43,10 @@ const useForm = ({ price }: UseFormProps) => {
   const handleSubmit = async () => {
     try {
       setStatus(Status.Loading);
-      const response = await createTicket(tickets);
-      const { id } = response.ref["@ref"];
+      const { data } = await createTicket(tickets);
+      const { id } = data.ref["@ref"];
       const backUrl = `${baseUrl}/${Path.Party}?id=${id}`;
-      openCheckoutPage(id, {
+      openCheckoutPage({
         statement_descriptor: "[ONE]SHOT",
         items: [
           {
