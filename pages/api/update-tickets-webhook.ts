@@ -8,9 +8,8 @@ module.exports = async (request, response) => {
     const client = new faunadb.Client({ secret });
 
     const { id } = request.body.data;
-    const {
-      data: { status },
-    } = await axiosInstance.get(`https://api.mercadopago.com/v1/payments/${id}`);
+    const paymentResponse = await fetch(`https://api.mercadopago.com/v1/payments/${id}`);
+    const { status } = await paymentResponse.json();
     await client.query(
       query.Update(
         // extracts a single value from a document
@@ -19,7 +18,7 @@ module.exports = async (request, response) => {
           // retrieving the first document from a Match result
           query.Get(
             // retrieving all matches
-            query.Match("all_tickets_paymentId", id),
+            query.Match("get_ticket_by_paymentId", id),
           ),
         ),
         {

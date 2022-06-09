@@ -47,7 +47,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
     setStatus(Status.Loading);
     try {
       const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
-      const { id, paymentUrl } = await getMercadopagoSession({
+      const { paymentId, paymentUrl } = await getMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [
           {
@@ -67,9 +67,9 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
           failure: `${rootDomain}/${Path.Party}?status=${Status.Failure}`,
           pending: `${rootDomain}/${Path.Party}?status=${Status.Pending}`,
         },
-        notification_url: `${rootDomain}/api/${ApiPath.UpdateTickets}?source_news=webhooks`,
+        notification_url: `${rootDomain}/api/${ApiPath.UpdateTicketsWebhook}?source_news=webhooks`,
       });
-      await createTickets({ tickets, paymentId: id });
+      await createTickets({ tickets, paymentId });
       window.location.href = paymentUrl;
     } catch (error) {
       // eslint-disable-next-line no-console

@@ -7,7 +7,7 @@ export enum Path {
 export enum ApiPath {
   MercadopagoSession = "/mercadopago-session",
   CreateTickets = "/create-tickets",
-  UpdateTickets = "/update-tickets-webhook",
+  UpdateTicketsWebhook = "/update-tickets-webhook",
   GetTickets = "/get-tickets",
 }
 
