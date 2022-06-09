@@ -40,6 +40,11 @@ export const FlyerWrapper = styled.div`
 `;
 
 export const Flyer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
     margin: auto;
   }
@@ -53,7 +58,7 @@ export const FlyerContent = styled.div`
 `;
 
 export const OneShotLogo = styled(Image)`
-  margin: auto;
+  margin: 0 auto;
   width: 15rem;
   height: 15rem;
 

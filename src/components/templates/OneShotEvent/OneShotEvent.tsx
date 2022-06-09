@@ -2,8 +2,6 @@ import { ReactElement, useContext, useEffect, useRef } from "react";
 import { LoadingContext } from "components/organisms/Loading/Loading";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
-import useResponsive from "hooks/useResponsive";
-import breakpoints from "styles/theme/data/breakpoints";
 import { AllRefsGsap } from "types/animations";
 import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
 import Loader from "./Loader/Loader";
@@ -24,8 +22,6 @@ import useAnimation from "./utils/useAnimation";
 // TODO: Modularize
 const OneShotEvent = (): ReactElement => {
   const { isLoaded, isDelayLoaded } = useContext(LoadingContext);
-
-  const isMobile = useResponsive(breakpoints.xsmall);
 
   const mainImage = useRef<HTMLDivElement>(null);
   const allRefs = useRef<AllRefsGsap>({});
@@ -70,16 +66,12 @@ const OneShotEvent = (): ReactElement => {
               <Details variant={DetailsVariant.Medium} style={{}}>
                 FIESTA CACHENGUE
               </Details>
-              {!isMobile && (
-                <>
-                  <Details variant={DetailsVariant.Small} style={{ marginBottom: 0 }}>
-                    SONIDO DE ALTA CALIDAD
-                  </Details>
-                  <Details variant={DetailsVariant.Medium} style={{}}>
-                    CONSERVADORAS PERMITIDAS
-                  </Details>
-                </>
-              )}
+              <Details variant={DetailsVariant.Small} style={{ marginBottom: 0 }}>
+                SONIDO DE ALTA CALIDAD
+              </Details>
+              <Details variant={DetailsVariant.Medium} style={{}}>
+                CONSERVADORAS PERMITIDAS
+              </Details>
               <Details variant={DetailsVariant.Small} style={{ marginBottom: 0 }}>
                 LINE UP
               </Details>
