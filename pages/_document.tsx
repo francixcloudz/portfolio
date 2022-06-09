@@ -35,7 +35,7 @@ class MyDocument extends Document {
   }
 
   public render = () => (
-    <Html lang="en">
+    <Html>
       <Head>
         {AllFontsData.map(({ fontName, variantName }) => (
           <link

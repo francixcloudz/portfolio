@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import Head from "components/atoms/Head/Head";
+import MetaData from "components/atoms/MetaData/MetaData";
 import PageContainer from "components/atoms/PageContainer/PageContainer";
 import Loading from "components/organisms/Loading/Loading";
 import OneShotEvent from "components/templates/OneShotEvent/OneShotEvent";
@@ -13,11 +13,12 @@ const metaData = {
   faviconSrc: favicon.src,
   logo192Src: logo192.src,
   logo512Src: logo512.src,
+  url: "",
 };
 
 const Party = (): ReactElement => (
   <Loading delay={2000}>
-    <Head {...metaData} />
+    <MetaData {...metaData} />
     <PageContainer>
       <OneShotEvent />
     </PageContainer>

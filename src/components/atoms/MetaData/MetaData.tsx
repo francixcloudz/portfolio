@@ -1,22 +1,23 @@
-import NextHead from "next/head";
+import Head from "next/head";
 import { ReactElement } from "react";
 
-interface HeadProps {
+interface MetaDataProps {
   title: string;
   description: string;
   faviconSrc: string;
   logo192Src: string;
   logo512Src: string;
+  url: string;
 }
-
-const Head = ({
+const MetaData = ({
   title,
   description,
   faviconSrc,
   logo192Src,
   logo512Src,
-}: HeadProps): ReactElement => (
-  <NextHead>
+  url,
+}: MetaDataProps): ReactElement => (
+  <Head>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -32,7 +33,7 @@ const Head = ({
     <meta name="referrer" content="no-referrer" />
 
     <meta property="fb:app_id" content={title} />
-    <meta property="og:url" content="https://arrigoni.in/" />
+    <meta property="og:url" content={url} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:image" content={logo512Src} />
@@ -45,12 +46,12 @@ const Head = ({
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@franarrigoni_" />
     <meta name="twitter:creator" content="@franarrigoni_" />
-    <meta name="twitter:url" content="https://arrigoni.in/" />
+    <meta name="twitter:url" content={url} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={logo512Src} />
     <meta name="twitter:image:alt" content={title} />
-  </NextHead>
+  </Head>
 );
 
-export default Head;
+export default MetaData;

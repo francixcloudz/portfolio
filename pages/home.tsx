@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import Head from "components/atoms/Head/Head";
+import MetaData from "components/atoms/MetaData/MetaData";
 import PageContainer from "components/atoms/PageContainer/PageContainer";
 import Loading from "components/organisms/Loading/Loading";
 import About from "components/templates/About/About";
@@ -19,6 +19,7 @@ const metaData = {
   faviconSrc: favicon.src,
   logo192Src: logo192.src,
   logo512Src: logo512.src,
+  url: "https://arrigoni.in",
 };
 
 const Home = (): ReactElement => {
@@ -34,7 +35,7 @@ const Home = (): ReactElement => {
         setTimeout(() => setIsLoaded(true), 3000);
       }}
     >
-      <Head {...metaData} />
+      <MetaData {...metaData} />
       <PageContainer>
         <Landing />
         {isLoaded && (
