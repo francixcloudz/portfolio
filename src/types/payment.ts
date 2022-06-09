@@ -1,14 +1,21 @@
 export interface PaymentDetailsMercadoPago {
+  statement_descriptor: string;
   items: Array<{
     id: string;
     title: string;
-    description: string;
+    currency_id: string;
     picture_url: string;
+    description: string;
     category_id: string;
     quantity: number;
-    currency_id: string;
     unit_price: number;
   }>;
+  auto_return: string;
+  back_urls: {
+    success: string;
+    failure: string;
+    pending: string;
+  };
 }
 export enum TicketKeys {
   Name = "name",

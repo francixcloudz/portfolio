@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect, RefObject } from "react";
 import { awsS3Url } from "data";
+import { Path } from "data/enum/Path";
 import { Ticket, TicketKeys } from "types/payment";
+import baseUrl from "utils/baseUrl";
 // import createTicket from "utils/createTicket";
-import redirectToMercadoPago from "utils/redirectToMercadoPago";
+import getMercadoPagoSession from "utils/getMercadoPagoSession";
 
 export enum Status {
   Default = "Default",
@@ -45,22 +47,29 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const handleSubmit = async () => {
     setStatus(Status.Loading);
     try {
-      redirectToMercadoPago({
+      const { id, paymentUrl } = await getMercadoPagoSession({
+        statement_descriptor: "[ONE]SHOT",
         items: [
           {
             id: "[ONE]SHOT Pass",
             title: "[ONE]SHOT Pass",
-            description: "Pass to [ONE]SHOT Private Event",
+            currency_id: "ARS",
             picture_url: `${awsS3Url}/OneShot.png`,
+            description: "Pass to [ONE]SHOT Private Event",
             category_id: "tickets",
             quantity: ticketsCount,
             unit_price: price,
-            currency_id: "ARS",
           },
         ],
+        auto_return: "approved",
+        back_urls: {
+          success: `${baseUrl}/${Path.Party}?status=${Status.Success}`,
+          failure: `${baseUrl}/${Path.Party}?status=${Status.Failure}`,
+          pending: `${baseUrl}/${Path.Party}?status=${Status.Pending}`,
+        },
       });
-      // const { data } = await createTicket(tickets);
-      // const { id } = data.ref["@ref"];
+      window.localStorage.set("paymentId", id);
+      window.location.href = paymentUrl;
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

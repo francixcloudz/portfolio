@@ -4,6 +4,7 @@ import axiosInstance from "utils/axiosInstance";
 
 export interface MercadoPagoSession {
   id: string;
+  paymentUrl: string;
 }
 
 const getMercadoPagoSession = async (
@@ -11,12 +12,10 @@ const getMercadoPagoSession = async (
 ): Promise<MercadoPagoSession> => {
   const {
     data: { response },
-  } = await axiosInstance.post<{ response: MercadoPagoSession }>(
-    ApiPath.GetCheckoutSession,
-    paymentDetails,
-  );
+  } = await axiosInstance.post(ApiPath.GetCheckoutSession, paymentDetails);
   return {
     id: response.id,
+    paymentUrl: response.init_point,
   };
 };
 
