@@ -1,14 +1,12 @@
 export interface PaymentDetailsMercadoPago {
-  id: string;
-  statement_descriptor: string;
   items: Array<{
     id: string;
     title: string;
-    currency_id: string;
-    picture_url: string;
     description: string;
+    picture_url: string;
     category_id: string;
     quantity: number;
+    currency_id: string;
     unit_price: number;
   }>;
 }

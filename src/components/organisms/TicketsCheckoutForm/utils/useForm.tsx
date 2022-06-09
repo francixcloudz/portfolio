@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect, RefObject } from "react";
 import { awsS3Url } from "data";
-import { Path } from "data/enum/Path";
 import { Ticket, TicketKeys } from "types/payment";
-import baseUrl from "utils/baseUrl";
-import createTicket from "utils/createTicket";
+// import createTicket from "utils/createTicket";
 import redirectToMercadoPago from "utils/redirectToMercadoPago";
 
 export enum Status {
@@ -45,26 +43,24 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const hasMultipleTicket = ticketsCount > 1;
 
   const handleSubmit = async () => {
+    setStatus(Status.Loading);
     try {
-      setStatus(Status.Loading);
-      const { data } = await createTicket(tickets);
-      const { id } = data.ref["@ref"];
       redirectToMercadoPago({
-        id,
-        statement_descriptor: "[ONE]SHOT",
         items: [
           {
             id: "[ONE]SHOT Pass",
             title: "[ONE]SHOT Pass",
-            currency_id: "ARS",
-            picture_url: `${awsS3Url}/OneShot.png`,
             description: "Pass to [ONE]SHOT Private Event",
+            picture_url: `${awsS3Url}/OneShot.png`,
             category_id: "tickets",
             quantity: ticketsCount,
             unit_price: price,
+            currency_id: "ARS",
           },
         ],
       });
+      // const { data } = await createTicket(tickets);
+      // const { id } = data.ref["@ref"];
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

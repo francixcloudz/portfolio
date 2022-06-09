@@ -1,7 +1,9 @@
 import colors from "styles/theme/data/colors";
 import { PaymentDetailsMercadoPago } from "types/payment";
+import getMercadoPagoSession from "utils/getMercadoPagoSession";
 
-const redirectToMercadoPago = (paymentDetails: PaymentDetailsMercadoPago) => {
+const redirectToMercadoPago = async (paymentDetails: PaymentDetailsMercadoPago) => {
+  const sessionId = await getMercadoPagoSession(paymentDetails);
   const script = document.createElement("script");
   script.type = "text/javascript";
   script.src = "https://sdk.mercadopago.com/js/v2";
@@ -14,7 +16,7 @@ const redirectToMercadoPago = (paymentDetails: PaymentDetailsMercadoPago) => {
       locale: "es-AR",
     });
     mercadopago.checkout({
-      preference: { ...paymentDetails },
+      preference: { id: sessionId, ...paymentDetails },
       theme: {
         elementsColor: colors.violet,
         headerColor: colors.violet,
@@ -22,7 +24,8 @@ const redirectToMercadoPago = (paymentDetails: PaymentDetailsMercadoPago) => {
       autoOpen: true,
     });
   });
-  document.getElementsByTagName("head")[0].appendChild(script);
+  document.body.appendChild(script);
+  // document.getElementsByTagName("head")[0].appendChild(script);
 };
 
 export default redirectToMercadoPago;
