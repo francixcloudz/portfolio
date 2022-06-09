@@ -1,15 +1,14 @@
-import { Ticket } from "types/payment";
-import { CreateTicketResponse } from "utils/createTicket";
 import { query, client } from "utils/fauna";
 
 module.exports = async (request, response) => {
-  const tickets = request.body as Array<Ticket>;
+  const { tickets, paymentId, paymentStatus } = request.body;
   try {
     const dbs = await client.query(
       query.Create(query.Collection("tickets"), {
         data: {
-          paymentStatus: "pending",
           tickets,
+          paymentId,
+          paymentStatus,
         },
       }),
     );

@@ -1,15 +1,15 @@
 import { ApiPath } from "data/enum/Path";
-import { PaymentDetailsMercadoPago } from "types/payment";
+import { PaymentDetailsMercadopago } from "types/payment";
 import axiosInstance from "utils/axiosInstance";
 
-export interface MercadoPagoSession {
+export interface MercadopagoSession {
   id: string;
   paymentUrl: string;
 }
 
-const getMercadoPagoSession = async (
-  paymentDetails: PaymentDetailsMercadoPago,
-): Promise<MercadoPagoSession> => {
+const getMercadopagoSession = async (
+  paymentDetails: PaymentDetailsMercadopago,
+): Promise<MercadopagoSession> => {
   const {
     data: { response },
   } = await axiosInstance.post(ApiPath.GetCheckoutSession, paymentDetails);
@@ -19,4 +19,4 @@ const getMercadoPagoSession = async (
   };
 };
 
-export default getMercadoPagoSession;
+export default getMercadopagoSession;

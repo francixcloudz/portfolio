@@ -1,4 +1,4 @@
-export interface PaymentDetailsMercadoPago {
+export interface PaymentDetailsMercadopago {
   statement_descriptor: string;
   items: Array<{
     id: string;

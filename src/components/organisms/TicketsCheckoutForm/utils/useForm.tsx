@@ -3,15 +3,12 @@ import { awsS3Url } from "data";
 import { Path } from "data/enum/Path";
 import { Ticket, TicketKeys } from "types/payment";
 import baseUrl from "utils/baseUrl";
-// import createTicket from "utils/createTicket";
-import getMercadoPagoSession from "utils/getMercadoPagoSession";
+import createTickets, { PaymentStatus } from "utils/createTickets";
+import getMercadopagoSession from "utils/getMercadoPagoSession";
 
-export enum Status {
+export enum FormStatus {
   Default = "Default",
   Loading = "Loading",
-  Success = "Success",
-  Failure = "Failure",
-  Pending = "Pending",
 }
 
 const DEFAULT_TICKET: Ticket = {
@@ -22,6 +19,8 @@ const DEFAULT_TICKET: Ticket = {
 interface UseFormProps {
   price: number;
 }
+
+type Status = FormStatus | PaymentStatus;
 
 interface UseFormResponse {
   status: Status;
@@ -39,15 +38,15 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const ticketsWrapper = useRef<HTMLDivElement>(null);
 
   const [tickets, setTickets] = useState<Array<Ticket>>([DEFAULT_TICKET]);
-  const [status, setStatus] = useState(Status.Default);
+  const [status, setStatus] = useState<Status>(FormStatus.Default);
 
   const ticketsCount = tickets.length;
   const hasMultipleTicket = ticketsCount > 1;
 
   const handleSubmit = async () => {
-    setStatus(Status.Loading);
+    setStatus(FormStatus.Loading);
     try {
-      const { id, paymentUrl } = await getMercadoPagoSession({
+      const { id, paymentUrl } = await getMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [
           {
@@ -63,12 +62,12 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
         ],
         auto_return: "approved",
         back_urls: {
-          success: `${baseUrl}/${Path.Party}?status=${Status.Success}`,
-          failure: `${baseUrl}/${Path.Party}?status=${Status.Failure}`,
-          pending: `${baseUrl}/${Path.Party}?status=${Status.Pending}`,
+          success: `${baseUrl}/${Path.Party}?status=${PaymentStatus.Success}`,
+          failure: `${baseUrl}/${Path.Party}?status=${PaymentStatus.Failure}`,
+          pending: `${baseUrl}/${Path.Party}?status=${PaymentStatus.Pending}`,
         },
       });
-      window.localStorage.set("paymentId", id);
+      await createTickets({ tickets, paymentId: id, paymentStatus: PaymentStatus.Pending });
       window.location.href = paymentUrl;
     } catch (error) {
       // eslint-disable-next-line no-console
