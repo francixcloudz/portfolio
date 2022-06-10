@@ -11,12 +11,13 @@ const Handler = async (request, response) => {
     const { query } = faunadb;
     const client = new faunadb.Client({ secret });
 
+    const id = "23075451553";
     // const { id } = request.body.data;
-    // const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
-    // const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
-    //   headers: { Authorization: accessToken },
-    // });
-    // const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
+    const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
+    const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
+      headers: { Authorization: accessToken },
+    });
+    const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
     // const { status } = parsedPaymentDetails;
     const queryResponse = await client.query(
       query.Update(
@@ -31,12 +32,12 @@ const Handler = async (request, response) => {
         ),
         {
           data: {
-            paymentStatus: "piola",
+            paymentStatus: "re piola",
           },
         },
       ),
     );
-    response.status(200).json(queryResponse);
+    response.status(200).json(parsedPaymentDetails);
   } catch (error) {
     response.status(500).json(error);
   }
