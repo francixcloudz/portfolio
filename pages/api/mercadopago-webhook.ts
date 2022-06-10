@@ -12,24 +12,26 @@ module.exports = async (request, response) => {
       headers: { Authorization: accessToken },
     });
     const { status } = await paymentResponse.json();
-    await client.query(
-      query.Update(
-        // extracts a single value from a document
-        query.Select(
-          ["ref"],
-          // retrieving the first document from a Match result
-          query.Get(
-            // retrieving all matches
-            query.Match("get_ticket_by_paymentId", id),
+    if (status) {
+      await client.query(
+        query.Update(
+          // extracts a single value from a document
+          query.Select(
+            ["ref"],
+            // retrieving the first document from a Match result
+            query.Get(
+              // retrieving all matches
+              query.Match("get_ticket_by_paymentId", id),
+            ),
           ),
-        ),
-        {
-          data: {
-            paymentStatus: status,
+          {
+            data: {
+              paymentStatus: status,
+            },
           },
-        },
-      ),
-    );
+        ),
+      );
+    }
     response.status(200);
   } catch (error) {
     response.status(500).json(error);

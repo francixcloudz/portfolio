@@ -1,6 +1,5 @@
 import { rgba } from "polished";
 import styled from "styled-components";
-import Image from "components/atoms/Image/Image";
 
 export const Container = styled.div`
   display: flex;
