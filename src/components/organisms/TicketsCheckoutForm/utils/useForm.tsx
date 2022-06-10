@@ -61,6 +61,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
             unit_price: price,
           },
         ],
+        binary_mode: true,
         auto_return: "approved",
         back_urls: {
           success: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Success}`,

@@ -10,6 +10,7 @@ export interface PaymentDetailsMercadopago {
     quantity: number;
     unit_price: number;
   }>;
+  binary_mode: boolean;
   auto_return: string;
   back_urls: {
     success: string;
