@@ -6,12 +6,13 @@ module.exports = async (request, response) => {
     const { query } = faunadb;
     const client = new faunadb.Client({ secret });
 
-    const { tickets, paymentId } = request.body;
+    const { tickets, preferenceId } = request.body;
     const dbs = await client.query(
       query.Create(query.Collection("tickets"), {
         data: {
           tickets,
-          paymentId,
+          preferenceId,
+          paymentId: "null",
           paymentStatus: "null",
         },
       }),

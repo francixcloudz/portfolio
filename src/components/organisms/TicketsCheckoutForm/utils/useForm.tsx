@@ -3,7 +3,7 @@ import { awsS3Url } from "data";
 import { ApiPath, Path } from "data/enum/Path";
 import { Ticket, TicketKeys } from "types/payment";
 import createTickets from "utils/createTickets";
-import getMercadopagoSession from "utils/getMercadoPagoSession";
+import getMercadopagoSession from "utils/getMercadopagoSession";
 
 export enum Status {
   Default = "Default",
@@ -47,7 +47,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
     setStatus(Status.Loading);
     try {
       const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
-      const { paymentId, paymentUrl } = await getMercadopagoSession({
+      const { preferenceId, paymentUrl } = await getMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [
           {
@@ -63,13 +63,13 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
         ],
         auto_return: "approved",
         back_urls: {
-          success: `${rootDomain}/${Path.Party}?status=${Status.Success}`,
-          failure: `${rootDomain}/${Path.Party}?status=${Status.Failure}`,
-          pending: `${rootDomain}/${Path.Party}?status=${Status.Pending}`,
+          success: `${rootDomain}/${Path.PartyThankYouPage}?status=${Status.Success}`,
+          failure: `${rootDomain}/${Path.PartyThankYouPage}?status=${Status.Failure}`,
+          pending: `${rootDomain}/${Path.PartyThankYouPage}?status=${Status.Pending}`,
         },
-        notification_url: `${rootDomain}/api/${ApiPath.UpdateTicketsWebhook}?source_news=webhooks`,
+        notification_url: `${rootDomain}/api/${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
       });
-      await createTickets({ tickets, paymentId });
+      await createTickets({ tickets, preferenceId });
       window.location.href = paymentUrl;
     } catch (error) {
       // eslint-disable-next-line no-console

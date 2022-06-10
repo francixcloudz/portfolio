@@ -3,10 +3,9 @@ import { PaymentDetailsMercadopago } from "types/payment";
 import axiosInstance from "utils/axiosInstance";
 
 export interface MercadopagoSession {
-  paymentId: string;
+  preferenceId: string;
   paymentUrl: string;
 }
-
 const getMercadopagoSession = async (
   paymentDetails: PaymentDetailsMercadopago,
 ): Promise<MercadopagoSession> => {
@@ -14,7 +13,7 @@ const getMercadopagoSession = async (
     data: { response },
   } = await axiosInstance.post(ApiPath.MercadopagoSession, paymentDetails);
   return {
-    paymentId: response.id,
+    preferenceId: response.id,
     paymentUrl: response.init_point,
   };
 };

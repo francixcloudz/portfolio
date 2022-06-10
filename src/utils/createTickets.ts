@@ -3,8 +3,8 @@ import { Ticket } from "types/payment";
 import axiosInstance from "utils/axiosInstance";
 
 interface CreateTicketsProps {
+  preferenceId: string;
   tickets: Array<Ticket>;
-  paymentId: string;
 }
 
 const createTickets = async (newTicket: CreateTicketsProps) => {
