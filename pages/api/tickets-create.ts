@@ -7,7 +7,7 @@ module.exports = async (request, response) => {
     const client = new faunadb.Client({ secret });
 
     const { tickets, preferenceId } = request.body;
-    const dbs = await client.query(
+    const queryResponse = await client.query(
       query.Create(query.Collection("tickets"), {
         data: {
           tickets,
@@ -17,8 +17,7 @@ module.exports = async (request, response) => {
         },
       }),
     );
-    console.log(dbs);
-    response.status(200).json(dbs);
+    response.status(200).json(queryResponse);
   } catch (error) {
     response.status(500).json(error);
   }

@@ -7,32 +7,35 @@ module.exports = async (request, response) => {
     const client = new faunadb.Client({ secret });
 
     const { id } = request.body.data;
+    console.log("request.body", request.body);
     const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
-    const paymentResponse = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
+    const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
       headers: { Authorization: accessToken },
     });
-    const { status } = await paymentResponse.json();
-    if (status) {
-      await client.query(
-        query.Update(
-          // extracts a single value from a document
-          query.Select(
-            ["ref"],
-            // retrieving the first document from a Match result
-            query.Get(
-              // retrieving all matches
-              query.Match("get_ticket_by_paymentId", id),
-            ),
+    console.log("paymentDetails", paymentDetails);
+    const parsedPaymentDetails = await paymentDetails.json();
+    console.log("parsedPaymentDetails", parsedPaymentDetails);
+    const { status } = parsedPaymentDetails;
+    const queryResponse = await client.query(
+      query.Update(
+        // extracts a single value from a document
+        query.Select(
+          ["ref"],
+          // retrieving the first document from a Match result
+          query.Get(
+            // retrieving all matches
+            query.Match("get_ticket_by_paymentId", id),
           ),
-          {
-            data: {
-              paymentStatus: status,
-            },
-          },
         ),
-      );
-    }
-    response.status(200).json(paymentResponse);
+        {
+          data: {
+            paymentStatus: status,
+          },
+        },
+      ),
+    );
+    console.log("queryResponse", queryResponse);
+    response.status(200).json(queryResponse);
   } catch (error) {
     response.status(500).json(error);
   }
