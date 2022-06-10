@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import Image from "components/atoms/Image/Image";
+import InlineLoader from "components/atoms/InlineLoader/InlineLoader";
 
 export const Container = styled.div<{ isDelayLoaded: boolean }>`
+  position: relative;
   z-index: 10;
   width: 100vw;
   height: 100vh;
@@ -32,4 +34,9 @@ export const OneShotLogo = styled(Image)`
   height: 95vw;
   max-width: 400px;
   max-height: 400px;
+`;
+
+export const StyledInlineLoader = styled(InlineLoader)`
+  position: absolute;
+  bottom: 25vh;
 `;

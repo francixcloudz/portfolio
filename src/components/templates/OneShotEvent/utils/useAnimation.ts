@@ -30,7 +30,7 @@ const useAnimation = ({ refs }: UseAnimationProps) => {
     });
     const MobileCTAButton = refs.get("MobileCTAButton");
     if (MobileCTAButton) tl.set(MobileCTAButton, fadeIn.initial);
-    tl.set(refs.get("TicketsCheckoutForm"), fadeIn.initial);
+    tl.set(refs.get("EventDetails"), fadeIn.initial);
   };
 
   const startAnimation = () => {
@@ -39,7 +39,7 @@ const useAnimation = ({ refs }: UseAnimationProps) => {
     });
     const MobileCTAButton = refs.get("MobileCTAButton");
     if (MobileCTAButton) tl.to(MobileCTAButton, fadeIn.animate, ">");
-    tl.to(refs.get("TicketsCheckoutForm"), fadeIn.animate, ">");
+    tl.to(refs.get("EventDetails"), fadeIn.animate, ">");
   };
 
   return {

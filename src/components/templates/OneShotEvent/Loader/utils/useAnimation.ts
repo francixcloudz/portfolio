@@ -21,6 +21,7 @@ const useAnimation = ({ refs, delay, setLoaderImageStyle, mainImage }: UseAnimat
   };
 
   const startAnimation = () => {
+    tl.to(refs.get("InlineLoader"), { opacity: 0 });
     const {
       x: leftMainImage,
       y: topMainImage,
@@ -30,7 +31,6 @@ const useAnimation = ({ refs, delay, setLoaderImageStyle, mainImage }: UseAnimat
     tl.to(refs.get("LoaderImage"), {
       delay,
       ease: "none",
-      // TODO: Fix first load of mainImage
       left: leftMainImage,
       top: topMainImage,
       width: widthMainImage,

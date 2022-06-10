@@ -2,7 +2,6 @@ export enum Path {
   Home = "/",
   Sites = "/sites",
   Party = "/party",
-  PartyThankYouPage = "/party/thank-you",
 }
 
 export enum ApiPath {

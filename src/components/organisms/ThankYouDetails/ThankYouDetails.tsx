@@ -1,24 +1,17 @@
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
+import QRCode from "react-qr-code";
 import Loader from "components/atoms/Loader/Loader";
 import updateTickets from "utils/updateTickets";
-import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
-import { BrandName, Details, DetailsVariant } from "../OneShotEvent/OneShotEvent.styled";
-import {
-  Container,
-  BrandWrapper,
-  OneShotLogo,
-  QRCodeWrapper,
-  StyledQRCode,
-  PaymentDetailsWrapper,
-} from "./ThankYouPage.styled";
+import { Details, DetailsVariant } from "../../templates/OneShotEvent/OneShotEvent.styled";
+import { Container, QRCodeWrapper, PaymentDetailsWrapper } from "./ThankYouDetails.styled";
 
 interface PaymentInfo {
   preferenceId: string;
   paymentId: string;
 }
 
-const ThankYouPage = (): ReactElement => {
+const ThankYouDetails = forwardRef<HTMLDivElement>(({ ...rest }, ref) => {
   const { query } = useRouter();
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null);
 
@@ -34,29 +27,25 @@ const ThankYouPage = (): ReactElement => {
   }, [query]);
 
   return (
-    <Container>
-      {paymentInfo ? (
-        <PaymentDetailsWrapper>
+    <Container ref={ref} {...rest}>
+      <PaymentDetailsWrapper>
+        {paymentInfo ? (
           <QRCodeWrapper>
-            <StyledQRCode
+            <QRCode
               value={paymentInfo.paymentId}
               size={250}
               style={{ height: "auto", maxWidth: "100%", width: "250px" }}
             />
-            <Details variant={DetailsVariant.Large} style={{ marginBottom: 0 }}>
+            <Details variant={DetailsVariant.Large} style={{ marginTop: "3rem" }}>
               GRACIAS
             </Details>
           </QRCodeWrapper>
-        </PaymentDetailsWrapper>
-      ) : (
-        <Loader />
-      )}
-      <BrandWrapper>
-        <OneShotLogo src={OneShotImage} alt="OneShot Logo" priority />
-        <BrandName>[ONE]SHOT</BrandName>
-      </BrandWrapper>
+        ) : (
+          <Loader />
+        )}
+      </PaymentDetailsWrapper>
     </Container>
   );
-};
+});
 
-export default ThankYouPage;
+export default ThankYouDetails;

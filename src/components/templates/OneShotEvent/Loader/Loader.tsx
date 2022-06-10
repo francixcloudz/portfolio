@@ -3,7 +3,7 @@ import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
 import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
-import { Container, OneShotLogo } from "./Loader.styled";
+import { Container, OneShotLogo, StyledInlineLoader } from "./Loader.styled";
 import useAnimation from "./utils/useAnimation";
 
 export interface LoadingProps {
@@ -47,6 +47,7 @@ const Loader = ({ mainImage, isLoaded, isDelayLoaded }: LoadingProps) => {
         style={loaderImageStyle}
         priority
       />
+      <StyledInlineLoader ref={(node) => ref("InlineLoader", node)} />
     </Container>
   );
 };

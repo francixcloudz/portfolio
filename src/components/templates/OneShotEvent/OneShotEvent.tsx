@@ -1,5 +1,6 @@
 import { ReactElement, useContext, useEffect, useRef } from "react";
 import { LoadingContext } from "components/organisms/Loading/Loading";
+import ThankYouDetails from "components/organisms/ThankYouDetails/ThankYouDetails";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
@@ -19,8 +20,12 @@ import {
 } from "./OneShotEvent.styled";
 import useAnimation from "./utils/useAnimation";
 
+interface OneShotEventProps {
+  isThankYouPage?: boolean;
+}
+
 // TODO: Modularize
-const OneShotEvent = (): ReactElement => {
+const OneShotEvent = ({ isThankYouPage }: OneShotEventProps): ReactElement => {
   const { isLoaded, isDelayLoaded } = useContext(LoadingContext);
 
   const mainImage = useRef<HTMLDivElement>(null);
@@ -80,11 +85,17 @@ const OneShotEvent = (): ReactElement => {
               </Details>
             </FlyerContent>
           </Flyer>
-          <MobileCTAButton ref={(node) => ref("MobileCTAButton", node)} href="#Tickets">
-            RESERVAR LUGARES
-          </MobileCTAButton>
+          {!isThankYouPage && (
+            <MobileCTAButton ref={(node) => ref("MobileCTAButton", node)} href="#Tickets">
+              RESERVAR LUGARES
+            </MobileCTAButton>
+          )}
         </FlyerWrapper>
-        <StyledTicketsCheckoutForm ref={(node) => ref("TicketsCheckoutForm", node)} id="Tickets" />
+        {isThankYouPage ? (
+          <ThankYouDetails ref={(node) => ref("EventDetails", node)} />
+        ) : (
+          <StyledTicketsCheckoutForm ref={(node) => ref("EventDetails", node)} id="Tickets" />
+        )}
       </Container>
     </>
   );

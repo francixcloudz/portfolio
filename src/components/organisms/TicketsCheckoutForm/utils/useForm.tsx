@@ -63,9 +63,9 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
         ],
         auto_return: "approved",
         back_urls: {
-          success: `${rootDomain}/${Path.PartyThankYouPage}?status=${Status.Success}`,
-          failure: `${rootDomain}/${Path.PartyThankYouPage}?status=${Status.Failure}`,
-          pending: `${rootDomain}/${Path.PartyThankYouPage}?status=${Status.Pending}`,
+          success: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Success}`,
+          failure: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Failure}`,
+          pending: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Pending}`,
         },
         notification_url: `${rootDomain}/api/${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
       });
