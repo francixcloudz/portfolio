@@ -32,7 +32,7 @@ const Handler = async (request, response) => {
         ),
         {
           data: {
-            paymentStatus: "re piola",
+            paymentStatus: parsedPaymentDetails,
           },
         },
       ),
