@@ -15,7 +15,7 @@ const Handler = async (request, response) => {
     // const { id } = request.body.data;
     const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
     const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
-      headers: { Authorization: accessToken },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
     // const { status } = parsedPaymentDetails;
@@ -37,7 +37,7 @@ const Handler = async (request, response) => {
         },
       ),
     );
-    response.status(200).json(parsedPaymentDetails);
+    response.status(200).json(queryResponse);
   } catch (error) {
     response.status(500).json(error);
   }
