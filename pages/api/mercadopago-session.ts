@@ -1,10 +1,8 @@
 import mercadopago from "mercadopago";
-import { NextApiRequest, NextApiResponse } from "next";
-import { PaymentDetailsMercadopago } from "types/payment";
 
-module.exports = async (request: NextApiRequest, response: NextApiResponse) => {
+module.exports = async (request, response) => {
   try {
-    const preferences = request.body as PaymentDetailsMercadopago;
+    const preferences = request.body;
     const isSandbox = Boolean(Number(process.env.MERCADOPAGO_IS_SANDBOX));
     const accessToken = isSandbox
       ? process.env.MERCADOPAGO_ACCESS_TOKEN_TEST

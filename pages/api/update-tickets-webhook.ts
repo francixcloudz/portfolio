@@ -1,5 +1,4 @@
 import faunadb from "faunadb";
-import axiosInstance from "utils/axiosInstance";
 
 module.exports = async (request, response) => {
   try {
