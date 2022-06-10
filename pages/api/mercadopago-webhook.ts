@@ -1,6 +1,10 @@
 import faunadb from "faunadb";
 import fetch from "node-fetch";
 
+interface PaymentDetails {
+  status: string;
+}
+
 module.exports = async (request, response) => {
   try {
     const secret = process.env.FAUNADB_SECRET_KEY || "not found";
@@ -14,7 +18,7 @@ module.exports = async (request, response) => {
       headers: { Authorization: accessToken },
     });
     console.log("paymentDetails", paymentDetails);
-    const parsedPaymentDetails = await paymentDetails.json();
+    const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
     console.log("parsedPaymentDetails", parsedPaymentDetails);
     const { status } = parsedPaymentDetails;
     const queryResponse = await client.query(
