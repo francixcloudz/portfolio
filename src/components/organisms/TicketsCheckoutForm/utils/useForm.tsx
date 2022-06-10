@@ -2,8 +2,8 @@ import { useState, useRef, useEffect, RefObject } from "react";
 import { awsS3Url } from "data";
 import { ApiPath, Path } from "data/enum/Path";
 import { Ticket, TicketKeys } from "types/payment";
+import createMercadopagoSession from "utils/createMercadopagoSession";
 import createTickets from "utils/createTickets";
-import getMercadopagoSession from "utils/getMercadopagoSession";
 
 export enum Status {
   Default = "Default",
@@ -47,7 +47,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
     setStatus(Status.Loading);
     try {
       const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
-      const { preferenceId, paymentUrl } = await getMercadopagoSession({
+      const { preferenceId, paymentUrl } = await createMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [
           {

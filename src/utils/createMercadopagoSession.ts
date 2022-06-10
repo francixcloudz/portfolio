@@ -6,7 +6,7 @@ export interface MercadopagoSessionResponse {
   preferenceId: string;
   paymentUrl: string;
 }
-const getMercadopagoSession = async (
+const createMercadopagoSession = async (
   paymentDetails: PaymentDetailsMercadopago,
 ): Promise<MercadopagoSessionResponse> => {
   const {
@@ -18,4 +18,4 @@ const getMercadopagoSession = async (
   };
 };
 
-export default getMercadopagoSession;
+export default createMercadopagoSession;
