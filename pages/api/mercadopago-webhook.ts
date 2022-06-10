@@ -1,4 +1,5 @@
 import faunadb from "faunadb";
+import fetch from "node-fetch";
 
 module.exports = async (request, response) => {
   try {
