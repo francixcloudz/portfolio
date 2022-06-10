@@ -8,7 +8,7 @@
     "airbnb-typescript",
     "prettier"
   ],
-  "ignorePatterns": [".eslintrc.js", "/pages/api"],
+  "ignorePatterns": [".eslintrc.js"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"

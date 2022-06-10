@@ -1,6 +1,6 @@
 import mercadopago from "mercadopago";
 
-module.exports = async (request, response) => {
+const Handler = async (request, response) => {
   try {
     const preferences = request.body;
     const isSandbox = Boolean(Number(process.env.MERCADOPAGO_IS_SANDBOX));
@@ -17,3 +17,5 @@ module.exports = async (request, response) => {
     response.status(500).json(error);
   }
 };
+
+export default Handler;

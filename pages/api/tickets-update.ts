@@ -1,6 +1,6 @@
 import faunadb from "faunadb";
 
-module.exports = async (request, response) => {
+const Handler = async (request, response) => {
   try {
     const secret = process.env.FAUNADB_SECRET_KEY || "not found";
     const { query } = faunadb;
@@ -30,3 +30,5 @@ module.exports = async (request, response) => {
     response.status(500).json(error);
   }
 };
+
+export default Handler;
