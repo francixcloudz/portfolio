@@ -11,16 +11,13 @@ const Handler = async (request, response) => {
     const { query } = faunadb;
     const client = new faunadb.Client({ secret });
 
-    const { id } = request.body.data;
-    console.log("request.body", request.body);
-    const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
-    const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
-      headers: { Authorization: accessToken },
-    });
-    console.log("paymentDetails", paymentDetails);
-    const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
-    console.log("parsedPaymentDetails", parsedPaymentDetails);
-    const { status } = parsedPaymentDetails;
+    // const { id } = request.body.data;
+    // const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
+    // const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
+    //   headers: { Authorization: accessToken },
+    // });
+    // const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
+    // const { status } = parsedPaymentDetails;
     const queryResponse = await client.query(
       query.Update(
         // extracts a single value from a document
@@ -29,17 +26,16 @@ const Handler = async (request, response) => {
           // retrieving the first document from a Match result
           query.Get(
             // retrieving all matches
-            query.Match("get_ticket_by_paymentId", id),
+            query.Match("get_ticket_by_paymentId", "23075451553"),
           ),
         ),
         {
           data: {
-            paymentStatus: status,
+            paymentStatus: "piola",
           },
         },
       ),
     );
-    console.log("queryResponse", queryResponse);
     response.status(200).json(queryResponse);
   } catch (error) {
     response.status(500).json(error);
