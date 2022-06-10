@@ -11,14 +11,12 @@ const Handler = async (request, response) => {
     const { query } = faunadb;
     const client = new faunadb.Client({ secret });
 
-    const id = "23075451553";
-    // const { id } = request.body.data;
+    const { id } = request.body.data;
     const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
     const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    const parsedPaymentDetails = (await paymentDetails.json()) as PaymentDetails;
-    // const { status } = parsedPaymentDetails;
+    const { status } = (await paymentDetails.json()) as PaymentDetails;
     const queryResponse = await client.query(
       query.Update(
         // extracts a single value from a document
@@ -32,7 +30,7 @@ const Handler = async (request, response) => {
         ),
         {
           data: {
-            paymentStatus: parsedPaymentDetails,
+            paymentStatus: status,
           },
         },
       ),

@@ -72,7 +72,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
           failure: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Failure}`,
           pending: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Pending}`,
         },
-        notification_url: `${rootDomain}/api/${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
+        notification_url: `${rootDomain}/api${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
       });
       await createTickets({ tickets, preferenceId });
       window.location.href = paymentUrl;
