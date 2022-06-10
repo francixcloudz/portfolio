@@ -7,7 +7,7 @@ module.exports = async (request, response) => {
     const client = new faunadb.Client({ secret });
 
     const { preferenceId, ...ticketsNewData } = request.body;
-    await client.query(
+    const queryResponse = await client.query(
       query.Update(
         // extracts a single value from a document
         query.Select(
@@ -25,7 +25,7 @@ module.exports = async (request, response) => {
         },
       ),
     );
-    response.status(200);
+    response.status(200).json(queryResponse);
   } catch (error) {
     response.status(500).json(error);
   }

@@ -32,7 +32,7 @@ module.exports = async (request, response) => {
         ),
       );
     }
-    response.status(200);
+    response.status(200).json(paymentResponse);
   } catch (error) {
     response.status(500).json(error);
   }
