@@ -61,6 +61,10 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
             unit_price: price,
           },
         ],
+        payment_methods: {
+          excluded_payment_types: [{ id: "ticket" }],
+          installments: 12,
+        },
         binary_mode: true,
         auto_return: "approved",
         back_urls: {
