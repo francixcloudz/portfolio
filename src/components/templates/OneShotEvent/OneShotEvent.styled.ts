@@ -1,6 +1,7 @@
 import { rgba } from "polished";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Image from "components/atoms/Image/Image";
+import ThankYouDetails from "components/organisms/ThankYouDetails/ThankYouDetails";
 import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
 export const Container = styled.div`
@@ -141,7 +142,7 @@ export const MobileCTAButton = styled.a`
   }
 `;
 
-export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
+const EventDetailsStyle = css`
   width: 55%;
   max-height: 100vh;
 
@@ -149,4 +150,12 @@ export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
     width: 100%;
     padding: 5vw;
   }
+`;
+
+export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
+  ${EventDetailsStyle}
+`;
+
+export const StyledThankYouDetails = styled(ThankYouDetails)`
+  ${EventDetailsStyle}
 `;

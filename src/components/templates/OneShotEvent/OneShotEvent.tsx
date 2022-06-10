@@ -1,6 +1,5 @@
 import { ReactElement, useContext, useEffect, useRef } from "react";
 import { LoadingContext } from "components/organisms/Loading/Loading";
-import ThankYouDetails from "components/organisms/ThankYouDetails/ThankYouDetails";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
@@ -16,6 +15,7 @@ import {
   Details,
   MobileCTAButton,
   StyledTicketsCheckoutForm,
+  StyledThankYouDetails,
   FlyerContent,
 } from "./OneShotEvent.styled";
 import useAnimation from "./utils/useAnimation";
@@ -92,7 +92,7 @@ const OneShotEvent = ({ isThankYouPage }: OneShotEventProps): ReactElement => {
           )}
         </FlyerWrapper>
         {isThankYouPage ? (
-          <ThankYouDetails ref={(node) => ref("EventDetails", node)} />
+          <StyledThankYouDetails ref={(node) => ref("EventDetails", node)} />
         ) : (
           <StyledTicketsCheckoutForm ref={(node) => ref("EventDetails", node)} id="Tickets" />
         )}
