@@ -23,6 +23,8 @@ import {
   DetailsTitle,
   DetailsContent,
   StyledInlineLoader,
+  StyledFullScreenMessage,
+  StyledPayButton,
 } from "./TicketsCheckoutForm.styled";
 import useForm, { Status } from "./utils/useForm";
 
@@ -44,6 +46,7 @@ const TicketsCheckoutForm = forwardRef(
       ticketsCount,
       hasMultipleTicket,
       ticketsWrapper,
+      paymentUrl,
       handleSubmit,
       addTicket,
       deleteTicket,
@@ -103,6 +106,14 @@ const TicketsCheckoutForm = forwardRef(
             >
               Agregar otro ticket
             </AddTicketButton>
+
+            {status === Status.RequiredFieldsError && (
+              <LockBanner>
+                <LockIcon />
+                Tienes campos sin completar
+              </LockBanner>
+            )}
+
             <SubmitButton
               id="paycontainer"
               onClick={() => (status === Status.Loading ? null : handleSubmit())}
@@ -113,6 +124,7 @@ const TicketsCheckoutForm = forwardRef(
                 `Comprar ${ticketsCount} ticket${hasMultipleTicket ? "s" : ""}`
               )}
             </SubmitButton>
+
             <TotalPrice>Total: ${ticketsCount * PRODUCT_PRICE}</TotalPrice>
           </ButtonsWrapper>
         </Container>
@@ -131,6 +143,24 @@ const TicketsCheckoutForm = forwardRef(
           <DetailsTitle>INFORMACION ADICIONAL</DetailsTitle>
           <DetailsContent>Conservadoras permitidas</DetailsContent>
         </InfoModal>
+        {status === Status.Saving && (
+          <StyledFullScreenMessage>
+            <DetailsTitle>IMPORTANTE</DetailsTitle>
+            <DetailsContent>
+              Luego del pago regresa al sitio para obtener el codigo QR de su compra
+            </DetailsContent>
+            {paymentUrl ? (
+              <StyledPayButton target="_self" href={paymentUrl}>
+                Pagar
+              </StyledPayButton>
+            ) : (
+              <>
+                <DetailsContent>Generando link de pago...</DetailsContent>
+                <StyledInlineLoader />
+              </>
+            )}
+          </StyledFullScreenMessage>
+        )}
       </>
     );
   },

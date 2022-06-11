@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import MetaData from "components/atoms/MetaData/MetaData";
 import PageContainer from "components/atoms/PageContainer/PageContainer";
@@ -17,18 +16,13 @@ const metaData = {
   url: "",
 };
 
-const Party = (): ReactElement => {
-  const { query } = useRouter();
-  const queryValues = { ...query };
-
-  return (
-    <Loading delay={1200}>
-      <MetaData {...metaData} />
-      <PageContainer>
-        <OneShotEvent isThankYouPage={Boolean(queryValues.thank_you)} />
-      </PageContainer>
-    </Loading>
-  );
-};
+const Party = (): ReactElement => (
+  <Loading delay={1200}>
+    <MetaData {...metaData} />
+    <PageContainer>
+      <OneShotEvent />
+    </PageContainer>
+  </Loading>
+);
 
 export default Party;

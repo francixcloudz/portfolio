@@ -1,7 +1,8 @@
 import { rgba } from "polished";
 import styled, { css } from "styled-components";
+import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Image from "components/atoms/Image/Image";
-import ThankYouDetails from "components/organisms/ThankYouDetails/ThankYouDetails";
+import Loader from "components/atoms/Loader/Loader";
 import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
 export const Container = styled.div`
@@ -156,6 +157,58 @@ export const StyledTicketsCheckoutForm = styled(TicketsCheckoutForm)`
   ${EventDetailsStyle}
 `;
 
-export const StyledThankYouDetails = styled(ThankYouDetails)`
-  ${EventDetailsStyle}
+export const ThankYouModal = styled(GenericModal)`
+  > *:nth-child(1) {
+    background: ${({ theme }) => rgba(theme.colors.violet_darkest, 0.7)};
+  }
+  > *:nth-child(2) {
+    > *:nth-child(1) {
+      height: 100%;
+    }
+    max-width: ${({ theme }) => theme.breakpoints.xsmall}px;
+    min-height: ${({ theme }) => theme.breakpoints.xsmall}px;
+    padding: 2rem;
+    box-shadow: 0 0 2rem 0 ${({ theme }) => rgba(theme.colors.black, 0.5)};
+    background: ${({ theme }) => `
+  radial-gradient(
+    circle,
+    transparent 20%,
+    ${theme.colors.black} 20%,
+    ${theme.colors.black} 80%,
+    transparent 80%,
+    transparent
+  )
+  0% 0% / 65px 65px,
+  radial-gradient(
+      circle,
+      transparent 20%,
+      ${theme.colors.black} 20%,
+      ${theme.colors.black} 80%,
+      transparent 80%,
+      transparent
+    )
+    32.5px 32.5px / 65px 65px,
+  linear-gradient(${theme.colors.violet_darkest} 2.6px, transparent 2.6px) 0px -1.3px / 32.5px 32.5px,
+  linear-gradient(90deg, ${theme.colors.violet_darkest} 2.6px, ${theme.colors.black} 2.6px) -1.3px 0px / 32.5px 32.5px
+`};
+  }
+`;
+
+export const QRCodeWrapper = styled.div`
+  padding: 1rem;
+  width: fit-content;
+  border-radius: 1rem;
+  padding: 1rem;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.white, 0.6)};
+  margin-bottom: 2rem;
+`;
+
+export const InformationWrapper = styled.div`
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

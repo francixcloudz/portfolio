@@ -1,9 +1,17 @@
-import { ReactElement, useContext, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
+import { ReactElement, useContext, useEffect, useRef, useState } from "react";
+import QRCode from "react-qr-code";
+import { GenericModalVariants } from "components/atoms/GenericModal/GenericModal";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 import { LoadingContext } from "components/organisms/Loading/Loading";
+import { PaymentStatus } from "components/organisms/TicketsCheckoutForm/utils/useForm";
+import useGenericModal from "hooks/useGenericModal";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
+import updateTickets from "utils/updateTickets";
 import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
+import moonshot from "assets/images/emojis/Moonshot.png";
 import Loader from "./Loader/Loader";
 import {
   Container,
@@ -15,17 +23,25 @@ import {
   Details,
   MobileCTAButton,
   StyledTicketsCheckoutForm,
-  StyledThankYouDetails,
   FlyerContent,
+  ThankYouModal,
+  QRCodeWrapper,
+  InformationWrapper,
 } from "./OneShotEvent.styled";
 import useAnimation from "./utils/useAnimation";
 
-interface OneShotEventProps {
-  isThankYouPage?: boolean;
+interface PaymentInfo {
+  preferenceId: string;
+  paymentId: string;
 }
 
 // TODO: Modularize
-const OneShotEvent = ({ isThankYouPage }: OneShotEventProps): ReactElement => {
+const OneShotEvent = (): ReactElement => {
+  const { query } = useRouter();
+
+  const [paymentStatus, setPaymentStatus] = useState<PaymentStatus | null>(null);
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null);
+
   const { isLoaded, isDelayLoaded } = useContext(LoadingContext);
 
   const mainImage = useRef<HTMLDivElement>(null);
@@ -35,6 +51,12 @@ const OneShotEvent = ({ isThankYouPage }: OneShotEventProps): ReactElement => {
   const { setAnimation, startAnimation, clearAnimation } = useAnimation({
     refs: new RefSet(allRefs.current),
   });
+
+  const {
+    isOpenModal: isOpenThankYouModal,
+    openModal: openThankYouModal,
+    handleClose: handleCloseThankYouModal,
+  } = useGenericModal();
 
   useIsoLayoutEffect(() => {
     setAnimation();
@@ -46,6 +68,20 @@ const OneShotEvent = ({ isThankYouPage }: OneShotEventProps): ReactElement => {
       clearAnimation();
     };
   }, [isDelayLoaded]);
+
+  useEffect(() => {
+    const queryValues = { ...query };
+    if (queryValues.thankYou) openThankYouModal();
+    const preferenceId = queryValues.preference_id as string;
+    const paymentId = queryValues.payment_id as string;
+    const status = queryValues.paymentStatus as PaymentStatus;
+    if (status) setPaymentStatus(status);
+    if (preferenceId && paymentId) {
+      const newPaymentInfo = { preferenceId, paymentId };
+      setPaymentInfo(newPaymentInfo);
+      updateTickets(newPaymentInfo);
+    }
+  }, [query]);
 
   return (
     <>
@@ -85,18 +121,47 @@ const OneShotEvent = ({ isThankYouPage }: OneShotEventProps): ReactElement => {
               </Details>
             </FlyerContent>
           </Flyer>
-          {!isThankYouPage && (
-            <MobileCTAButton ref={(node) => ref("MobileCTAButton", node)} href="#Tickets">
-              RESERVAR LUGARES
-            </MobileCTAButton>
-          )}
+          <MobileCTAButton ref={(node) => ref("MobileCTAButton", node)} href="#Tickets">
+            RESERVAR LUGARES
+          </MobileCTAButton>
         </FlyerWrapper>
-        {isThankYouPage ? (
-          <StyledThankYouDetails ref={(node) => ref("EventDetails", node)} />
-        ) : (
-          <StyledTicketsCheckoutForm ref={(node) => ref("EventDetails", node)} id="Tickets" />
-        )}
+
+        <StyledTicketsCheckoutForm ref={(node) => ref("EventDetails", node)} id="Tickets" />
       </Container>
+      <ThankYouModal
+        isOpen={isOpenThankYouModal}
+        onClose={handleCloseThankYouModal}
+        variant={GenericModalVariants.Center}
+      >
+        <Details variant={DetailsVariant.ExtraLarge} style={{ marginBottom: 0 }}>
+          DATOS DE TU COMPRA
+        </Details>
+        <InformationWrapper>
+          <Details variant={DetailsVariant.Large} style={{ marginTop: "1rem" }}>
+            {paymentStatus === PaymentStatus.Pending && "PAGO PENDIENTE"}
+            {paymentStatus === PaymentStatus.Failure && "PAGO FALLIDO"}
+            {paymentStatus === PaymentStatus.Success && "PAGO EXITOSO"}
+          </Details>
+
+          {paymentStatus === PaymentStatus.Success && paymentInfo && (
+            <>
+              <QRCodeWrapper>
+                <QRCode
+                  value={paymentInfo.paymentId}
+                  size={150}
+                  style={{ height: "auto", maxWidth: "100%", width: "150px" }}
+                />
+              </QRCodeWrapper>
+              <SectionTitle
+                title="GRACIAS"
+                subtitle="PODRAN INGRESAR CON SU DNI Y/O CON ESTE CODIGO QR"
+                emoji={moonshot}
+                isWhite
+              />
+            </>
+          )}
+        </InformationWrapper>
+      </ThankYouModal>
     </>
   );
 };

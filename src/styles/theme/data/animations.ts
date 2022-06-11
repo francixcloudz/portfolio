@@ -49,6 +49,14 @@ const animations = {
   FADE_IN: `@keyframes FADE_IN {
       0% {
         opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }`,
+  FADE_IN_AND_POP: `@keyframes FADE_IN_AND_POP {
+      0% {
+        opacity: 0;
         transform: scale(0.9) translateY(-100%);
       }
       50% {

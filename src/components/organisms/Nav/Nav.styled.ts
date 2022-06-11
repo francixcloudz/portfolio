@@ -30,8 +30,8 @@ export const Links = styled.div<{ isOpen: boolean }>`
     left: 0;
     margin: auto;
     z-index: 999;
-    animation: FADE_IN ease 1000ms;
-    ${({ theme }) => theme.animations.FADE_IN}
+    animation: FADE_IN_AND_POP ease 1000ms;
+    ${({ theme }) => theme.animations.FADE_IN_AND_POP}
     ${({ isOpen }) =>
       isOpen &&
       css`

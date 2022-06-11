@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div``;
+
+export const DotsWrapper = styled.div`
   will-change: transform;
   animation: 1.4s linear rotation;
   animation-iteration-count: infinite;

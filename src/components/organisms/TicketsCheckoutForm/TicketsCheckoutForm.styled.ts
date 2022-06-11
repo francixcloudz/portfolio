@@ -1,5 +1,6 @@
 import { rgba } from "polished";
 import styled, { css } from "styled-components";
+import FullScreenMessage from "components/atoms/FullScreenMessage/FullScreenMessage";
 import GenericButton from "components/atoms/GenericButton/GenericButton";
 import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Icon from "components/atoms/Icon/Icon";
@@ -19,6 +20,7 @@ export const Container = styled.div`
 export const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 450px;
 
@@ -32,7 +34,6 @@ const Button = styled(GenericButton)`
   border-radius: 0.5rem;
   background: transparent;
   width: 100%;
-  height: 100%;
   letter-spacing: 1px;
 `;
 
@@ -54,7 +55,7 @@ export const SubmitButton = styled(Button)`
     linear-gradient(${({ theme }) => theme.colors.violet} 21px, transparent 1%) center,
     ${({ theme }) => theme.colors.white};
   background-size: 22px 22px;
-  padding: 1rem;
+  padding: 1rem 3rem;
 
   :hover {
     box-shadow: 0 0.5rem 1rem -0.2rem ${({ theme }) => rgba(theme.colors.violet, 0.8)};
@@ -293,3 +294,13 @@ export const DetailsContent = styled.p`
 `;
 
 export const StyledInlineLoader = styled(InlineLoader)``;
+
+export const StyledFullScreenMessage = styled(FullScreenMessage)`
+  > * {
+    max-width: ${({ theme }) => theme.breakpoints.xxsmall}px;
+  }
+`;
+
+export const StyledPayButton = styled(SubmitButton)`
+  width: fit-content;
+`;

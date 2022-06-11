@@ -11,8 +11,7 @@ const Handler = async (request, response) => {
     const { query } = faunadb;
     const client = new faunadb.Client({ secret });
 
-    // const { id } = request.body.data;
-    const id = "23075451553";
+    const { id } = request.body.data;
     const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || "";
     const paymentDetails = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
       headers: { Authorization: `Bearer ${accessToken}` },
@@ -26,7 +25,7 @@ const Handler = async (request, response) => {
           // retrieving the first document from a Match result
           query.Get(
             // retrieving all matches
-            query.Match("get_ticket_by_paymentId", "23075451553"),
+            query.Match("get_ticket_by_paymentId", id),
           ),
         ),
         {

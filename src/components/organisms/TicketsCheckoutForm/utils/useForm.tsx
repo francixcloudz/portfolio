@@ -6,10 +6,15 @@ import createMercadopagoSession from "utils/createMercadopagoSession";
 import createTickets from "utils/createTickets";
 
 export enum Status {
-  Default = "Default",
-  Loading = "Loading",
-  Success = "Success",
-  Failure = "Failure",
+  Default = "default",
+  RequiredFieldsError = "RequiredFieldsError",
+  Loading = "loading",
+  Saving = "saving",
+}
+
+export enum PaymentStatus {
+  Success = "success",
+  Failure = "failure",
   Pending = "pending",
 }
 
@@ -28,6 +33,7 @@ interface UseFormResponse {
   ticketsCount: number;
   hasMultipleTicket: boolean;
   ticketsWrapper: RefObject<HTMLDivElement>;
+  paymentUrl: string | null;
   handleSubmit: () => Promise<void>;
   addTicket: () => void;
   deleteTicket: (index: number) => void;
@@ -37,6 +43,7 @@ interface UseFormResponse {
 const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const ticketsWrapper = useRef<HTMLDivElement>(null);
 
+  const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
   const [tickets, setTickets] = useState<Array<Ticket>>([DEFAULT_TICKET]);
   const [status, setStatus] = useState<Status>(Status.Default);
 
@@ -44,10 +51,14 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const hasMultipleTicket = ticketsCount > 1;
 
   const handleSubmit = async () => {
+    if (tickets.some(({ name, dni }) => !name || !dni)) {
+      setStatus(Status.RequiredFieldsError);
+      return;
+    }
     setStatus(Status.Loading);
     try {
       const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
-      const { preferenceId, paymentUrl } = await createMercadopagoSession({
+      const { preferenceId, paymentUrl: newPaymentUrl } = await createMercadopagoSession({
         statement_descriptor: "[ONE]SHOT",
         items: [
           {
@@ -63,19 +74,21 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
         ],
         payment_methods: {
           excluded_payment_types: [{ id: "ticket" }],
-          installments: 12,
+          installments: 1,
         },
-        binary_mode: true,
         auto_return: "approved",
         back_urls: {
-          success: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Success}`,
-          failure: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Failure}`,
-          pending: `${rootDomain}/${Path.Party}?thank_you=true&status=${Status.Pending}`,
+          success: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Success}`,
+          failure: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Failure}`,
+          pending: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Pending}`,
         },
         notification_url: `${rootDomain}/api${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
       });
+      setStatus(Status.Saving);
       await createTickets({ tickets, preferenceId });
-      window.location.href = paymentUrl;
+      setTimeout(() => {
+        setPaymentUrl(newPaymentUrl);
+      }, 2000);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -114,6 +127,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
     ticketsCount,
     hasMultipleTicket,
     ticketsWrapper,
+    paymentUrl,
     handleSubmit,
     addTicket,
     deleteTicket,
