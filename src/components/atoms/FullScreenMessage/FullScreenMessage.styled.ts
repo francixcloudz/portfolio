@@ -15,6 +15,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 0;
-  animation: FADE_IN 2.5s linear forwards;
+  animation: FADE_IN 1s linear forwards;
   ${({ theme }) => theme.animations.FADE_IN}
 `;

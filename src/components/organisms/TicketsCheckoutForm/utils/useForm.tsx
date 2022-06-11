@@ -88,7 +88,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
       await createTickets({ tickets, preferenceId });
       setTimeout(() => {
         setPaymentUrl(newPaymentUrl);
-      }, 2000);
+      }, 5000);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

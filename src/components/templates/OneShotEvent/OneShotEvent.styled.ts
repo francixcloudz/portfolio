@@ -2,7 +2,6 @@ import { rgba } from "polished";
 import styled, { css } from "styled-components";
 import GenericModal from "components/atoms/GenericModal/GenericModal";
 import Image from "components/atoms/Image/Image";
-import Loader from "components/atoms/Loader/Loader";
 import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 
 export const Container = styled.div`
@@ -162,11 +161,7 @@ export const ThankYouModal = styled(GenericModal)`
     background: ${({ theme }) => rgba(theme.colors.violet_darkest, 0.7)};
   }
   > *:nth-child(2) {
-    > *:nth-child(1) {
-      height: 100%;
-    }
     max-width: ${({ theme }) => theme.breakpoints.xsmall}px;
-    min-height: ${({ theme }) => theme.breakpoints.xsmall}px;
     padding: 2rem;
     box-shadow: 0 0 2rem 0 ${({ theme }) => rgba(theme.colors.black, 0.5)};
     background: ${({ theme }) => `

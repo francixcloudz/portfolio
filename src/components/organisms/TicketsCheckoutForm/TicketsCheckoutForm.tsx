@@ -147,7 +147,7 @@ const TicketsCheckoutForm = forwardRef(
           <StyledFullScreenMessage>
             <DetailsTitle>IMPORTANTE</DetailsTitle>
             <DetailsContent>
-              Luego del pago regresa al sitio para obtener el codigo QR de su compra
+              Luego de pagar, regresa al sitio para obtener tu codigo QR
             </DetailsContent>
             {paymentUrl ? (
               <StyledPayButton target="_self" href={paymentUrl}>
