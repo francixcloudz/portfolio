@@ -72,9 +72,12 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
             unit_price: price,
           },
         ],
-        payment_methods: {
-          excluded_payment_types: [{ id: "ticket" }],
-          installments: 1,
+        payer: {
+          name: tickets[0][TicketKeys.Name],
+          identification: {
+            type: "DNI",
+            number: tickets[0][TicketKeys.Dni],
+          },
         },
         auto_return: "approved",
         back_urls: {
@@ -88,7 +91,7 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
       await createTickets({ tickets, preferenceId });
       setTimeout(() => {
         setPaymentUrl(newPaymentUrl);
-      }, 5000);
+      }, 3000);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

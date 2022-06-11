@@ -10,7 +10,7 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.colors.black};
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.large}px) {
@@ -28,7 +28,7 @@ export const Container = styled.div`
 `;
 
 export const FlyerWrapper = styled.div`
-  width: 30%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
