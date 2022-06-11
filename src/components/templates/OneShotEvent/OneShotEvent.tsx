@@ -9,7 +9,7 @@ import useGenericModal from "hooks/useGenericModal";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
-import updateTickets from "utils/updateTickets";
+import addPaymentIdToTickets from "utils/AddPaymentIdToTickets";
 import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
 import moonshot from "assets/images/emojis/Moonshot.png";
 import Loader from "./Loader/Loader";
@@ -79,7 +79,7 @@ const OneShotEvent = (): ReactElement => {
     if (preferenceId && paymentId) {
       const newPaymentInfo = { preferenceId, paymentId };
       setPaymentInfo(newPaymentInfo);
-      updateTickets(newPaymentInfo);
+      addPaymentIdToTickets(newPaymentInfo);
     }
   }, [query]);
 

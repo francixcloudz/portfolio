@@ -8,7 +8,7 @@ export enum ApiPath {
   MercadopagoSession = "/mercadopago-session",
   MercadopagoWebhook = "/mercadopago-webhook",
   CreateTickets = "/tickets-create",
-  UpdateTickets = "/tickets-update",
+  AddPaymentIdToTickets = "/tickets-add-paymentId",
   GetTickets = "/get-tickets",
 }
 
