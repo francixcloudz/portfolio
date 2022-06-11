@@ -17,15 +17,16 @@ const Handler = async (request, response) => {
         ),
       ),
     );
-    const queryResponse = paymentId
-      ? await client.query(
-          query.Update(ticketRef, {
-            data: {
-              paymentId,
-            },
-          }),
-        )
-      : await client.query(query.Delete(ticketRef));
+    const queryResponse =
+      !paymentId || paymentId === "null"
+        ? await client.query(query.Delete(ticketRef))
+        : await client.query(
+            query.Update(ticketRef, {
+              data: {
+                paymentId,
+              },
+            }),
+          );
     response.status(200).json(queryResponse);
   } catch (error) {
     response.status(500).json(error);
