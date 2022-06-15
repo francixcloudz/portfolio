@@ -134,7 +134,7 @@ const TicketsCheckoutForm = forwardRef(
           variant={GenericModalVariants.Center}
         >
           <DetailsTitle>FECHA</DetailsTitle>
-          <DetailsContent>Viernes 27 - Junio 2022 - 00.00hs</DetailsContent>
+          <DetailsContent>Viernes 17 - Junio 2022 - 00.00hs</DetailsContent>
           <DetailsTitle>UBICACION</DetailsTitle>
           <DetailsContent>Malagueño 2274, Córdoba</DetailsContent>
           <SubmitButton href="https://goo.gl/maps/7NNbSpKZ7qYUEGaw6">
