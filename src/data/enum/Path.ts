@@ -9,7 +9,7 @@ export enum ApiPath {
   MercadopagoWebhook = "/mercadopago-webhook",
   CreateTickets = "/tickets-create",
   AddPaymentIdToTickets = "/tickets-add-paymentId",
-  GetTickets = "/get-tickets",
+  GetTickets = "/tickets-get-all",
 }
 
 export type ApiEndpoints = ApiPath;

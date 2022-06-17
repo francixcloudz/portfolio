@@ -13,7 +13,7 @@ const Handler = async (request, response) => {
           // make paginatable
           query.Match(
             // query index
-            query.Index("all_tickets"), // specify source
+            query.Index("get_all_tickets"), // specify source
           ),
         ),
         (ref) => query.Get(ref), // lookup each result by its reference
