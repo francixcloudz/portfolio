@@ -72,6 +72,8 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
         number: tickets[0][TicketKeys.Dni],
       },
     },
+    external_reference: `DNI - ${tickets[0][TicketKeys.Dni]}`,
+    binary_mode: true,
     auto_return: "all",
     back_urls: {
       success: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Success}`,
@@ -79,6 +81,14 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
       pending: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Pending}`,
     },
     notification_url: `${rootDomain}/api${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
+    payment_methods: {
+      installments: 1,
+      excluded_payment_types: [
+        {
+          id: "ticket",
+        },
+      ],
+    },
   };
 
   const handleSubmit = async () => {
