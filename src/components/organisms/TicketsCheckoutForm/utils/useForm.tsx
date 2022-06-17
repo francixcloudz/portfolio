@@ -50,6 +50,37 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
   const ticketsCount = tickets.length;
   const hasMultipleTicket = ticketsCount > 1;
 
+  const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
+  const mercadoPagoPreferences = {
+    statement_descriptor: "[ONE]SHOT",
+    items: [
+      {
+        id: "[ONE]SHOT Pass",
+        title: "[ONE]SHOT Pass",
+        currency_id: "ARS",
+        picture_url: `${awsS3Url}/OneShot.png`,
+        description: "Pass to [ONE]SHOT Private Event",
+        category_id: "tickets",
+        quantity: ticketsCount,
+        unit_price: price,
+      },
+    ],
+    payer: {
+      name: tickets[0][TicketKeys.Name],
+      identification: {
+        type: "DNI",
+        number: tickets[0][TicketKeys.Dni],
+      },
+    },
+    auto_return: "all",
+    back_urls: {
+      success: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Success}`,
+      failure: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Failure}`,
+      pending: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Pending}`,
+    },
+    notification_url: `${rootDomain}/api${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
+  };
+
   const handleSubmit = async () => {
     if (tickets.some(({ name, dni }) => !name || !dni)) {
       setStatus(Status.RequiredFieldsError);
@@ -57,36 +88,9 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
     }
     setStatus(Status.Loading);
     try {
-      const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
-      const { preferenceId, paymentUrl: newPaymentUrl } = await createMercadopagoSession({
-        statement_descriptor: "[ONE]SHOT",
-        items: [
-          {
-            id: "[ONE]SHOT Pass",
-            title: "[ONE]SHOT Pass",
-            currency_id: "ARS",
-            picture_url: `${awsS3Url}/OneShot.png`,
-            description: "Pass to [ONE]SHOT Private Event",
-            category_id: "tickets",
-            quantity: ticketsCount,
-            unit_price: price,
-          },
-        ],
-        payer: {
-          name: tickets[0][TicketKeys.Name],
-          identification: {
-            type: "DNI",
-            number: tickets[0][TicketKeys.Dni],
-          },
-        },
-        auto_return: "approved",
-        back_urls: {
-          success: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Success}`,
-          failure: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Failure}`,
-          pending: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Pending}`,
-        },
-        notification_url: `${rootDomain}/api${ApiPath.MercadopagoWebhook}?source_news=webhooks`,
-      });
+      const { preferenceId, paymentUrl: newPaymentUrl } = await createMercadopagoSession(
+        mercadoPagoPreferences,
+      );
       setStatus(Status.Saving);
       await createTickets({ tickets, preferenceId });
       setTimeout(() => {
