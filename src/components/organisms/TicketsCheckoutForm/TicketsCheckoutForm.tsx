@@ -27,6 +27,7 @@ import {
   StyledPayButton,
 } from "./TicketsCheckoutForm.styled";
 import useForm, { Status } from "./utils/useForm";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 
 interface TicketsCheckoutFormProps {
   minimumAge?: number;
@@ -145,11 +146,23 @@ const TicketsCheckoutForm = forwardRef(
         </InfoModal>
         {status === Status.Saving && (
           <StyledFullScreenMessage>
-            <DetailsTitle>IMPORTANTE</DetailsTitle>
-            <DetailsContent>
-              Luego de pagar, regresa al sitio para obtener tu codigo QR
+            <SectionTitle title="Pago pendiente" subtitle="alias: oneshot" principal isWhite />
+            <DetailsContent style={{ marginTop: "0.5rem" }}>
+              Para finalizar el registro realiza una transferencia
             </DetailsContent>
-            {paymentUrl ? (
+            <DetailsTitle style={{ marginTop: "0" }}>
+              Total: ${ticketsCount * PRODUCT_PRICE} ({ticketsCount} ticket
+              {hasMultipleTicket ? "s" : ""})
+            </DetailsTitle>
+            <StyledPayButton
+              target="_blank"
+              href={`https://wa.me/5492995769384?text=${encodeURIComponent(
+                "Hola! Te envio el comprobante de pago de mis entradas. Mi DNI es: ",
+              )}`}
+            >
+              ENVIAR COMPROBANTE
+            </StyledPayButton>
+            {/* {paymentUrl ? (
               <StyledPayButton target="_self" href={paymentUrl}>
                 Pagar
               </StyledPayButton>
@@ -158,7 +171,7 @@ const TicketsCheckoutForm = forwardRef(
                 <DetailsContent>Generando link de pago...</DetailsContent>
                 <StyledInlineLoader />
               </>
-            )}
+            )} */}
           </StyledFullScreenMessage>
         )}
       </>

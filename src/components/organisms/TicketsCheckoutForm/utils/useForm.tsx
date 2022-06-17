@@ -97,14 +97,14 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
     }
     setStatus(Status.Loading);
     try {
-      const { preferenceId, paymentUrl: newPaymentUrl } = await createMercadopagoSession(
-        mercadoPagoPreferences,
-      );
+      // const { preferenceId, paymentUrl: newPaymentUrl } = await createMercadopagoSession(
+      //   mercadoPagoPreferences,
+      // );
+      await createTickets({ tickets, preferenceId: tickets[0][TicketKeys.Dni] });
       setStatus(Status.Saving);
-      await createTickets({ tickets, preferenceId });
-      setTimeout(() => {
-        setPaymentUrl(newPaymentUrl);
-      }, 3000);
+      // setTimeout(() => {
+      //   setPaymentUrl(newPaymentUrl);
+      // }, 3000);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
