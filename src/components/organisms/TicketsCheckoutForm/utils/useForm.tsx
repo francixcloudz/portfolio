@@ -73,7 +73,6 @@ const useForm = ({ price }: UseFormProps): UseFormResponse => {
       },
     },
     external_reference: `DNI - ${tickets[0][TicketKeys.Dni]}`,
-    binary_mode: true,
     auto_return: "all",
     back_urls: {
       success: `${rootDomain}${Path.Party}?thankYou=true&paymentStatus=${PaymentStatus.Success}`,
