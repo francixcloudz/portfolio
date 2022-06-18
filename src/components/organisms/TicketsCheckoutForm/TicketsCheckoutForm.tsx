@@ -1,5 +1,6 @@
 import { forwardRef, ComponentProps, ForwardedRef, useState } from "react";
 import { GenericModalVariants } from "components/atoms/GenericModal/utils/data";
+import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 import useGenericModal from "hooks/useGenericModal";
 import { TicketKeys } from "types/payment";
 import {
@@ -28,7 +29,6 @@ import {
   DisabledOverlay,
 } from "./TicketsCheckoutForm.styled";
 import useForm, { Status } from "./utils/useForm";
-import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
 
 interface TicketsCheckoutFormProps {
   minimumAge?: number;

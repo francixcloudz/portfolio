@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
-import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 import getAllTickets from "utils/getAllTickets";
-import {
-  Container,
-  UserList,
-  UserItem,
-  UserItemName,
-  UserItemDni,
-  StatusButton,
-  StatusButtonContent,
-} from "./SecurityPage.styled";
+import { Container, UserList, UserItem, UserItemName, UserItemDni } from "./SecurityPage.styled";
 
 const SecurityPage = () => {
   const [allTickets, setAllTickets] = useState<Array<any>>([]);
