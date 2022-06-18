@@ -9,7 +9,7 @@ import useGenericModal from "hooks/useGenericModal";
 import useIsoLayoutEffect from "hooks/useIsoLayoutEffect";
 import useRefSet, { RefSet } from "hooks/useRefSet";
 import { AllRefsGsap } from "types/animations";
-import addPaymentIdToTickets from "utils/AddPaymentIdToTickets";
+import addPaymentIdToTickets from "utils/addPaymentIdToTickets";
 import OneShotImage from "assets/images/brand/OneShot/logo_white.png";
 import moonshot from "assets/images/emojis/Moonshot.png";
 import Loader from "./Loader/Loader";

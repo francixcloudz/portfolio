@@ -84,6 +84,7 @@ export const DeleteTicketButton = styled(GenericButton)`
 `;
 
 export const TicketsWrapper = styled.div`
+  position: relative;
   overflow: auto;
   box-shadow: 0 0.2rem 1rem 0 ${({ theme }) => rgba(theme.colors.violet, 0.6)};
   border-radius: 1rem;
@@ -303,4 +304,20 @@ export const StyledFullScreenMessage = styled(FullScreenMessage)`
 
 export const StyledPayButton = styled(SubmitButton)`
   width: fit-content;
+`;
+
+export const DisabledOverlay = styled.div`
+  font-family: ${({ theme }) => theme.fonts.FredokaOne.family};
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => rgba(theme.colors.black, 0.6)};
 `;

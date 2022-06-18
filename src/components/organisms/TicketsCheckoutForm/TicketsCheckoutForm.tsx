@@ -1,4 +1,4 @@
-import { forwardRef, ComponentProps, ForwardedRef } from "react";
+import { forwardRef, ComponentProps, ForwardedRef, useState } from "react";
 import { GenericModalVariants } from "components/atoms/GenericModal/utils/data";
 import useGenericModal from "hooks/useGenericModal";
 import { TicketKeys } from "types/payment";
@@ -25,6 +25,7 @@ import {
   StyledInlineLoader,
   StyledFullScreenMessage,
   StyledPayButton,
+  DisabledOverlay,
 } from "./TicketsCheckoutForm.styled";
 import useForm, { Status } from "./utils/useForm";
 import SectionTitle from "components/molecules/SectionTitle/SectionTitle";
@@ -53,6 +54,8 @@ const TicketsCheckoutForm = forwardRef(
       deleteTicket,
       updateTicket,
     } = useForm({ price: PRODUCT_PRICE });
+
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
     const {
       isOpenModal: isOpenInfoModal,
@@ -99,11 +102,12 @@ const TicketsCheckoutForm = forwardRef(
                 )}
               </TicketItem>
             ))}
+            {isSubmitDisabled && <DisabledOverlay>Todos los cupos llenos</DisabledOverlay>}
           </TicketsWrapper>
           <ButtonsWrapper>
             <AddTicketButton
               type="button"
-              onClick={() => (status === Status.Loading ? null : addTicket())}
+              onClick={() => (status === Status.Loading || isSubmitDisabled ? null : addTicket())}
             >
               Agregar otro ticket
             </AddTicketButton>
@@ -117,15 +121,16 @@ const TicketsCheckoutForm = forwardRef(
 
             <SubmitButton
               id="paycontainer"
-              onClick={() => (status === Status.Loading ? null : handleSubmit())}
+              onClick={() =>
+                status === Status.Loading || isSubmitDisabled ? null : handleSubmit()
+              }
             >
-              {status === Status.Loading ? (
+              {status === Status.Loading || isSubmitDisabled ? (
                 <StyledInlineLoader />
               ) : (
                 `Comprar ${ticketsCount} ticket${hasMultipleTicket ? "s" : ""}`
               )}
             </SubmitButton>
-
             <TotalPrice>Total: ${ticketsCount * PRODUCT_PRICE}</TotalPrice>
           </ButtonsWrapper>
         </Container>
@@ -142,7 +147,9 @@ const TicketsCheckoutForm = forwardRef(
             ABRIR GOOGLE MAPS
           </SubmitButton>
           <DetailsTitle>INFORMACION ADICIONAL</DetailsTitle>
-          <DetailsContent>Conservadoras permitidas</DetailsContent>
+          <DetailsContent onClick={() => setIsSubmitDisabled(false)}>
+            Conservadoras permitidas
+          </DetailsContent>
         </InfoModal>
         {status === Status.Saving && (
           <StyledFullScreenMessage>
