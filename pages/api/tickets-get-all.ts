@@ -15,6 +15,7 @@ const Handler = async (request, response) => {
             // query index
             query.Index("get_all_tickets"), // specify source
           ),
+          { size: 200 },
         ),
         (ref) => query.Get(ref), // lookup each result by its reference
       ),

@@ -6,13 +6,14 @@ export const Container = styled.div`
 
 export const UserList = styled.div`
   display: flex;
-  flex-direction: center;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 `;
 
 export const UserItem = styled.div`
-  margin: 0.51rem;
+  margin: 1rem;
 `;
 
 export const UserItemName = styled.div``;

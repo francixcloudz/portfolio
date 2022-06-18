@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TicketsCheckoutForm from "components/organisms/TicketsCheckoutForm/TicketsCheckoutForm";
 import getAllTickets from "utils/getAllTickets";
 import {
   Container,
@@ -13,33 +14,32 @@ import {
 const SecurityPage = () => {
   const [allTickets, setAllTickets] = useState<Array<any>>([]);
 
-  const filterTickets = (ticketsList: any, status: string) =>
-    ticketsList.filter(({ data }) => data.paymentStatus === status);
+  const getAllTicketsInfo = (ticketsList) =>
+    ticketsList.map(({ data }) => ({
+      payer: data.tickets[0].dni,
+      tickets: data.tickets,
+      paymentStatus: data.paymentStatus,
+    }));
 
   useEffect(() => {
-    getAllTickets().then(({ data }) => setAllTickets(data.data));
+    getAllTickets().then(({ data }) => setAllTickets(getAllTicketsInfo(data.data)));
   }, []);
-
-  const getAllTicketsInfo = (ticketsList) => ticketsList.map(({ data }) => data.tickets).flat();
-
-  const approvedTickets = getAllTicketsInfo(filterTickets(allTickets, "approved"));
-
-  const nullTickets = getAllTicketsInfo(filterTickets(allTickets, "null"));
-
-  console.log("approvedTickets", approvedTickets);
-  console.log("nullTickets", nullTickets);
 
   return (
     <Container>
-      {approvedTickets.length} Tickets:
-      <UserList style={{ marginBottom: "1000" }}>
-        {approvedTickets.map(({ name }) => (
-          <UserItem>
-            {/* <UserItemName>{ticket}</UserItemName> */}
-            {/* <UserItemDni>ti</UserItemDni> */}
-            <StatusButton>
-              <StatusButtonContent>{name}</StatusButtonContent>
-            </StatusButton>
+      {allTickets.map(({ tickets }) => tickets).flat().length} Tickets:
+      <UserList>
+        {allTickets.map(({ payer, tickets, paymentStatus }, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <UserItem key={`UserItem-${index}-${payer}`}>
+            <UserItemName>{payer}</UserItemName>
+            <UserItemName>Status {paymentStatus}</UserItemName>
+            {tickets.map(({ name, dni }) => (
+              <>
+                <UserItemDni>{name}</UserItemDni>
+                <UserItemDni>{dni}</UserItemDni>
+              </>
+            ))}
           </UserItem>
         ))}
       </UserList>
