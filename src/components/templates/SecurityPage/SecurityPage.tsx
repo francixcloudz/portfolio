@@ -7,7 +7,6 @@ const SecurityPage = () => {
 
   const getAllTicketsInfo = (ticketsList) =>
     ticketsList.map(({ data }) => ({
-      payer: data.tickets[0].dni,
       tickets: data.tickets,
       paymentStatus: data.paymentStatus,
     }));
@@ -15,6 +14,8 @@ const SecurityPage = () => {
   useEffect(() => {
     getAllTickets().then(({ data }) => setAllTickets(getAllTicketsInfo(data.data)));
   }, []);
+
+  console.log(allTickets.map(({ tickets }) => tickets).flat());
 
   return (
     <Container>
